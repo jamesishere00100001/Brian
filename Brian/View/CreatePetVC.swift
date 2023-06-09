@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import PhotosUI
 
-class CreatePetVC: UIViewController {
+class CreatePetVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var headerImage: UIImageView!
     @IBOutlet weak var avatarImage: UIImageView!
@@ -19,9 +20,13 @@ class CreatePetVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        headerImage.layer.masksToBounds = false
-        headerImage.layer.cornerRadius = headerImage.frame.height/2
-        headerImage.clipsToBounds = true
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        imagePicker.sourceType = .photoLibrary
+        
+//        headerImage.layer.masksToBounds = false
+//        headerImage.layer.cornerRadius = headerImage.frame.height/2
+//        headerImage.clipsToBounds = true
         
         avatarImage.image = UIImage(named: "Profile")
         avatarImage.layer.masksToBounds = false
@@ -36,22 +41,48 @@ class CreatePetVC: UIViewController {
     
     private var textFieldsFilled: Bool = false
     
+    let imagePicker = UIImagePickerController()
+    
     var petName: String = ""
     var petBreed: String = ""
     var petDOB: String = ""
     
     var saveButton = UIButton()
     
+    var userPickedImage = UIImage()
+    
+//    imageView.image = userPickedImage
     
     @IBAction func changePhotoButton(_ sender: UIButton) {
         
+        present(imagePicker, animated: true)
+        
     }
     
+    func allTextEntered(status: Bool) {
+        if nameTextBox.hasText && breedTextBox.hasText && dobTextBox.hasText == true {
+            textFieldsFilled = true
+        } else {
+            
+        }
+        
+    }
     
     @IBAction func saveButton(_ sender: UIButton) {
         if textFieldsFilled == true {
+            petName = nameTextBox.text!
+            petBreed = breedTextBox.text!
+            petDOB = dobTextBox.text!
+            
+            performSegue(withIdentifier: "", sender: self)
+            
+           
+        } else {
             
         }
+        print(petName)
+        print(petBreed)
+        print(petDOB)
         
     }
     
