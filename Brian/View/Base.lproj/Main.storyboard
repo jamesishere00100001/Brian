@@ -151,23 +151,85 @@
                         <outlet property="dobTextBox" destination="z4d-3z-2Oj" id="dpE-a5-J4J"/>
                         <outlet property="headerImage" destination="CbO-aD-njS" id="rxN-na-biz"/>
                         <outlet property="nameTextBox" destination="YIn-Gh-dac" id="ObX-t1-A8W"/>
+                        <segue destination="hGX-Jb-j5d" kind="show" identifier="goToProfile" id="Zgo-dh-vkc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="139.69465648854961" y="4.9295774647887329"/>
         </scene>
+        <!--ProfileVC-->
+        <scene sceneID="mgK-Az-6vl">
+            <objects>
+                <viewController id="hGX-Jb-j5d" customClass="ProfileVC" customModule="Brian" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cWH-Dr-yU1">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TxT-X3-gyx" userLabel="Background">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                                <color key="backgroundColor" name="Background"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DzV-dr-j9R" userLabel="Drop shadow">
+                                <rect key="frame" x="20" y="154" width="353" height="110"/>
+                                <color key="backgroundColor" red="0.92156862745098034" green="0.88235294117647056" blue="0.73333333333333328" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile" translatesAutoresizingMaskIntoConstraints="NO" id="LGB-DZ-r7l" userLabel="Avatar">
+                                <rect key="frame" x="20" y="141" width="135" height="136"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="136" id="Hvf-DC-0vh"/>
+                                    <constraint firstAttribute="width" constant="135" id="qId-LR-SLk"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DaL-vC-6Y0" userLabel="Footer">
+                                <rect key="frame" x="0.0" y="752" width="393" height="90"/>
+                                <color key="backgroundColor" name="Head&amp;Foot"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="90" id="6Oc-U5-GGC"/>
+                                    <constraint firstAttribute="height" constant="90" id="vpA-HP-SpL"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="99t-vP-bN7"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="DaL-vC-6Y0" firstAttribute="leading" secondItem="99t-vP-bN7" secondAttribute="leading" id="I1Z-0i-kyF"/>
+                            <constraint firstItem="TxT-X3-gyx" firstAttribute="bottom" secondItem="99t-vP-bN7" secondAttribute="bottom" id="KZa-tx-nVy"/>
+                            <constraint firstItem="TxT-X3-gyx" firstAttribute="trailing" secondItem="99t-vP-bN7" secondAttribute="trailing" id="MOE-Rf-h8G"/>
+                            <constraint firstItem="DaL-vC-6Y0" firstAttribute="centerX" secondItem="cWH-Dr-yU1" secondAttribute="centerX" id="TVa-vU-4Qs"/>
+                            <constraint firstItem="DzV-dr-j9R" firstAttribute="leading" secondItem="LGB-DZ-r7l" secondAttribute="leading" id="Ya3-lf-UNJ"/>
+                            <constraint firstItem="LGB-DZ-r7l" firstAttribute="leading" secondItem="99t-vP-bN7" secondAttribute="leading" constant="20" id="bEw-aj-E2l"/>
+                            <constraint firstItem="DzV-dr-j9R" firstAttribute="centerY" secondItem="LGB-DZ-r7l" secondAttribute="centerY" id="eUu-13-NOl"/>
+                            <constraint firstItem="TxT-X3-gyx" firstAttribute="leading" secondItem="cWH-Dr-yU1" secondAttribute="leading" id="iJ6-HA-cxb"/>
+                            <constraint firstAttribute="bottom" secondItem="DaL-vC-6Y0" secondAttribute="bottom" id="nIC-up-ex2"/>
+                            <constraint firstItem="DzV-dr-j9R" firstAttribute="top" secondItem="99t-vP-bN7" secondAttribute="top" constant="154" id="o8o-fw-WIZ"/>
+                            <constraint firstItem="LGB-DZ-r7l" firstAttribute="top" secondItem="cWH-Dr-yU1" secondAttribute="top" constant="141" id="ppH-tY-fsB"/>
+                            <constraint firstItem="TxT-X3-gyx" firstAttribute="top" secondItem="cWH-Dr-yU1" secondAttribute="top" id="vOE-W5-Oba"/>
+                            <constraint firstItem="DaL-vC-6Y0" firstAttribute="trailing" secondItem="99t-vP-bN7" secondAttribute="trailing" id="w23-EX-R5o"/>
+                            <constraint firstItem="DzV-dr-j9R" firstAttribute="centerX" secondItem="DaL-vC-6Y0" secondAttribute="centerX" id="wal-8i-usj"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Sv8-1t-Bdv"/>
+                    <connections>
+                        <outlet property="avatarImage" destination="LGB-DZ-r7l" id="vXe-Vq-AOb"/>
+                        <outlet property="dropShadowImage" destination="DzV-dr-j9R" id="L0d-bd-KVW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PYc-5v-kQN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1104.5801526717557" y="4.9295774647887329"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Profile" width="135" height="136"/>
         <namedColor name="Background">
-            <color red="0.95970016719999995" green="0.93199002740000003" blue="0.82763117549999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.95999997854232788" green="0.93199998140335083" blue="0.82800000905990601" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Button">
-            <color red="0.14548924569999999" green="0.37025821209999998" blue="0.19538751239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.14499999582767487" green="0.37000000476837158" blue="0.19499999284744263" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Head&amp;Foot">
-            <color red="0.92999058960000003" green="0.4470855594" blue="0.20585340260000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.93000000715255737" green="0.44699999690055847" blue="0.20600000023841858" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Text">
             <color red="0.098039215686274508" green="0.29411764705882354" blue="0.14509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

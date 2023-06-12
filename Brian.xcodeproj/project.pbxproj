@@ -14,6 +14,7 @@
 		DD41031C2A3335FE00537824 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD41031B2A3335FE00537824 /* Assets.xcassets */; };
 		DD41031F2A3335FE00537824 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD41031D2A3335FE00537824 /* LaunchScreen.storyboard */; };
 		DD41032B2A3362F900537824 /* Shrikhand-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD41032A2A3362F900537824 /* Shrikhand-Regular.ttf */; };
+		DDB9087A2A376201007BF59E /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB908792A376201007BF59E /* ProfileVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		DD41031E2A3335FE00537824 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DD4103202A3335FE00537824 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD41032A2A3362F900537824 /* Shrikhand-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Shrikhand-Regular.ttf"; path = "../../../../../Downloads/Shrikhand/Shrikhand-Regular.ttf"; sourceTree = "<group>"; };
+		DDB908792A376201007BF59E /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				DD4103162A3335FC00537824 /* CreatePetVC.swift */,
+				DDB908792A376201007BF59E /* ProfileVC.swift */,
 				DD41031D2A3335FE00537824 /* LaunchScreen.storyboard */,
 				DD4103182A3335FC00537824 /* Main.storyboard */,
 			);
@@ -174,6 +177,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDB9087A2A376201007BF59E /* ProfileVC.swift in Sources */,
 				DD4103172A3335FC00537824 /* CreatePetVC.swift in Sources */,
 				DD4103132A3335FC00537824 /* AppDelegate.swift in Sources */,
 				DD4103152A3335FC00537824 /* SceneDelegate.swift in Sources */,
