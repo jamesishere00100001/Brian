@@ -8,17 +8,18 @@
 import UIKit
 import Photos
 import PhotosUI
+import FirebaseCore
+import FirebaseFirestore
 
 class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigationControllerDelegate {
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var headerImage: UIImageView!
     @IBOutlet weak var avatarImage: UIImageView!
     
-    
     @IBOutlet weak var nameTextBox: UITextField!
     @IBOutlet weak var breedTextBox: UITextField!
-    @IBOutlet weak var dobTextBox: UITextField!
-    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
       
@@ -33,10 +34,19 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
         
         saveButton.frame = CGRect(x: 0, y: 0, width: 251, height: 51)
         saveButton.backgroundColor = .white
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
 
     }
     
     private var textFieldsFilled: Bool = false
+    private var dobDateEntered: Bool = false
+    
+    let db = Firestore.firestore()
+    
+    // var profile = Profile(petName: petName, petBreed: petBreed, petDOB: petDOB, userPickedImage: userPickedImage)
     
     var petName: String = ""
     var petBreed: String = ""
@@ -45,12 +55,41 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
     var saveButton = UIButton()
     
     var userPickedImage = UIImage(named: "Profile")
+    var userPickedImageURL: String = ""
+    
+    //MARK: - Keyboard adjust functionality
+    
+    @objc func keyboardWillShow(notification:NSNotification) {
+
+        guard let userInfo = notification.userInfo else { return }
+        var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+
+        var contentInset:UIEdgeInsets = self.scrollView.contentInset
+        contentInset.bottom = keyboardFrame.size.height + 20
+        scrollView.contentInset = contentInset
+    }
+
+    @objc func keyboardWillHide(notification:NSNotification) {
+
+        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
+        scrollView.contentInset = contentInset
+    }
+    
+    //MARK: - DOB text box date entry and manipulation
+    
+    @IBAction func dobDatePicker(_ sender: UIDatePicker) {
+        
+        petDOB = sender.date.description
+        dobDateEntered = true
+    }
     
     //MARK: - Change photo button functionality
     
     @IBAction func changePhotoButton(_ sender: UIButton) {
         
         openPhPicker()
+        
     }
     
     //MARK: - Save button functionality
@@ -61,7 +100,11 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
         
         if textFieldsFilled == true {
             
-            avatarImage.image = resizeImage(image: userPickedImage!, newSize: 200)
+            userPickedImage = loadImage(fileName: userPickedImageURL)
+            userPickedImage = resizeImage(image: userPickedImage!, newSize: 200)
+            avatarImage.image = userPickedImage
+            
+            fireStoreSave()
             
             performSegue(withIdentifier: "goToProfile", sender: self)
             
@@ -77,10 +120,10 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
              
              for result in results {
                  result.itemProvider.loadObject(ofClass: UIImage.self, completionHandler: {
-                     (object, error) in
-                     if let image = object as? UIImage {
-                         self.userPickedImage = image
-                     }
+                     (selectedImage, error) in
+                     if let image = selectedImage as? URL {
+                         self.userPickedImageURL = image.description
+                         }
                  })
              }
          }
@@ -98,7 +141,24 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
                     present(phPickerVC, animated: true)
          }
         
-        //MARK: - User image resizing to fir avatar imageview
+        //MARK: - Load image from URL
+    
+        var documentsUrl: URL {
+            return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        }
+    
+        private func loadImage(fileName: String) -> UIImage? {
+            let fileURL = documentsUrl.appendingPathComponent(fileName)
+            do {
+                let imageData = try Data(contentsOf: fileURL)
+                return UIImage(data: imageData)
+            } catch {
+                print("Error loading image : \(error)")
+            }
+            return nil
+        }
+    
+        //MARK: - User image resizing to fit avatar imageview
         
         func resizeImage(image: UIImage, newSize: CGFloat) -> UIImage {
             
@@ -119,10 +179,9 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
         //MARK: - Check all user details have been entered to progress to next screen
         
         func allTextEntered() {
-            if nameTextBox.hasText && breedTextBox.hasText && dobTextBox.hasText == true {
+            if nameTextBox.hasText && breedTextBox.hasText && dobDateEntered == true {
                 petName = nameTextBox.text!
                 petBreed = breedTextBox.text!
-                petDOB = dobTextBox.text!
                 textFieldsFilled = true
                 
             } else {
@@ -134,6 +193,35 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
                 present(alert, animated: true)
             }
         }
-
+    
+    //MARK: - Firestore database save and read functions
+    
+    func fireStoreSave() {
+        // Add a new document with a generated ID
+        var ref: DocumentReference? = nil
+        ref = db.collection("users").addDocument(data: [
+            "Pet Name": petName,
+            "Pet Breed": petBreed,
+            "DOB": petDOB,
+            "Pet Image": userPickedImageURL]) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Document added with ID: \(ref!.documentID)")
+            }
+        }
+    }
+    
+    func fireStoreRead() {
+        db.collection("users").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    print("\(document.documentID) => \(document.data())")
+                }
+            }
+        }
+    }
 }
 
