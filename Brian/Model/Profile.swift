@@ -19,12 +19,12 @@ struct Profile {
 
     var userPickedImage: UIImage
     
-    init(petName: String, petBreed: String, petDOB: Date, userPickedImage: UIImage) {
-        self.petName = petName
-        self.petBreed = petBreed
-        self.petDOB = petDOB
-        self.userPickedImage = userPickedImage
-        
-        formatter.dateFormat = "dd/MM/yyyy"
-    }
+//    init(petName: String, petBreed: String, petDOB: Date, userPickedImage: UIImage) {
+//        self.petName = petName
+//        self.petBreed = petBreed
+//        self.petDOB = petDOB
+//        self.userPickedImage = userPickedImage
+//
+//        formatter.dateFormat = "dd/MM/yyyy"
+//    }
 }

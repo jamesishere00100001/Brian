@@ -35,18 +35,23 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
         saveButton.frame = CGRect(x: 0, y: 0, width: 251, height: 51)
         saveButton.backgroundColor = .white
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
 
+        
+//        let notificationCenter = NotificationCenter.default
+//        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
+//        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+//
+//        scrollView.isScrollEnabled = true
     }
     
     private var textFieldsFilled: Bool = false
     private var dobDateEntered: Bool = false
     
-    let db = Firestore.firestore()
+//   var profile = Profile(petName: petName, petBreed: petBreed, petDOB: petDOB, userPickedImage: userPickedImage)
     
-    // var profile = Profile(petName: petName, petBreed: petBreed, petDOB: petDOB, userPickedImage: userPickedImage)
+    
     
     var petName: String = ""
     var petBreed: String = ""
@@ -57,23 +62,21 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
     var userPickedImage = UIImage(named: "Profile")
     var userPickedImageURL: String = ""
     
-    //MARK: - Keyboard adjust functionality
+    //MARK: - Soft keyboard scroll func - Works in conjuction with notificationCentre set up in viewDidLoad
     
-    @objc func keyboardWillShow(notification:NSNotification) {
-
-        guard let userInfo = notification.userInfo else { return }
-        var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
-        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
-
-        var contentInset:UIEdgeInsets = self.scrollView.contentInset
-        contentInset.bottom = keyboardFrame.size.height + 20
-        scrollView.contentInset = contentInset
-    }
-
-    @objc func keyboardWillHide(notification:NSNotification) {
-
-        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
-        scrollView.contentInset = contentInset
+    @objc func adjustForKeyboard(notification: Notification) {
+        guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+        
+        let keyboardScreenEndFrame = keyboardValue.cgRectValue
+        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
+        
+        if notification.name == UIResponder.keyboardWillHideNotification {
+            scrollView.contentInset = .zero
+        } else {
+            scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height - view.safeAreaInsets.bottom, right: 0)
+        }
+        
+        scrollView.scrollIndicatorInsets = scrollView.contentInset
     }
     
     //MARK: - DOB text box date entry and manipulation
@@ -89,7 +92,6 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
     @IBAction func changePhotoButton(_ sender: UIButton) {
         
         openPhPicker()
-        
     }
     
     //MARK: - Save button functionality
@@ -104,7 +106,7 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
             userPickedImage = resizeImage(image: userPickedImage!, newSize: 200)
             avatarImage.image = userPickedImage
             
-            fireStoreSave()
+            Database().fireStoreSave(petName: petName, petBreed: petBreed, petDOB: petDOB, petImage: userPickedImageURL)
             
             performSegue(withIdentifier: "goToProfile", sender: self)
             
@@ -193,35 +195,5 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
                 present(alert, animated: true)
             }
         }
-    
-    //MARK: - Firestore database save and read functions
-    
-    func fireStoreSave() {
-        // Add a new document with a generated ID
-        var ref: DocumentReference? = nil
-        ref = db.collection("users").addDocument(data: [
-            "Pet Name": petName,
-            "Pet Breed": petBreed,
-            "DOB": petDOB,
-            "Pet Image": userPickedImageURL]) { err in
-            if let err = err {
-                print("Error adding document: \(err)")
-            } else {
-                print("Document added with ID: \(ref!.documentID)")
-            }
-        }
-    }
-    
-    func fireStoreRead() {
-        db.collection("users").getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                for document in querySnapshot!.documents {
-                    print("\(document.documentID) => \(document.data())")
-                }
-            }
-        }
-    }
 }
 
