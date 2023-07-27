@@ -14,50 +14,37 @@ import FirebaseFirestore
 class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var headerImage: UIImageView!
-    @IBOutlet weak var avatarImage: UIImageView!
     
+    @IBOutlet weak var avatarImage: UIImageView!
     @IBOutlet weak var nameTextBox: UITextField!
     @IBOutlet weak var breedTextBox: UITextField!
    
     override func viewDidLoad() {
         super.viewDidLoad()
-      
-//        headerImage.layer.masksToBounds = false
-//        headerImage.layer.cornerRadius = headerImage.frame.height/2
-//        headerImage.clipsToBounds = true
-        
+    
+        avatarImage = styling.avatarSetup(avatarImage: avatarImage)
         avatarImage.image = userPickedImage
-        avatarImage.layer.masksToBounds = false
-        avatarImage.layer.cornerRadius = headerImage.frame.height/2
-        avatarImage.clipsToBounds = true
         
-        saveButton.frame = CGRect(x: 0, y: 0, width: 251, height: 51)
-        saveButton.backgroundColor = .white
+        nameTextBox = styling.underlinedTF(textfield: nameTextBox)
+        breedTextBox = styling.underlinedTF(textfield: breedTextBox)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
-
+//        saveButton.frame = CGRect(x: 0, y: 0, width: 251, height: 51)
+//        saveButton.backgroundColor = .white
         
-//        let notificationCenter = NotificationCenter.default
-//        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
-//        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
-//
-//        scrollView.isScrollEnabled = true
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        
+        scrollView.isScrollEnabled = true
     }
     
     private var textFieldsFilled: Bool = false
     private var dobDateEntered: Bool = false
     
-//   var profile = Profile(petName: petName, petBreed: petBreed, petDOB: petDOB, userPickedImage: userPickedImage)
-    
-    
-    
+    let styling = Styling()
     var petName: String = ""
     var petBreed: String = ""
     var petDOB: String = ""
-    
-    var saveButton = UIButton()
     
     var userPickedImage = UIImage(named: "Profile")
     var userPickedImageURL: String = ""
@@ -83,8 +70,9 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
     
     @IBAction func dobDatePicker(_ sender: UIDatePicker) {
         
-        petDOB = sender.date.description
+        petDOB = UKDate().ukDate(dob: sender.date)
         dobDateEntered = true
+        dismiss(animated: true)
     }
     
     //MARK: - Change photo button functionality
@@ -103,10 +91,12 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
         if textFieldsFilled == true {
             
             userPickedImage = loadImage(fileName: userPickedImageURL)
-            userPickedImage = resizeImage(image: userPickedImage!, newSize: 200)
+//            userPickedImage = styling.resizeImage(image: userPickedImage!, newSize: 200)
             avatarImage.image = userPickedImage
             
-            Database().fireStoreSave(petName: petName, petBreed: petBreed, petDOB: petDOB, petImage: userPickedImageURL)
+            let profile = Profile(petName: petName, petBreed: petBreed, petDOB: petDOB, profilePhotoURL: userPickedImageURL)
+            
+            Database().fireStoreSave(profile: profile)
             
             performSegue(withIdentifier: "goToProfile", sender: self)
             
@@ -117,18 +107,28 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
     
     //MARK: - Image picker VC and VC launcher
         
-        func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-             picker.dismiss(animated: true)
-             
-             for result in results {
-                 result.itemProvider.loadObject(ofClass: UIImage.self, completionHandler: {
-                     (selectedImage, error) in
-                     if let image = selectedImage as? URL {
-                         self.userPickedImageURL = image.description
-                         }
-                 })
-             }
-         }
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        picker.dismiss(animated: true)
+        
+        for result in results {
+            result.itemProvider.loadObject(ofClass: UIImage.self) { (selectedImage, error) in
+                
+                if let error = error {
+                    print("Error loading image from picker: \(error)")
+                }
+                
+                else if let image = selectedImage as? UIImage {
+                    self.userPickedImage = image
+                    DispatchQueue.main.async {
+                        self.avatarImage.image = image
+                    }
+                    
+                } else {
+                    print("Unable to load image to 'avatar' UIImageView")
+                }
+            }
+        }
+    }
          
          func openPhPicker() {
              
@@ -160,27 +160,9 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
             return nil
         }
     
-        //MARK: - User image resizing to fit avatar imageview
-        
-        func resizeImage(image: UIImage, newSize: CGFloat) -> UIImage {
-            
-            let resizeW = newSize / image.size.width
-            let resizeH = newSize / image.size.height
-            let scaleFactor = min(resizeW, resizeH)
-
-            let scaledImageSize = CGSize(
-                width: image.size.width * scaleFactor, height: image.size.height * scaleFactor)
-
-            let renderer = UIGraphicsImageRenderer(size: scaledImageSize)
-            let newImage = renderer.image { _ in
-                image.draw(in: CGRect(origin: .zero, size: scaledImageSize))
-            }
-            return newImage
-        }
-        
         //MARK: - Check all user details have been entered to progress to next screen
         
-        func allTextEntered() {
+        private func allTextEntered() {
             if nameTextBox.hasText && breedTextBox.hasText && dobDateEntered == true {
                 petName = nameTextBox.text!
                 petBreed = breedTextBox.text!

@@ -9,22 +9,8 @@ import UIKit
 
 struct Profile {
     
-    var id = UUID()
-    
     var petName: String
     var petBreed: String
-    var petDOB: Date
-    
-    let formatter = DateFormatter()
-
-    var userPickedImage: UIImage
-    
-//    init(petName: String, petBreed: String, petDOB: Date, userPickedImage: UIImage) {
-//        self.petName = petName
-//        self.petBreed = petBreed
-//        self.petDOB = petDOB
-//        self.userPickedImage = userPickedImage
-//
-//        formatter.dateFormat = "dd/MM/yyyy"
-//    }
+    var petDOB: String
+    var profilePhotoURL: String
 }
