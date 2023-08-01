@@ -7,22 +7,24 @@
 
 import UIKit
 
-protocol NibSegueDelegate: AnyObject {
+protocol NeedsSegueDelegate: AnyObject {
 
-    func cellAddButtonPressed()
+    func addNeedsPressed()
 }
 
 class ProfileCell: UITableViewCell {
     
-    @IBOutlet weak var avatarImage: UIImageView!
+    @IBOutlet weak var petImage: UIImageView!
     
-    weak var delegate: NibSegueDelegate?
+    @IBOutlet weak var petNameLabel: UILabel!
+    @IBOutlet weak var petBreedLabel: UILabel!
+    @IBOutlet weak var petDOBLabel: UILabel!
+    
+    weak var delegate: NeedsSegueDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        avatarImage.image = UIImage(named: "Profile")
-        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -31,8 +33,10 @@ class ProfileCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    @IBAction func addPetButtonPressed(_ sender: UIButton) {
+    @IBAction func cellAddNeedsPressed(_ sender: UIButton) {
         
-        self.delegate?.cellAddButtonPressed()
+        self.delegate?.addNeedsPressed()
     }
+    
+    
 }
