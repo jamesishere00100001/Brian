@@ -18,6 +18,7 @@ struct K {
         
         static let addPet         = "addPetSegue"
         static let profiles       = "showProfileVC"
+        static let needs          = "addNeedsSegue"
     }
     
     struct FStore {

@@ -99,7 +99,7 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
             filledCell.petImage.image = UIImage(named: "Profile")
             
             filledCell.contentView.layer.cornerRadius = 10
-//                            filledCell.delegate = self
+            filledCell.delegate = self
             
             return filledCell
         }
@@ -116,7 +116,7 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension HomeVC: NibSegueDelegate {
+extension HomeVC: NibSegueDelegate, NeedsSegueDelegate {
     
     //MARK: - Delegate functions
     
@@ -124,6 +124,12 @@ extension HomeVC: NibSegueDelegate {
         
         performSegue(withIdentifier: K.Segue.addPet, sender: self)
     }
+    
+    func addNeedsPressed() {
+        
+        performSegue(withIdentifier: K.Segue.needs, sender: self)
+    }
 }
+
     
 

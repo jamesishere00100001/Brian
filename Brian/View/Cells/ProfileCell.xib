@@ -44,7 +44,7 @@
                             <color key="baseForegroundColor" name="TileBackground"/>
                         </buttonConfiguration>
                         <connections>
-                            <action selector="addNeedsPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="3Ew-UV-wZM"/>
+                            <action selector="cellAddNeedsPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="8Uc-Co-tWb"/>
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PetName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mRj-W1-o38">
