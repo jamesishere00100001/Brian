@@ -39,7 +39,7 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
     }
     
     private var textFieldsFilled: Bool = false
-    private var dobDateEntered: Bool = false
+    private var dobDateEntered:   Bool = false
     
     let styling = Styling()
     var petName: String = ""

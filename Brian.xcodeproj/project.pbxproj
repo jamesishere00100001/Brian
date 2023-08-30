@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD14AF502A9F4E6E001F7470 /* AddNeedsThreeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD14AF4F2A9F4E6E001F7470 /* AddNeedsThreeVC.swift */; };
 		DD170AD52A4DA2BE00EDB88B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD170AD42A4DA2BE00EDB88B /* GoogleService-Info.plist */; };
 		DD170AD82A4DA38100EDB88B /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = DD170AD72A4DA38100EDB88B /* FirebaseAnalytics */; };
 		DD170ADA2A4DA38100EDB88B /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DD170AD92A4DA38100EDB88B /* FirebaseAnalyticsSwift */; };
@@ -21,6 +22,11 @@
 		DD170AEC2A4DA38100EDB88B /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = DD170AEB2A4DA38100EDB88B /* FirebaseStorage */; };
 		DD170AEE2A4DA38100EDB88B /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = DD170AED2A4DA38100EDB88B /* FirebaseStorageCombine-Community */; };
 		DD170AF02A4EBAEA00EDB88B /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD170AEF2A4EBAEA00EDB88B /* Profile.swift */; };
+		DD1CA2CB2A9E0DE700734070 /* NeedsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1CA2C92A9E0DE600734070 /* NeedsCollectionViewCell.swift */; };
+		DD1CA2CC2A9E0DE700734070 /* NeedsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD1CA2CA2A9E0DE600734070 /* NeedsCollectionViewCell.xib */; };
+		DD1CA2CE2A9E0EF500734070 /* Needs.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1CA2CD2A9E0EF500734070 /* Needs.swift */; };
+		DD30D0DD2A9F2D2C00226579 /* Pets.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD30D0DC2A9F2D2C00226579 /* Pets.swift */; };
+		DD30D0DF2A9F30F500226579 /* AddNeedsTwoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD30D0DE2A9F30F500226579 /* AddNeedsTwoVC.swift */; };
 		DD36B3842A6FF05500E91338 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD36B3832A6FF05500E91338 /* HomeVC.swift */; };
 		DD36B3862A6FF1DA00E91338 /* Caprasimo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD36B3852A6FF1DA00E91338 /* Caprasimo-Regular.ttf */; };
 		DD4103132A3335FC00537824 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4103122A3335FC00537824 /* AppDelegate.swift */; };
@@ -44,8 +50,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DD14AF4F2A9F4E6E001F7470 /* AddNeedsThreeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNeedsThreeVC.swift; sourceTree = "<group>"; };
 		DD170AD42A4DA2BE00EDB88B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DD170AEF2A4EBAEA00EDB88B /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		DD1CA2C92A9E0DE600734070 /* NeedsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeedsCollectionViewCell.swift; sourceTree = "<group>"; };
+		DD1CA2CA2A9E0DE600734070 /* NeedsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NeedsCollectionViewCell.xib; sourceTree = "<group>"; };
+		DD1CA2CD2A9E0EF500734070 /* Needs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Needs.swift; sourceTree = "<group>"; };
+		DD30D0DC2A9F2D2C00226579 /* Pets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pets.swift; sourceTree = "<group>"; };
+		DD30D0DE2A9F30F500226579 /* AddNeedsTwoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNeedsTwoVC.swift; sourceTree = "<group>"; };
 		DD36B3812A6FEE9A00E91338 /* ReadMe.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ReadMe.md; sourceTree = "<group>"; };
 		DD36B3822A6FEEA800E91338 /* WIP.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = WIP.md; sourceTree = "<group>"; };
 		DD36B3832A6FF05500E91338 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
@@ -136,6 +148,8 @@
 				DDCB03582A501B640079D541 /* Database.swift */,
 				DDD1F9222A72C22700B4EBE9 /* DateFormatter.swift */,
 				DDF5C94C2A72968F0022F0F5 /* KeyboardScroll.swift */,
+				DD1CA2CD2A9E0EF500734070 /* Needs.swift */,
+				DD30D0DC2A9F2D2C00226579 /* Pets.swift */,
 				DD170AEF2A4EBAEA00EDB88B /* Profile.swift */,
 				DDF5C94A2A71189F0022F0F5 /* Styling.swift */,
 			);
@@ -176,6 +190,8 @@
 				DD36B3832A6FF05500E91338 /* HomeVC.swift */,
 				DD4103162A3335FC00537824 /* CreatePetVC.swift */,
 				DDD1F9242A78FF0A00B4EBE9 /* AddNeedsVC.swift */,
+				DD30D0DE2A9F30F500226579 /* AddNeedsTwoVC.swift */,
+				DD14AF4F2A9F4E6E001F7470 /* AddNeedsThreeVC.swift */,
 				DDB908792A376201007BF59E /* ProfileVC.swift */,
 			);
 			path = VCs;
@@ -185,6 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				DDF5C9532A729DCA0022F0F5 /* BlankCell.swift */,
+				DD1CA2C92A9E0DE600734070 /* NeedsCollectionViewCell.swift */,
 				DDF5C9442A6FFF6C0022F0F5 /* ProfileCell.swift */,
 			);
 			path = Cells;
@@ -194,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				DDF5C9542A729DCA0022F0F5 /* BlankCell.xib */,
+				DD1CA2CA2A9E0DE600734070 /* NeedsCollectionViewCell.xib */,
 				DDF5C9452A6FFF6C0022F0F5 /* ProfileCell.xib */,
 			);
 			path = Cells;
@@ -279,6 +297,7 @@
 				DD41032B2A3362F900537824 /* Shrikhand-Regular.ttf in Resources */,
 				DD41031F2A3335FE00537824 /* LaunchScreen.storyboard in Resources */,
 				DD36B3862A6FF1DA00E91338 /* Caprasimo-Regular.ttf in Resources */,
+				DD1CA2CC2A9E0DE700734070 /* NeedsCollectionViewCell.xib in Resources */,
 				DD41031C2A3335FE00537824 /* Assets.xcassets in Resources */,
 				DDF5C9562A729DCA0022F0F5 /* BlankCell.xib in Resources */,
 				DD41031A2A3335FC00537824 /* Main.storyboard in Resources */,
@@ -297,12 +316,17 @@
 				DDF5C9552A729DCA0022F0F5 /* BlankCell.swift in Sources */,
 				DDB9087A2A376201007BF59E /* ProfileVC.swift in Sources */,
 				DDD1F9232A72C22700B4EBE9 /* DateFormatter.swift in Sources */,
+				DD30D0DF2A9F30F500226579 /* AddNeedsTwoVC.swift in Sources */,
+				DD1CA2CE2A9E0EF500734070 /* Needs.swift in Sources */,
 				DD170AF02A4EBAEA00EDB88B /* Profile.swift in Sources */,
+				DD14AF502A9F4E6E001F7470 /* AddNeedsThreeVC.swift in Sources */,
 				DDF5C9492A6FFFDE0022F0F5 /* Constants.swift in Sources */,
 				DD4103172A3335FC00537824 /* CreatePetVC.swift in Sources */,
 				DDF5C9462A6FFF6C0022F0F5 /* ProfileCell.swift in Sources */,
 				DD4103132A3335FC00537824 /* AppDelegate.swift in Sources */,
+				DD30D0DD2A9F2D2C00226579 /* Pets.swift in Sources */,
 				DDD1F9252A78FF0A00B4EBE9 /* AddNeedsVC.swift in Sources */,
+				DD1CA2CB2A9E0DE700734070 /* NeedsCollectionViewCell.swift in Sources */,
 				DD4103152A3335FC00537824 /* SceneDelegate.swift in Sources */,
 				DDF5C94B2A71189F0022F0F5 /* Styling.swift in Sources */,
 				DDF5C94D2A72968F0022F0F5 /* KeyboardScroll.swift in Sources */,

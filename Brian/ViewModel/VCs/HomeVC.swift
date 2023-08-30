@@ -16,23 +16,19 @@ class HomeVC: UIViewController {
     
     override func viewDidLoad() {
         
-        let label = UILabel()
+        let label  = UILabel()
         label.text = "Brian"
         label.font = UIFont(name: "Caprasimo-Regular", size: 28)
         label.textColor = UIColor(named: "Text")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: label)
         
-        tableView.delegate = self
+        tableView.delegate   = self
         tableView.dataSource = self
         
         loadProfiles()
         
-//        if profiles.isEmpty {
-            tableView.register(UINib(nibName: K.blankCell, bundle: nil), forCellReuseIdentifier: K.blankCellNib)
-            
-//        } else {
-            tableView.register(UINib(nibName: "ProfileCell", bundle: nil), forCellReuseIdentifier: "FilledCell")
-//        }
+        tableView.register(UINib(nibName: K.blankCell, bundle: nil), forCellReuseIdentifier: K.blankCellNib)
+        tableView.register(UINib(nibName: K.profileCell, bundle: nil), forCellReuseIdentifier: K.profileCellNib)
     }
     
     func loadProfiles() {
@@ -76,7 +72,6 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
             
         } else {
             return profiles.count
-            
         }
     }
     
@@ -92,11 +87,11 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
         } else {
             let profile = profiles[indexPath.row]
             
-            let filledCell = tableView.dequeueReusableCell(withIdentifier: K.profileCellNib, for: indexPath) as! ProfileCell
-            filledCell.petNameLabel.text = profile.petName
+            let filledCell                = tableView.dequeueReusableCell(withIdentifier: K.profileCellNib, for: indexPath) as! ProfileCell
+            filledCell.petNameLabel.text  = profile.petName
             filledCell.petBreedLabel.text = profile.petBreed
-            filledCell.petDOBLabel.text = profile.petDOB
-            filledCell.petImage.image = UIImage(named: "Profile")
+            filledCell.petDOBLabel.text   = profile.petDOB
+            filledCell.petImage.image     = UIImage(named: "Profile")
             
             filledCell.contentView.layer.cornerRadius = 10
             filledCell.delegate = self
@@ -111,7 +106,6 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
             
         } else {
             return 320
-            
         }
     }
 }
