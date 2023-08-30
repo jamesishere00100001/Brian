@@ -9,16 +9,20 @@ import Foundation
 
 struct K {
     
-    static let blankCellNib       = "EmptyCell"
-    static let blankCell          = "BlankCell"
-    static let profileCellNib     = "FilledCell"
-    static let profileCell        = "ProfileCell"
+    static let blankCellNib          = "EmptyCell"
+    static let blankCell             = "BlankCell"
+    static let profileCellNib        = "FilledCell"
+    static let profileCell           = "ProfileCell"
+    static let needsCollectionVC     = "NeedsCollectionViewCell"
+    static let needsCollectionVCNib  = "NeedsCellNib"
     
     struct Segue {
         
         static let addPet         = "addPetSegue"
         static let profiles       = "showProfileVC"
         static let needs          = "addNeedsSegue"
+        static let addNeedsTwo    = "addNeedsTwoSegue"
+        static let addNeedsThree  = "addNeedsThreeSegue"
     }
     
     struct FStore {
