@@ -7,24 +7,24 @@
 
 import Foundation
 
-struct Pets {
-    
-    var savedPets: [String : Pet] = [:]
-    
-    struct Pet {
-        
-        var petName         : String          = ""
-        var petBreed        : String          = ""
-        var petDOB          : String          = ""
-        var profilePhotoURL : String          = ""
-        
-        var food            : [[String : String]] = []
-        var medicine        : [[String : String]] = []
-        var vaccination     : [[String : String]] = []
-        var grooming        : [[String : String]] = []
-        var training        : [[String : String]] = []
-        
-        
-        var otherNeeds      : [String:String] = [:]
-    }
-}
+//struct Pets {
+//    
+//    var savedPets: [String : Pet] = [:]
+//    
+//    struct Pet {
+//        
+//        var petName         : String          = ""
+//        var petBreed        : String          = ""
+//        var petDOB          : String          = ""
+//        var profilePhotoURL : String          = ""
+//        
+//        var food            : [[String : String]] = []
+//        var medicine        : [[String : String]] = []
+//        var vaccination     : [[String : String]] = []
+//        var grooming        : [[String : String]] = []
+//        var training        : [[String : String]] = []
+//        
+//        
+//        var otherNeeds      : [String:String] = [:]
+//    }
+//}

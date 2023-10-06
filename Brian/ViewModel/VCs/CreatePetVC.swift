@@ -10,6 +10,7 @@ import Photos
 import PhotosUI
 import FirebaseCore
 import FirebaseFirestore
+import RealmSwift
 
 class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigationControllerDelegate {
     
@@ -38,13 +39,18 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
         scrollView.isScrollEnabled = true
     }
     
+    let realm = try! Realm()
+    
     private var textFieldsFilled: Bool = false
-    private var dobDateEntered:   Bool = false
+    private var dobDateEntered  : Bool = false
     
     let styling = Styling()
-    var petName: String = ""
+    
+    var newProfile = Profile()
+    
+    var petName : String = ""
     var petBreed: String = ""
-    var petDOB: String = ""
+    var petDOB  : String = ""
     
     var userPickedImage = UIImage(named: "Profile")
     var userPickedImageURL: String = ""
@@ -94,16 +100,32 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
 //            userPickedImage = styling.resizeImage(image: userPickedImage!, newSize: 200)
             avatarImage.image = userPickedImage
             
-            let profile = Profile(petName: petName, petBreed: petBreed, petDOB: petDOB, profilePhotoURL: userPickedImageURL)
+            newProfile.petName         = petName
+            newProfile.petBreed        = petBreed
+            newProfile.petDOB          = petDOB
+            newProfile.profilePhotoURL = userPickedImageURL
             
-            Database().fireStoreSave(profile: profile)
             
-            performSegue(withIdentifier: "goToProfile", sender: self)
+            try! realm.write {
+                realm.add(newProfile)
+            }
+//            Database().fireStoreSave(profile: profile)
+            
+            dismiss(animated: true)
             
         } else {
             print("Error, user input not meeting 'textFieldsFilled' criteria")
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == K.Segue.needs {
+            let destinationVC = segue.destination as! AddNeedsVC
+            
+            destinationVC.profile = self.newProfile
+        }
+    }
+    
     
     //MARK: - Image picker VC and VC launcher
         
@@ -153,6 +175,7 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
             let fileURL = documentsUrl.appendingPathComponent(fileName)
             do {
                 let imageData = try Data(contentsOf: fileURL)
+                userPickedImageURL = fileURL.absoluteString
                 return UIImage(data: imageData)
             } catch {
                 print("Error loading image : \(error)")
@@ -164,7 +187,7 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
         
         private func allTextEntered() {
             if nameTextBox.hasText && breedTextBox.hasText && dobDateEntered == true {
-                petName = nameTextBox.text!
+                petName  = nameTextBox.text!
                 petBreed = breedTextBox.text!
                 textFieldsFilled = true
                 

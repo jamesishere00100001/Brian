@@ -12,9 +12,10 @@ class AddNeedsTwoVC: UIViewController {
     @IBOutlet weak var needLabel: UILabel!
     @IBOutlet weak var titleTF: UITextField!
     
+    var profile = Profile()
     var needsSelected: [String] = []
-    var need: String = ""
-    var titleAdded: String = ""
+    var need         : String = ""
+    var titleAdded   : String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +49,9 @@ class AddNeedsTwoVC: UIViewController {
             
             destinationVC.need       = self.need
             destinationVC.titleAdded = self.titleAdded
+            destinationVC.needsSelected = self.needsSelected
+            destinationVC.profile       = self.profile
         }
     }
 }
+

@@ -4,7 +4,6 @@
 //
 //  Created by James Attersley on 01/08/2023.
 //
-
 import UIKit
 
 class AddNeedsVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
@@ -13,9 +12,8 @@ class AddNeedsVC: UIViewController, UICollectionViewDataSource, UICollectionView
     
     @IBOutlet weak var nextButton: UIButton!
     
-    
     var needs                   = Needs()
-    var pet                     = Pets.Pet()
+    var profile                 = Profile()
     var needsSelected: [String] = []
     var nextButtonIsActive      = false
     
@@ -37,9 +35,6 @@ class AddNeedsVC: UIViewController, UICollectionViewDataSource, UICollectionView
         if needsSelected.isEmpty == false {
             
             performSegue(withIdentifier: K.Segue.addNeedsTwo, sender: sender)
-        } else {
-            
-        
         }
     }
     
@@ -55,19 +50,20 @@ class AddNeedsVC: UIViewController, UICollectionViewDataSource, UICollectionView
             let destinationVC = segue.destination as! AddNeedsTwoVC
             
             destinationVC.needsSelected = self.needsSelected
+            destinationVC.profile       = self.profile
         }
     }
     
     //MARK: - CollectionView datasouce and delegate methods
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return needs.needs.count
+        return needs.needsLabels.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.needsCollectionVCNib, for: indexPath) as! NeedsCollectionViewCell
-        cell.needsButton.setTitle(needs.needs[indexPath.row], for: .normal)
+        cell.needsButton.setTitle(needs.needsLabels[indexPath.row], for: .normal)
         
         cell.delegate = self
         
@@ -80,14 +76,15 @@ class AddNeedsVC: UIViewController, UICollectionViewDataSource, UICollectionView
 //MARK: - Need data delegate from CollectionVC
 
 extension AddNeedsVC: NeedsCellDelegate {
-    func passNeedsAdded(need: String) {
-        
-        if needsSelected.contains(need) == false {
-            self.needsSelected.append(need)
+    func passNeedsAdded(need: [String]) {
+        if needsSelected.isEmpty == false {
+            
+            self.needsSelected.append(contentsOf: need)
+            
             nextButtonIsActive = true
+            
+            activateNextButton()
         }
-        
-        activateNextButton()
     }
 }
 

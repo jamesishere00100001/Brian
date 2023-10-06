@@ -9,7 +9,7 @@ import UIKit
 
 protocol NeedsCellDelegate: AnyObject {
     
-    func passNeedsAdded(need: String)
+    func passNeedsAdded(need: [String])
 }
 
 class NeedsCollectionViewCell: UICollectionViewCell {
@@ -18,22 +18,35 @@ class NeedsCollectionViewCell: UICollectionViewCell {
     
     weak var delegate: NeedsCellDelegate?
     
+    var needsSelected: [String] = []
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
+    func didSelectButton(withText text: String) {
+           needsSelected.append(text)
+       }
+
+//    func didDeselectButton(withText text: String) {
+//        if let indexToRemove = needsSelected.firstIndex(of: text) {
+//            needsSelected.remove(at: indexToRemove)
+//        }
+//    }
+    
     @IBAction func needsButtonPressed(_ sender: UIButton) {
         
-        if needsButton.isSelected        == false {
-            needsButton.isSelected       = true
-            
-//        } else if needsButton.isSelected == true {
-//            needsButton.isSelected       = false
+        needsButton.isSelected.toggle()
+
+        if let text = needsButton.titleLabel?.text {
+                if needsButton.isSelected {
+                    didSelectButton(withText: text)
+                    delegate?.passNeedsAdded(need: needsSelected)
+                } else {
+//                    didDeselectButton(withText: text)
+                    delegate?.passNeedsAdded(need: needsSelected)
+                }
+            }
+            print("needsSelected Strings = \(needsSelected)")
         }
-        
-        if let need = needsButton.titleLabel?.text {
-                
-            self.delegate?.passNeedsAdded(need: need)
-        }
-    }
 }

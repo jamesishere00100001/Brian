@@ -11,7 +11,8 @@ class AddNeedsThreeVC: UIViewController {
     
     @IBOutlet weak var detailsTF: UITextField!
     
-    var pet                  = Pets.Pet()
+    var profile = Profile()
+    var needsSelected: [String] = []
     var need: String         = ""
     var titleAdded: String   = ""
     var detailsAdded: String = ""
@@ -22,14 +23,14 @@ class AddNeedsThreeVC: UIViewController {
     
     func addNeedToPet(need: String) {
         
-        switch need {
-        case "Food"         : pet.food.append([titleAdded: detailsAdded])
-        case "Medicine"     : pet.medicine.append([titleAdded: detailsAdded])
-        case "Vaccination"  : pet.vaccination.append([titleAdded: detailsAdded])
-        case "Grooming"     : pet.grooming.append([titleAdded:detailsAdded])
-        case "Training"     : pet.training.append([titleAdded:detailsAdded])
-        default: break
-        }
+//        switch need {
+//        case "Food"         : profile.needs. .food.append([titleAdded: detailsAdded])
+//        case "Medicine"     : pet.medicine.append([titleAdded: detailsAdded])
+//        case "Vaccination"  : pet.vaccination.append([titleAdded: detailsAdded])
+//        case "Grooming"     : pet.grooming.append([titleAdded:detailsAdded])
+//        case "Training"     : pet.training.append([titleAdded:detailsAdded])
+//        default: break
+//        }
     }
     
     @IBAction func saveButtonPressed(_ sender: UIButton) {
@@ -39,7 +40,7 @@ class AddNeedsThreeVC: UIViewController {
         }
         
         addNeedToPet(need: need)
-        print(pet)
+        print(profile)
         print(need)
         print(titleAdded)
         print(detailsAdded)

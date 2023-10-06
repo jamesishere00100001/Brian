@@ -5,12 +5,14 @@
 //  Created by James Attersley on 30/06/2023.
 //
 
-import UIKit
+import Foundation
+import RealmSwift
 
-struct Profile {
+class Profile: Object {
     
-    var petName: String
-    var petBreed: String
-    var petDOB: String
-    var profilePhotoURL: String
+    @Persisted var petName        : String
+    @Persisted var petBreed       : String
+    @Persisted var petDOB         : String
+    @Persisted var profilePhotoURL: String
+    @Persisted var needs          : List<Needs>
 }
