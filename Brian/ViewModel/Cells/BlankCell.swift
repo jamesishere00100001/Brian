@@ -21,7 +21,7 @@ class BlankCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        avatarImage.image = UIImage(named: "Profile")
+        avatarImage.image = UIImage(named: "profile")
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

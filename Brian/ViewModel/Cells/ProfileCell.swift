@@ -9,18 +9,19 @@ import UIKit
 
 protocol NeedsSegueDelegate: AnyObject {
 
-    func addNeedsPressed()
+    func addNeedsPressed(indexPath: IndexPath)
 }
 
 class ProfileCell: UITableViewCell {
     
-    @IBOutlet weak var petImage: UIImageView!
+    @IBOutlet weak var petImage     : UIImageView!
     
-    @IBOutlet weak var petNameLabel: UILabel!
+    @IBOutlet weak var petNameLabel : UILabel!
     @IBOutlet weak var petBreedLabel: UILabel!
-    @IBOutlet weak var petDOBLabel: UILabel!
+    @IBOutlet weak var petDOBLabel  : UILabel!
     
     weak var delegate: NeedsSegueDelegate?
+    var indexPath    : IndexPath?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,10 +34,15 @@ class ProfileCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    @IBAction func cellAddNeedsPressed(_ sender: UIButton) {
+    @IBAction func shareButtonPressed(_ sender: UIButton) {
         
-        self.delegate?.addNeedsPressed()
     }
     
     
+    @IBAction func cellAddNeedsPressed(_ sender: UIButton) {
+        
+        if let indexPath = indexPath {
+            self.delegate?.addNeedsPressed(indexPath: indexPath)
+        }
+    }
 }

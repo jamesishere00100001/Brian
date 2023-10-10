@@ -12,9 +12,10 @@ class AddNeedsTwoVC: UIViewController {
     @IBOutlet weak var needLabel: UILabel!
     @IBOutlet weak var titleTF: UITextField!
     
+    var profile = Profile()
     var needsSelected: [String] = []
-    var need: String = ""
-    var titleAdded: String = ""
+    var need         : String = ""
+    var titleAdded   : String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +26,7 @@ class AddNeedsTwoVC: UIViewController {
     func addNeedTitle(needArray: [String]) {
         
         if let currentNeed = needsSelected.first {
-            needsSelected.remove(at: 0)
-            needLabel.text = "Add the \(currentNeed) title"
+            needLabel.text = "Add the \(currentNeed.lowercased()) need title"
             need = currentNeed
         }
     }
@@ -46,8 +46,11 @@ class AddNeedsTwoVC: UIViewController {
         if segue.identifier == K.Segue.addNeedsThree {
             let destinationVC = segue.destination as! AddNeedsThreeVC
             
-            destinationVC.need       = self.need
-            destinationVC.titleAdded = self.titleAdded
+            destinationVC.need          = self.need
+            destinationVC.titleAdded    = self.titleAdded
+            destinationVC.needsSelected = self.needsSelected
+            destinationVC.profile       = self.profile
         }
     }
 }
+

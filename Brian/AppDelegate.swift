@@ -6,9 +6,7 @@
 //
 
 import UIKit
-import FirebaseCore
-import FirebaseFirestore
-import FirebaseAuth
+import RealmSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,7 +15,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        FirebaseApp.configure()
+    
+//        // Delete exisiting realm database
+//        let realmURL = Realm.Configuration.defaultConfiguration.fileURL!
+//
+//        do {
+//            let fileManager = FileManager.default
+//            try fileManager.removeItem(at: realmURL)
+//        } catch {
+//            print("Error deleting Realm file: \(error)")
+//        }
+//        
+//        Realm.Configuration.defaultConfiguration = Realm.Configuration()
+
+        
+//         Realm database location URL
+        let realmURL = Realm.Configuration.defaultConfiguration.fileURL
+        print("Realm Database File URL: \(realmURL)")
+        
         return true
     }
 

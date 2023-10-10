@@ -6,25 +6,19 @@
 //
 
 import Foundation
+import RealmSwift
 
-struct Needs {
+class Needs: Object {
     
-    let needs: [String]             = ["Food",
+    @Persisted var type    : String = ""
+    @Persisted var title   : String = ""
+    @Persisted var details : String = ""
+    var parentProfile = LinkingObjects(fromType: Needs.self, property: "medicineList")
+    
+    let needsLabels: [String]       = ["Food",
                                        "Medicine",
                                        "Vaccination",
                                        "Grooming",
                                        "Training",
                                        "Other"]
-    
-    var otherItems: [String]        = []
-    
-    struct NeedsItems {
-        
-        var food                        = ""
-        var medicine                    = ""
-        var vaccination                 = ""
-        var grooming                    = ""
-        var training                    = ""
-        var otherNeeds: [String:String] = [:]
-    }
 }
