@@ -10,11 +10,8 @@ import RealmSwift
 
 class HomeVC: UIViewController {
     
-    @IBOutlet weak var tableView: UITableView!
-    
+    @IBOutlet weak var tableView    : UITableView!
     @IBOutlet weak var optionBarItem: UIBarButtonItem!
-    
-    //    let db = Database().db
     
     let realm = try! Realm()
     
@@ -52,8 +49,6 @@ class HomeVC: UIViewController {
         
         tableView.register(UINib(nibName: K.blankCell, bundle: nil), forCellReuseIdentifier: K.blankCellNib)
         tableView.register(UINib(nibName: K.profileCell, bundle: nil), forCellReuseIdentifier: K.profileCellNib)
-        
-        //        tableView.reloadData()
     }
     
     func loadProfiles() {
@@ -66,35 +61,6 @@ class HomeVC: UIViewController {
             profile.profileImage = loadImage(name: profile.petName) ?? UIImage(named: "profile")!
         }
     }
-    //
-    //        db.collection("profiles")
-    //            .order(by: K.FStore.dobField)
-    //            .addSnapshotListener() { (querySnapshot, error) in
-    //
-    //                self.profiles = []
-    //                if let e = error {
-    //                    print("Error getting documents: \(e)")
-    //
-    //                } else {
-    //                    if let snapshotDocuments = querySnapshot?.documents {
-    //                        for doc in snapshotDocuments {
-    //                            let data = doc.data()
-    //                            if let name = data[K.FStore.nameField] as? String, let breed = data[K.FStore.breedField] as? String, let dob = data[K.FStore.dobField] as? String, let image = data[K.FStore.imageField] as? String {
-    //                                let newProfile = Profile(petName: name, petBreed: breed, petDOB: dob, profilePhotoURL: image)
-    //                                self.profiles.append(newProfile)
-    //
-    //                                DispatchQueue.main.async {
-    //                                    self.tableView.reloadData()
-    //                                    let indexPath = IndexPath(row: self.profiles.count - 1, section: 0)
-    //                                    self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
-    //                                }
-    //                            }
-    //                        }
-    //                    }
-    //                }
-    //            }
-    //    }
-    
     
     //MARK: - Load image from StringURL
     

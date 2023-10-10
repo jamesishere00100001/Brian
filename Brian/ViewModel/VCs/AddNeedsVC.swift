@@ -10,8 +10,7 @@ import UIKit
 class AddNeedsVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    
-    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var nextButton    : UIButton!
     
     var needs                   = Needs()
     var profile                 = Profile()
@@ -41,7 +40,7 @@ class AddNeedsVC: UIViewController, UICollectionViewDataSource, UICollectionView
     
     func activateNextButton() {
         
-        if nextButtonIsActive == true {
+        if nextButtonIsActive   == true {
             nextButton.isEnabled = true
         }
     }
@@ -85,8 +84,6 @@ extension AddNeedsVC: NeedsCellDelegate {
             
             nextButtonIsActive = true
             activateNextButton()
-                   
-            print("AddNeedsVC needsSelected array = \(needsSelected)")
         }
     }
 }

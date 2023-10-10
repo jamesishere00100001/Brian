@@ -26,7 +26,6 @@ class AddNeedsTwoVC: UIViewController {
     func addNeedTitle(needArray: [String]) {
         
         if let currentNeed = needsSelected.first {
-//            needsSelected.remove(at: 0)
             needLabel.text = "Add the \(currentNeed.lowercased()) need title"
             need = currentNeed
         }

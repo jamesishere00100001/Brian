@@ -17,6 +17,7 @@ class Profile: Object {
     @Persisted var petBreed       : String = ""
     @Persisted var petDOB         : String = ""
     @Persisted var profilePhotoURL: String = ""
-    var profileImage              = UIImage()
     @Persisted var needs          = List<Needs>()
+    
+    var profileImage              = UIImage()
 }

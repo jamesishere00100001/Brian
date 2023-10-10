@@ -8,8 +8,6 @@
 import UIKit
 import Photos
 import PhotosUI
-import FirebaseCore
-import FirebaseFirestore
 import RealmSwift
 
 class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigationControllerDelegate {
@@ -118,15 +116,16 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
         
         } else {
             print("Error, user input not meeting 'textFieldsFilled' criteria")
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == K.Segue.needs {
-            let destinationVC = segue.destination as! AddNeedsVC
             
         }
     }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == K.Segue.needs {
+//            let destinationVC = segue.destination as! AddNeedsVC
+//            
+//        }
+//    }
     
     //MARK: - Image picker VC and VC launcher
         
@@ -144,9 +143,10 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
                     self.userPickedImage   = image
                     DispatchQueue.main.async {
                         self.avatarImage.image = image
-                        
                     }
+                    
                 } else {
+                    
                     print("Unable to load image to 'avatar' UIImageView")
                 }
             }

@@ -25,9 +25,7 @@ class AddNeedsThreeVC: UIViewController {
     
     func addNeedToPet(need: String) {
         
-//        needs.title = titleAdded; needs.details = detailsAdded
         needsSelected.removeFirst(need)
-//        profile.needs.append(needs)
         
         let realm = try! Realm()
         
@@ -36,24 +34,13 @@ class AddNeedsThreeVC: UIViewController {
             let needsList = exisitingProfile.needs
             try! realm.write{
                 let newNeeds     = Needs()
+                newNeeds.type    = need
                 newNeeds.title   = titleAdded
                 newNeeds.details = detailsAdded
                 
                 needsList.append(newNeeds)
             }
-            
         }
-        //                switch need {
-        //                case "Food"         :
-        
-        //                    needs.foodList.append(Food().key.append(titleAdded) ) append(Food.ke)  needs. .food.append([titleAdded: detailsAdded])
-        //                case "Medicine"     : pet.medicine.append([titleAdded: detailsAdded])
-        //                case "Vaccination"  : pet.vaccination.append([titleAdded: detailsAdded])
-        //                case "Grooming"     : pet.grooming.append([titleAdded:detailsAdded])
-        //                case "Training"     : pet.training.append([titleAdded:detailsAdded])
-        //                default: break
-        //                }
-        
     }
     
     @IBAction func saveButtonPressed(_ sender: UIButton) {
@@ -61,13 +48,7 @@ class AddNeedsThreeVC: UIViewController {
         if let details = detailsTF.text {
             detailsAdded = details
         }
-        
         addNeedToPet(need: need)
-        print(profile)
-        print(need)
-        print(titleAdded)
-        print(detailsAdded)
-        
         performSegue(withIdentifier: K.Segue.addNeedsFour, sender: self)
     }
     

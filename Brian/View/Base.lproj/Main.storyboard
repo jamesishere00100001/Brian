@@ -24,6 +24,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="xkU-EA-5Yi">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" name="Text"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="Caprasimo-Regular" family="Caprasimo" pointSize="24"/>
                             <color key="textColor" name="Text"/>
@@ -86,7 +87,7 @@
             <objects>
                 <viewController id="e2x-Dw-ymN" userLabel="CreatePetVC" customClass="CreatePetVC" customModule="Brian" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eZg-ui-2bX">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c4F-D0-RuJ">
@@ -387,7 +388,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="39" id="fhI-G4-iIt"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="24"/>
+                                <fontDescription key="fontDescription" name="Caprasimo-Regular" family="Caprasimo" pointSize="24"/>
                                 <color key="textColor" name="Text"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -475,7 +476,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="39" id="Ixl-C2-M5M"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="24"/>
+                                        <fontDescription key="fontDescription" name="Caprasimo-Regular" family="Caprasimo" pointSize="24"/>
                                         <color key="textColor" name="Text"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -542,7 +543,7 @@
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="nextButtonPressed:" destination="3zK-fe-OfU" eventType="touchUpInside" id="r0t-xv-0kt"/>
-                                            <action selector="saveButtonPressed:" destination="Ufd-BB-kmy" eventType="touchUpInside" id="VSh-pY-0Bo"/>
+                                            <action selector="yesButtonPressed:" destination="Ufd-BB-kmy" eventType="touchUpInside" id="kGC-zF-rZW"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dont forget, set a reminder." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jcK-0x-tRW">
@@ -550,7 +551,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="55" id="AHw-vu-uXR"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="24"/>
+                                        <fontDescription key="fontDescription" name="Caprasimo-Regular" family="Caprasimo" pointSize="24"/>
                                         <color key="textColor" name="Text"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -652,7 +653,6 @@
                                         <connections>
                                             <action selector="nextButtonPressed:" destination="3zK-fe-OfU" eventType="touchUpInside" id="ctS-bB-pdw"/>
                                             <action selector="notNowButtonPressed:" destination="Ufd-BB-kmy" eventType="touchUpInside" id="YCb-pb-VbF"/>
-                                            <action selector="saveButtonPressed:" destination="Ufd-BB-kmy" eventType="touchUpInside" id="KEI-Gi-jB9"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -686,6 +686,8 @@
                         <outlet property="needDetailsLabel" destination="nc3-Oh-ZNe" id="DeI-xc-kTf"/>
                         <outlet property="needTitleLabel" destination="hzF-Ha-iuR" id="Je2-4r-YVf"/>
                         <outlet property="needTypeLabel" destination="MtX-bz-O9B" id="kT1-gm-E2e"/>
+                        <segue destination="UWL-98-BDE" kind="show" identifier="allNeedsAdded" id="RqR-NF-Tje"/>
+                        <segue destination="3zK-fe-OfU" kind="show" identifier="addMoreNeeds" id="36x-gh-6rT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fbA-yj-uRO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -694,7 +696,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Hhw-ip-OeS"/>
+        <segue reference="36x-gh-6rT"/>
+        <segue reference="RqR-NF-Tje"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Profile" width="135" height="136"/>
