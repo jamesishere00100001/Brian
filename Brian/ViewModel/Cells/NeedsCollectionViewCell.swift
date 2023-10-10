@@ -9,7 +9,7 @@ import UIKit
 
 protocol NeedsCellDelegate: AnyObject {
     
-    func passNeedsAdded(need: [String])
+    func passNeedsAdded(need: String)
 }
 
 class NeedsCollectionViewCell: UICollectionViewCell {
@@ -37,16 +37,15 @@ class NeedsCollectionViewCell: UICollectionViewCell {
     @IBAction func needsButtonPressed(_ sender: UIButton) {
         
         needsButton.isSelected.toggle()
-
+        
         if let text = needsButton.titleLabel?.text {
                 if needsButton.isSelected {
-                    didSelectButton(withText: text)
-                    delegate?.passNeedsAdded(need: needsSelected)
-                } else {
+//                    didSelectButton(withText: text)
+                    delegate?.passNeedsAdded(need: text)
+//                } else {
 //                    didDeselectButton(withText: text)
-                    delegate?.passNeedsAdded(need: needsSelected)
+//                    delegate?.passNeedsAdded(need: needsSelected)
                 }
             }
-            print("needsSelected Strings = \(needsSelected)")
         }
 }

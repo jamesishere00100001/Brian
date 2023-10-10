@@ -39,20 +39,16 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
         scrollView.isScrollEnabled = true
     }
     
-    let realm = try! Realm()
-    
     private var textFieldsFilled: Bool = false
     private var dobDateEntered  : Bool = false
     
     let styling = Styling()
     
-    var newProfile = Profile()
-    
     var petName : String = ""
     var petBreed: String = ""
     var petDOB  : String = ""
     
-    var userPickedImage = UIImage(named: "Profile")
+    var userPickedImage = UIImage(named: "profile")
     var userPickedImageURL: String = ""
     
     //MARK: - Soft keyboard scroll func - Works in conjuction with notificationCentre set up in viewDidLoad
@@ -94,25 +90,32 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
         
         allTextEntered()
         
+        if let image = userPickedImage {
+            if let imageURL = saveImageToDocumentDirectory(image, withFileName: "\(petName)profile.jpg") {
+                userPickedImageURL = imageURL.absoluteString
+            }
+        }
+        
         if textFieldsFilled == true {
             
-            userPickedImage = loadImage(fileName: userPickedImageURL)
-//            userPickedImage = styling.resizeImage(image: userPickedImage!, newSize: 200)
-            avatarImage.image = userPickedImage
+            //            userPickedImage = styling.resizeImage(image: userPickedImage!, newSize: 200)
+            //            avatarImage.image = userPickedImage
             
-            newProfile.petName         = petName
-            newProfile.petBreed        = petBreed
-            newProfile.petDOB          = petDOB
-            newProfile.profilePhotoURL = userPickedImageURL
-            
+            let realm = try! Realm()
             
             try! realm.write {
+                
+                let newProfile             = Profile()
+                newProfile.petName         = petName
+                newProfile.petBreed        = petBreed
+                newProfile.petDOB          = petDOB
+                newProfile.profilePhotoURL = userPickedImageURL
+                
                 realm.add(newProfile)
             }
-//            Database().fireStoreSave(profile: profile)
             
-            dismiss(animated: true)
-            
+            performSegue(withIdentifier: K.Segue.backHome, sender: self)
+        
         } else {
             print("Error, user input not meeting 'textFieldsFilled' criteria")
         }
@@ -122,10 +125,8 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
         if segue.identifier == K.Segue.needs {
             let destinationVC = segue.destination as! AddNeedsVC
             
-            destinationVC.profile = self.newProfile
         }
     }
-    
     
     //MARK: - Image picker VC and VC launcher
         
@@ -140,18 +141,18 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
                 }
                 
                 else if let image = selectedImage as? UIImage {
-                    self.userPickedImage = image
+                    self.userPickedImage   = image
                     DispatchQueue.main.async {
                         self.avatarImage.image = image
+                        
                     }
-                    
                 } else {
                     print("Unable to load image to 'avatar' UIImageView")
                 }
             }
         }
     }
-         
+    
          func openPhPicker() {
              
              var config = PHPickerConfiguration()
@@ -165,23 +166,30 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
                     present(phPickerVC, animated: true)
          }
         
-        //MARK: - Load image from URL
+        //MARK: - Save image to Document Directory
     
-        var documentsUrl: URL {
-            return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        }
-    
-        private func loadImage(fileName: String) -> UIImage? {
-            let fileURL = documentsUrl.appendingPathComponent(fileName)
-            do {
-                let imageData = try Data(contentsOf: fileURL)
-                userPickedImageURL = fileURL.absoluteString
-                return UIImage(data: imageData)
-            } catch {
-                print("Error loading image : \(error)")
-            }
+    func saveImageToDocumentDirectory(_ image: UIImage, withFileName fileName: String) -> URL? {
+        guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
             return nil
         }
+
+        // Create a unique file URL for the image using the provided fileName
+        let fileURL = documentsDirectory.appendingPathComponent(fileName)
+
+        // Convert the UIImage to Data
+        guard let imageData = image.jpegData(compressionQuality: 0.1) else {
+            return nil
+        }
+
+        // Write the image data to the file
+        do {
+            try imageData.write(to: fileURL)
+            return fileURL
+        } catch {
+            print("Error saving image to file: \(error)")
+            return nil
+        }
+    }
     
         //MARK: - Check all user details have been entered to progress to next screen
         

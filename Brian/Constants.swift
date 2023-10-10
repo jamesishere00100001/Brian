@@ -16,13 +16,17 @@ struct K {
     static let needsCollectionVC     = "NeedsCollectionViewCell"
     static let needsCollectionVCNib  = "NeedsCellNib"
     
+//    static let profileImage          = "\(petName)profile.jpg"
+    
     struct Segue {
         
         static let addPet         = "addPetSegue"
-        static let profiles       = "showProfileVC"
+        static let home           = "showProfileVC"
+        static let backHome       = "backToHomeVC"
         static let needs          = "addNeedsSegue"
         static let addNeedsTwo    = "addNeedsTwoSegue"
         static let addNeedsThree  = "addNeedsThreeSegue"
+        static let addNeedsFour   = "addNeedsFourSegue"
     }
     
     struct FStore {

@@ -25,7 +25,6 @@
 		DD1CA2CB2A9E0DE700734070 /* NeedsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1CA2C92A9E0DE600734070 /* NeedsCollectionViewCell.swift */; };
 		DD1CA2CC2A9E0DE700734070 /* NeedsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD1CA2CA2A9E0DE600734070 /* NeedsCollectionViewCell.xib */; };
 		DD1CA2CE2A9E0EF500734070 /* Needs.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1CA2CD2A9E0EF500734070 /* Needs.swift */; };
-		DD30D0DD2A9F2D2C00226579 /* Pets.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD30D0DC2A9F2D2C00226579 /* Pets.swift */; };
 		DD30D0DF2A9F30F500226579 /* AddNeedsTwoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD30D0DE2A9F30F500226579 /* AddNeedsTwoVC.swift */; };
 		DD36B3842A6FF05500E91338 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD36B3832A6FF05500E91338 /* HomeVC.swift */; };
 		DD36B3862A6FF1DA00E91338 /* Caprasimo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD36B3852A6FF1DA00E91338 /* Caprasimo-Regular.ttf */; };
@@ -36,10 +35,8 @@
 		DD41031C2A3335FE00537824 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD41031B2A3335FE00537824 /* Assets.xcassets */; };
 		DD41031F2A3335FE00537824 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD41031D2A3335FE00537824 /* LaunchScreen.storyboard */; };
 		DD41032B2A3362F900537824 /* Shrikhand-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD41032A2A3362F900537824 /* Shrikhand-Regular.ttf */; };
-		DDB9087A2A376201007BF59E /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB908792A376201007BF59E /* ProfileVC.swift */; };
 		DDC1D1672AD02251000C73C1 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = DDC1D1662AD02251000C73C1 /* Realm */; };
 		DDC1D1692AD02251000C73C1 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DDC1D1682AD02251000C73C1 /* RealmSwift */; };
-		DDCB03592A501B640079D541 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCB03582A501B640079D541 /* Database.swift */; };
 		DDD1F9232A72C22700B4EBE9 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD1F9222A72C22700B4EBE9 /* DateFormatter.swift */; };
 		DDD1F9252A78FF0A00B4EBE9 /* AddNeedsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD1F9242A78FF0A00B4EBE9 /* AddNeedsVC.swift */; };
 		DDF5C9462A6FFF6C0022F0F5 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF5C9442A6FFF6C0022F0F5 /* ProfileCell.swift */; };
@@ -49,6 +46,7 @@
 		DDF5C94D2A72968F0022F0F5 /* KeyboardScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF5C94C2A72968F0022F0F5 /* KeyboardScroll.swift */; };
 		DDF5C9552A729DCA0022F0F5 /* BlankCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF5C9532A729DCA0022F0F5 /* BlankCell.swift */; };
 		DDF5C9562A729DCA0022F0F5 /* BlankCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDF5C9542A729DCA0022F0F5 /* BlankCell.xib */; };
+		DDF6CE242AD4158100B84331 /* AddNeedsFourVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF6CE232AD4158000B84331 /* AddNeedsFourVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,7 +56,6 @@
 		DD1CA2C92A9E0DE600734070 /* NeedsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeedsCollectionViewCell.swift; sourceTree = "<group>"; };
 		DD1CA2CA2A9E0DE600734070 /* NeedsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NeedsCollectionViewCell.xib; sourceTree = "<group>"; };
 		DD1CA2CD2A9E0EF500734070 /* Needs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Needs.swift; sourceTree = "<group>"; };
-		DD30D0DC2A9F2D2C00226579 /* Pets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pets.swift; sourceTree = "<group>"; };
 		DD30D0DE2A9F30F500226579 /* AddNeedsTwoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNeedsTwoVC.swift; sourceTree = "<group>"; };
 		DD36B3812A6FEE9A00E91338 /* ReadMe.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ReadMe.md; sourceTree = "<group>"; };
 		DD36B3822A6FEEA800E91338 /* WIP.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = WIP.md; sourceTree = "<group>"; };
@@ -73,8 +70,6 @@
 		DD41031E2A3335FE00537824 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DD4103202A3335FE00537824 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD41032A2A3362F900537824 /* Shrikhand-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Shrikhand-Regular.ttf"; path = "../../../../../Downloads/Shrikhand/Shrikhand-Regular.ttf"; sourceTree = "<group>"; };
-		DDB908792A376201007BF59E /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
-		DDCB03582A501B640079D541 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		DDD1F9222A72C22700B4EBE9 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		DDD1F9242A78FF0A00B4EBE9 /* AddNeedsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNeedsVC.swift; sourceTree = "<group>"; };
 		DDF5C9442A6FFF6C0022F0F5 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
@@ -84,6 +79,7 @@
 		DDF5C94C2A72968F0022F0F5 /* KeyboardScroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardScroll.swift; sourceTree = "<group>"; };
 		DDF5C9532A729DCA0022F0F5 /* BlankCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankCell.swift; sourceTree = "<group>"; };
 		DDF5C9542A729DCA0022F0F5 /* BlankCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlankCell.xib; sourceTree = "<group>"; };
+		DDF6CE232AD4158000B84331 /* AddNeedsFourVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNeedsFourVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,11 +145,9 @@
 		DD4103262A33367300537824 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				DDCB03582A501B640079D541 /* Database.swift */,
 				DDD1F9222A72C22700B4EBE9 /* DateFormatter.swift */,
 				DDF5C94C2A72968F0022F0F5 /* KeyboardScroll.swift */,
 				DD1CA2CD2A9E0EF500734070 /* Needs.swift */,
-				DD30D0DC2A9F2D2C00226579 /* Pets.swift */,
 				DD170AEF2A4EBAEA00EDB88B /* Profile.swift */,
 				DDF5C94A2A71189F0022F0F5 /* Styling.swift */,
 			);
@@ -196,7 +190,7 @@
 				DDD1F9242A78FF0A00B4EBE9 /* AddNeedsVC.swift */,
 				DD30D0DE2A9F30F500226579 /* AddNeedsTwoVC.swift */,
 				DD14AF4F2A9F4E6E001F7470 /* AddNeedsThreeVC.swift */,
-				DDB908792A376201007BF59E /* ProfileVC.swift */,
+				DDF6CE232AD4158000B84331 /* AddNeedsFourVC.swift */,
 			);
 			path = VCs;
 			sourceTree = "<group>";
@@ -318,10 +312,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDCB03592A501B640079D541 /* Database.swift in Sources */,
+				DDF6CE242AD4158100B84331 /* AddNeedsFourVC.swift in Sources */,
 				DD36B3842A6FF05500E91338 /* HomeVC.swift in Sources */,
 				DDF5C9552A729DCA0022F0F5 /* BlankCell.swift in Sources */,
-				DDB9087A2A376201007BF59E /* ProfileVC.swift in Sources */,
 				DDD1F9232A72C22700B4EBE9 /* DateFormatter.swift in Sources */,
 				DD30D0DF2A9F30F500226579 /* AddNeedsTwoVC.swift in Sources */,
 				DD1CA2CE2A9E0EF500734070 /* Needs.swift in Sources */,
@@ -331,7 +324,6 @@
 				DD4103172A3335FC00537824 /* CreatePetVC.swift in Sources */,
 				DDF5C9462A6FFF6C0022F0F5 /* ProfileCell.swift in Sources */,
 				DD4103132A3335FC00537824 /* AppDelegate.swift in Sources */,
-				DD30D0DD2A9F2D2C00226579 /* Pets.swift in Sources */,
 				DDD1F9252A78FF0A00B4EBE9 /* AddNeedsVC.swift in Sources */,
 				DD1CA2CB2A9E0DE700734070 /* NeedsCollectionViewCell.swift in Sources */,
 				DD4103152A3335FC00537824 /* SceneDelegate.swift in Sources */,

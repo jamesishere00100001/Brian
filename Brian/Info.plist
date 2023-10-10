@@ -2,6 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSFileProviderDomainUsageDescription</key>
+	<string>Access required</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Access required</string>
+	<key>NSDocumentsFolderUsageDescription</key>
+	<string>Please let us have access to you stored photos</string>
+	<key></key>
+	<string></string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Lets find a photo of that little fluffer</string>
 	<key>UIAppFonts</key>

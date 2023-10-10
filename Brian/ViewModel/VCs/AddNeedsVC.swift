@@ -4,6 +4,7 @@
 //
 //  Created by James Attersley on 01/08/2023.
 //
+
 import UIKit
 
 class AddNeedsVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
@@ -76,14 +77,16 @@ class AddNeedsVC: UIViewController, UICollectionViewDataSource, UICollectionView
 //MARK: - Need data delegate from CollectionVC
 
 extension AddNeedsVC: NeedsCellDelegate {
-    func passNeedsAdded(need: [String]) {
-        if needsSelected.isEmpty == false {
+    
+    func passNeedsAdded(need: String) {
+        if !needsSelected.contains(need) {
             
-            self.needsSelected.append(contentsOf: need)
+            self.needsSelected.append(need)
             
             nextButtonIsActive = true
-            
             activateNextButton()
+                   
+            print("AddNeedsVC needsSelected array = \(needsSelected)")
         }
     }
 }
