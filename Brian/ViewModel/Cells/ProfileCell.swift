@@ -15,7 +15,6 @@ protocol NeedsSegueDelegate: AnyObject {
 class ProfileCell: UITableViewCell {
     
     @IBOutlet weak var petImage     : UIImageView!
-    
     @IBOutlet weak var petNameLabel : UILabel!
     @IBOutlet weak var petBreedLabel: UILabel!
     @IBOutlet weak var petDOBLabel  : UILabel!
@@ -37,7 +36,6 @@ class ProfileCell: UITableViewCell {
     @IBAction func shareButtonPressed(_ sender: UIButton) {
         
     }
-    
     
     @IBAction func cellAddNeedsPressed(_ sender: UIButton) {
         
