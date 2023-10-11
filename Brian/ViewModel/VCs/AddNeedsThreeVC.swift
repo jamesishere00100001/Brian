@@ -8,7 +8,7 @@
 import UIKit
 import RealmSwift
 
-class AddNeedsThreeVC: UIViewController {
+class AddNeedsThreeVC: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var detailsTF: UITextView!
     
@@ -21,6 +21,8 @@ class AddNeedsThreeVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        detailsTF.delegate = self
     }
     
     func addNeedToPet(need: String) {
@@ -42,6 +44,15 @@ class AddNeedsThreeVC: UIViewController {
             }
         }
     }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+
+           if text == "\n" {
+               textView.resignFirstResponder()
+               return false
+           }
+           return true
+       }
     
     @IBAction func saveButtonPressed(_ sender: UIButton) {
         

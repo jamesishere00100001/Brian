@@ -3,17 +3,19 @@
 <plist version="1.0">
 <dict>
 	<key>NSCalendarsUsageDescription</key>
-	<string>Allow adding events to calendar</string>
+	<string>Allow access for adding events to calendar</string>
+	<key>NSCalendarsFullAccessUsageDescription</key>
+	<string>Allow access for adding events to calendar</string>
 	<key>NSFileProviderDomainUsageDescription</key>
 	<string>Access required</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Access required</string>
 	<key>NSDocumentsFolderUsageDescription</key>
-	<string>Please let us have access to you stored photos</string>
+	<string>Please allow access to you stored photos</string>
 	<key></key>
 	<string></string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Lets find a photo of that little fluffer</string>
+	<string>Please allow access to you stored photos</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Shrikhand-Regular.ttf</string>

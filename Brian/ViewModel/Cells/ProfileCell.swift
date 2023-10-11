@@ -21,10 +21,12 @@ class ProfileCell: UITableViewCell {
     
     weak var delegate: NeedsSegueDelegate?
     var indexPath    : IndexPath?
+    var styling      = Styling()
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        petImage = styling.avatarSetup(avatarImage: petImage)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddNeedsTwoVC: UIViewController {
+class AddNeedsTwoVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var needLabel: UILabel!
     @IBOutlet weak var titleTF: UITextField!
@@ -21,14 +21,21 @@ class AddNeedsTwoVC: UIViewController {
         super.viewDidLoad()
         
         addNeedTitle(needArray: needsSelected)
+        
+        titleTF.delegate = self
     }
     
     func addNeedTitle(needArray: [String]) {
         
         if let currentNeed = needsSelected.first {
-            needLabel.text = "Add the \(currentNeed.lowercased()) need title"
-            need = currentNeed
+            needLabel.text = "Add the \(currentNeed.lowercased()) title"
+            need           = currentNeed
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
     }
     
     //MARK: - Next button pressed action and segue
@@ -43,7 +50,7 @@ class AddNeedsTwoVC: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == K.Segue.addNeedsThree {
+        if segue.identifier  == K.Segue.addNeedsThree {
             let destinationVC = segue.destination as! AddNeedsThreeVC
             
             destinationVC.need          = self.need

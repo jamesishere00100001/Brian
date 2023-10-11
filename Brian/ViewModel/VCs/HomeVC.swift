@@ -17,6 +17,7 @@ class HomeVC: UIViewController {
     
     var profiles: [Profile] = []
     var currentProfile = Profile()
+    var styling        = Styling()
     
     override func viewDidLoad() {
         

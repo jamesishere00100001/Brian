@@ -40,15 +40,65 @@ class Styling: UITextField {
         let resizeW = newSize / image.size.width
         let resizeH = newSize / image.size.height
         let scaleFactor = min(resizeW, resizeH)
-
+        
         let scaledImageSize = CGSize(
             width: image.size.width * scaleFactor, height: image.size.height * scaleFactor)
-
+        
+        let renderer = UIGraphicsImageRenderer(size: scaledImageSize)
+        let newImage = renderer.image { _ in
+            image.draw(in: CGRect(origin: .zero, size: scaledImageSize))
+        }
+//        if let image = newImage.rounded {
+//            return image
+//        }
+        
+        return newImage
+    }
+  
+    func resizeAndRoundImage(image: UIImage, imageViewSize: CGSize) -> UIImage {
+        let newSize = min(imageViewSize.width, imageViewSize.height) // Use the smaller dimension as newSize
+        
+        // Resize the image while maintaining its aspect ratio
+        let resizeW = newSize / image.size.width
+        let resizeH = newSize / image.size.height
+        let scaleFactor = min(resizeW, resizeH)
+        
+        let scaledImageSize = CGSize(
+            width: image.size.width * scaleFactor, height: image.size.height * scaleFactor)
+        
         let renderer = UIGraphicsImageRenderer(size: scaledImageSize)
         let newImage = renderer.image { _ in
             image.draw(in: CGRect(origin: .zero, size: scaledImageSize))
         }
         
-        return newImage
+        // Create a circular mask for the image
+        var circularImage: UIImage?
+        UIGraphicsImageRenderer(size: scaledImageSize).image { _ in
+            let context = UIGraphicsGetCurrentContext()
+            context?.addEllipse(in: CGRect(origin: .zero, size: scaledImageSize))
+            context?.clip()
+            newImage.draw(in: CGRect(origin: .zero, size: scaledImageSize))
+            circularImage = UIGraphicsGetImageFromCurrentImageContext()
+        }
+        
+        if let circularImage = circularImage {
+            return circularImage
+        } else {
+            return newImage
+        }
+    }
+
+
+}
+    
+extension UIImage {
+
+    var rounded: UIImage? {
+        UIGraphicsBeginImageContextWithOptions(size, false, UIScreen.main.scale)
+        defer { UIGraphicsEndImageContext() }
+        let bounds = CGRect(origin: .zero, size: size)
+        UIBezierPath(roundedRect: bounds, cornerRadius: size.height/2.0).addClip()
+        draw(in: bounds)
+        return UIGraphicsGetImageFromCurrentImageContext()
     }
 }

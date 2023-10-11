@@ -10,7 +10,7 @@ import Photos
 import PhotosUI
 import RealmSwift
 
-class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigationControllerDelegate {
+class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -21,12 +21,13 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        avatarImage = styling.avatarSetup(avatarImage: avatarImage)
+        avatarImage  = styling.avatarSetup(avatarImage: avatarImage)
         avatarImage.image = userPickedImage
         
-        nameTextBox = styling.underlinedTF(textfield: nameTextBox)
+        nameTextBox  = styling.underlinedTF(textfield: nameTextBox)
         breedTextBox = styling.underlinedTF(textfield: breedTextBox)
-        
+        nameTextBox.delegate  = self
+        breedTextBox.delegate = self
 //        saveButton.frame = CGRect(x: 0, y: 0, width: 251, height: 51)
 //        saveButton.backgroundColor = .white
         
@@ -46,6 +47,8 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
     var petBreed: String = ""
     var petDOB  : String = ""
     
+    
+    
     var userPickedImage = UIImage(named: "profile")
     var userPickedImageURL: String = ""
     
@@ -64,6 +67,18 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
         }
         
         scrollView.scrollIndicatorInsets = scrollView.contentInset
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        let nextTag = textField.tag + 1
+        let nextTF  = textField.superview?.viewWithTag(nextTag) as UIResponder?
+        if nextTF  != nil {
+           nextTF?.becomeFirstResponder()
+        } else {
+           textField.resignFirstResponder()
+        }
+        return false
     }
     
     //MARK: - DOB text box date entry and manipulation
@@ -111,7 +126,7 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
                 
                 realm.add(newProfile)
             }
-            
+          
             performSegue(withIdentifier: K.Segue.backHome, sender: self)
         
         } else {
@@ -132,6 +147,8 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true)
         
+        let imageViewSize = avatarImage.bounds.size
+        
         for result in results {
             result.itemProvider.loadObject(ofClass: UIImage.self) { (selectedImage, error) in
                 
@@ -140,9 +157,9 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
                 }
                 
                 else if let image = selectedImage as? UIImage {
-                    self.userPickedImage   = image
+                    self.userPickedImage   = self.styling.resizeAndRoundImage(image: image, imageViewSize: imageViewSize)
                     DispatchQueue.main.async {
-                        self.avatarImage.image = image
+                        self.avatarImage.image = self.userPickedImage
                     }
                     
                 } else {

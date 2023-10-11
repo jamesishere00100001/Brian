@@ -35,7 +35,7 @@ class AddNeedsFourVC: UIViewController, EKEventEditViewDelegate, UINavigationCon
             if #available(iOS 17.0, *) {
                 eventStore.requestFullAccessToEvents { (granted, error) in
                     if granted {
-                        // do stuff
+                        print("access granted to calendar at iOS 17 level")
                         DispatchQueue.main.async {
                             self.showEventViewController()
                         }
@@ -44,7 +44,7 @@ class AddNeedsFourVC: UIViewController, EKEventEditViewDelegate, UINavigationCon
             } else {
                 eventStore.requestAccess(to: .event) { (granted, error) in
                     if granted {
-                        // do stuff
+                        print("access granted to calendar at below iOS 17 level")
                         DispatchQueue.main.async {
                             self.showEventViewController()
                         }
@@ -56,17 +56,16 @@ class AddNeedsFourVC: UIViewController, EKEventEditViewDelegate, UINavigationCon
             DispatchQueue.main.async {
                 self.showEventViewController()
             }
-        default:
-            break
+        default: print("access not provided to calendar"); break
         }
     }
     
     func showEventViewController() {
-        let eventVC = EKEventEditViewController()
+        let eventVC              = EKEventEditViewController()
         eventVC.editViewDelegate = self
-        eventVC.eventStore = EKEventStore()
+        eventVC.eventStore       = EKEventStore()
         
-        let event = EKEvent(eventStore: eventVC.eventStore)
+        let event       = EKEvent(eventStore: eventVC.eventStore)
         event.title     = self.needTitle
         event.notes     = self.needDetails
         event.startDate = Date()
@@ -77,7 +76,8 @@ class AddNeedsFourVC: UIViewController, EKEventEditViewDelegate, UINavigationCon
     }
     
     func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
-            dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
+        needsCompleted()
     }
     
     func needsCompleted() {
@@ -104,7 +104,7 @@ class AddNeedsFourVC: UIViewController, EKEventEditViewDelegate, UINavigationCon
     @IBAction func yesButtonPressed(_ sender: UIButton) {
         
         addEventToCalendar()
-        needsCompleted()
+//        needsCompleted()
     }
     
     @IBAction func notNowButtonPressed(_ sender: UIButton) {
