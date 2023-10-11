@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD039E7F2AD6B030007F89AA /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD039E7E2AD6B030007F89AA /* RegisterVC.swift */; };
+		DD039E812AD6B042007F89AA /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD039E802AD6B042007F89AA /* LoginVC.swift */; };
+		DD039E832AD6B4B3007F89AA /* NeedsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD039E822AD6B4B3007F89AA /* NeedsVC.swift */; };
 		DD14AF502A9F4E6E001F7470 /* AddNeedsThreeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD14AF4F2A9F4E6E001F7470 /* AddNeedsThreeVC.swift */; };
 		DD170AD52A4DA2BE00EDB88B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD170AD42A4DA2BE00EDB88B /* GoogleService-Info.plist */; };
 		DD170AF02A4EBAEA00EDB88B /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD170AEF2A4EBAEA00EDB88B /* Profile.swift */; };
@@ -38,6 +41,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DD039E7E2AD6B030007F89AA /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
+		DD039E802AD6B042007F89AA /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		DD039E822AD6B4B3007F89AA /* NeedsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeedsVC.swift; sourceTree = "<group>"; };
 		DD14AF4F2A9F4E6E001F7470 /* AddNeedsThreeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNeedsThreeVC.swift; sourceTree = "<group>"; };
 		DD170AD42A4DA2BE00EDB88B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DD170AEF2A4EBAEA00EDB88B /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
@@ -159,7 +165,10 @@
 		DDF5C9502A729D720022F0F5 /* VCs */ = {
 			isa = PBXGroup;
 			children = (
+				DD039E7E2AD6B030007F89AA /* RegisterVC.swift */,
+				DD039E802AD6B042007F89AA /* LoginVC.swift */,
 				DD36B3832A6FF05500E91338 /* HomeVC.swift */,
+				DD039E822AD6B4B3007F89AA /* NeedsVC.swift */,
 				DD4103162A3335FC00537824 /* CreatePetVC.swift */,
 				DDD1F9242A78FF0A00B4EBE9 /* AddNeedsVC.swift */,
 				DD30D0DE2A9F30F500226579 /* AddNeedsTwoVC.swift */,
@@ -276,10 +285,12 @@
 				DDF6CE242AD4158100B84331 /* AddNeedsFourVC.swift in Sources */,
 				DD36B3842A6FF05500E91338 /* HomeVC.swift in Sources */,
 				DDF5C9552A729DCA0022F0F5 /* BlankCell.swift in Sources */,
+				DD039E812AD6B042007F89AA /* LoginVC.swift in Sources */,
 				DDD1F9232A72C22700B4EBE9 /* DateFormatter.swift in Sources */,
 				DD30D0DF2A9F30F500226579 /* AddNeedsTwoVC.swift in Sources */,
 				DD1CA2CE2A9E0EF500734070 /* Needs.swift in Sources */,
 				DD170AF02A4EBAEA00EDB88B /* Profile.swift in Sources */,
+				DD039E832AD6B4B3007F89AA /* NeedsVC.swift in Sources */,
 				DD14AF502A9F4E6E001F7470 /* AddNeedsThreeVC.swift in Sources */,
 				DDF5C9492A6FFFDE0022F0F5 /* Constants.swift in Sources */,
 				DD4103172A3335FC00537824 /* CreatePetVC.swift in Sources */,
@@ -288,6 +299,7 @@
 				DDD1F9252A78FF0A00B4EBE9 /* AddNeedsVC.swift in Sources */,
 				DD1CA2CB2A9E0DE700734070 /* NeedsCollectionViewCell.swift in Sources */,
 				DD4103152A3335FC00537824 /* SceneDelegate.swift in Sources */,
+				DD039E7F2AD6B030007F89AA /* RegisterVC.swift in Sources */,
 				DDF5C94B2A71189F0022F0F5 /* Styling.swift in Sources */,
 				DDF5C94D2A72968F0022F0F5 /* KeyboardScroll.swift in Sources */,
 			);
