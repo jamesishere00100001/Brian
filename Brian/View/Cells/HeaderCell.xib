@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Caprasimo-Regular.ttf">
+            <string>Caprasimo-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell autoresizesSubviews="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HeaderCellNib" rowHeight="244" id="4vh-eq-QgZ" userLabel="HeaderCell" customClass="HeaderCell" customModule="Brian" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="343" height="244"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4vh-eq-QgZ" id="Tp6-CG-Paa">
+                <rect key="frame" x="0.0" y="0.0" width="343" height="244"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7DS-Iy-aHf">
+                        <rect key="frame" x="120.66666666666669" y="24" width="102" height="102"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="102" id="DeW-Vf-sAW"/>
+                            <constraint firstAttribute="width" constant="102" id="Uyp-et-jXq"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PetName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZTg-ac-Faa">
+                        <rect key="frame" x="0.0" y="142" width="343" height="36"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="36" id="ID7-0e-l8X"/>
+                            <constraint firstAttribute="width" constant="343" id="SEs-wQ-SWa"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Caprasimo-Regular" family="Caprasimo" pointSize="28"/>
+                        <color key="textColor" name="Text"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TaR-ed-6R9">
+                        <rect key="frame" x="7.6666666666666572" y="180" width="328" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="2Eh-hY-OPv"/>
+                            <constraint firstAttribute="width" constant="328" id="ujB-RD-EW2"/>
+                        </constraints>
+                        <attributedString key="attributedText">
+                            <fragment content="PetBreed">
+                                <attributes>
+                                    <color key="NSColor" red="0.098039215686274508" green="0.29411764705882354" blue="0.14509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <font key="NSFont" size="16" name="SFPro-Medium"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ch7-sP-Reh">
+                        <rect key="frame" x="93" y="206" width="157" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="8Zv-SB-YH0"/>
+                            <constraint firstAttribute="width" constant="157" id="jYz-o5-Lm8"/>
+                        </constraints>
+                        <attributedString key="attributedText">
+                            <fragment content="PetDOB">
+                                <attributes>
+                                    <color key="NSColor" red="0.098039215686274508" green="0.29411764705882354" blue="0.14509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <font key="NSFont" size="16" name="SFPro-Medium"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" name="TileBackground"/>
+                <constraints>
+                    <constraint firstItem="7DS-Iy-aHf" firstAttribute="top" secondItem="Tp6-CG-Paa" secondAttribute="top" constant="24" id="LyJ-x9-PJs"/>
+                    <constraint firstItem="7DS-Iy-aHf" firstAttribute="centerX" secondItem="Tp6-CG-Paa" secondAttribute="centerX" id="XuO-vj-3hi"/>
+                    <constraint firstItem="TaR-ed-6R9" firstAttribute="centerX" secondItem="Tp6-CG-Paa" secondAttribute="centerX" id="dI0-o6-wPh"/>
+                    <constraint firstItem="ch7-sP-Reh" firstAttribute="top" secondItem="ZTg-ac-Faa" secondAttribute="bottom" constant="28" id="fae-JI-a8G"/>
+                    <constraint firstItem="ch7-sP-Reh" firstAttribute="centerX" secondItem="Tp6-CG-Paa" secondAttribute="centerX" id="n9y-3z-gXV"/>
+                    <constraint firstItem="ZTg-ac-Faa" firstAttribute="centerX" secondItem="Tp6-CG-Paa" secondAttribute="centerX" id="t3S-jz-XeQ"/>
+                    <constraint firstItem="TaR-ed-6R9" firstAttribute="top" secondItem="7DS-Iy-aHf" secondAttribute="bottom" constant="54" id="vYB-k5-rgv"/>
+                    <constraint firstItem="ZTg-ac-Faa" firstAttribute="top" secondItem="7DS-Iy-aHf" secondAttribute="bottom" constant="16" id="zCt-ss-dru"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="Vz1-iD-heJ"/>
+            <color key="backgroundColor" name="Background"/>
+            <constraints>
+                <constraint firstItem="Tp6-CG-Paa" firstAttribute="leading" secondItem="Vz1-iD-heJ" secondAttribute="leading" id="EXq-q2-2Dl"/>
+                <constraint firstItem="Tp6-CG-Paa" firstAttribute="bottom" secondItem="Vz1-iD-heJ" secondAttribute="bottom" id="RGk-O3-EfL"/>
+                <constraint firstItem="Tp6-CG-Paa" firstAttribute="trailing" secondItem="Vz1-iD-heJ" secondAttribute="trailing" id="n31-9w-OAu"/>
+                <constraint firstItem="Tp6-CG-Paa" firstAttribute="top" secondItem="Vz1-iD-heJ" secondAttribute="top" id="znH-ZE-Cfc"/>
+            </constraints>
+            <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+            <connections>
+                <outlet property="petBreed" destination="TaR-ed-6R9" id="rxt-Mq-KaR"/>
+                <outlet property="petDOB" destination="ch7-sP-Reh" id="esu-W5-gYL"/>
+                <outlet property="petName" destination="ZTg-ac-Faa" id="bZS-Od-zu2"/>
+                <outlet property="profileImage" destination="7DS-Iy-aHf" id="9HC-il-ZY0"/>
+            </connections>
+            <point key="canvasLocation" x="136.64122137404578" y="-73.943661971830991"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="Background">
+            <color red="0.96078431372549022" green="0.93333333333333335" blue="0.82745098039215681" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Text">
+            <color red="0.098039215686274508" green="0.29411764705882354" blue="0.14509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="TileBackground">
+            <color red="0.92156862745098034" green="0.88235294117647056" blue="0.73333333333333328" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

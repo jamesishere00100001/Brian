@@ -14,7 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
     
 //        // Delete exisiting realm database
 //        let realmURL = Realm.Configuration.defaultConfiguration.fileURL!
@@ -30,8 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         
 //         Realm database location URL
-        let realmURL = Realm.Configuration.defaultConfiguration.fileURL
-        print("Realm Database File URL: \(realmURL)")
+//        let realmURL = Realm.Configuration.defaultConfiguration.fileURL
+//        print("Realm Database File URL: \(realmURL)")
         
         return true
     }
@@ -49,7 +48,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
-
-
 }
 

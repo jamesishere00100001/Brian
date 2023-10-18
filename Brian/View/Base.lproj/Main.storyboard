@@ -98,7 +98,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="GwU-Hr-E5Z">
                         <barButtonItem key="rightBarButtonItem" id="mek-FN-I6X">
-                            <imageReference key="image" image="gearshape.fill" catalog="system" symbolScale="large"/>
+                            <imageReference key="image" image="line.3.horizontal" catalog="system" symbolScale="large"/>
                             <color key="tintColor" name="Button"/>
                         </barButtonItem>
                     </navigationItem>
@@ -107,26 +107,12 @@
                         <outlet property="tableView" destination="7Ci-XM-0nd" id="LkL-S8-qin"/>
                         <segue destination="e2x-Dw-ymN" kind="show" identifier="addPetSegue" id="j8o-XU-4v1"/>
                         <segue destination="kXb-Dh-rxL" kind="show" identifier="addNeedsSegue" id="eH0-ks-K2w"/>
+                        <segue destination="2FQ-Fh-GlH" kind="show" identifier="needsListSegue" id="cES-Db-Fkh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rJQ-0P-SrN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="162.59541984732823" y="4.9295774647887329"/>
-        </scene>
-        <!--NeedsVC-->
-        <scene sceneID="L13-U8-6c1">
-            <objects>
-                <viewController id="2FQ-Fh-GlH" customClass="NeedsVC" customModule="Brian" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="s61-kW-Is3">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="ZFS-Zh-tdc"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VCh-dW-77k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1021" y="1342"/>
         </scene>
         <!--CreatePetVC-->
         <scene sceneID="BGm-h3-yt4">
@@ -160,7 +146,7 @@
                                                 <rect key="frame" x="121.66666666666669" y="183" width="150" height="23"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="23" id="Pq5-DY-qFS"/>
-                                                    <constraint firstAttribute="width" constant="150" id="nUU-bm-X93"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="nUU-bm-X93"/>
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain">
@@ -197,7 +183,7 @@
                                                 <color key="backgroundColor" name="Background"/>
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="328" id="KOl-ly-UTs"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="328" id="KOl-ly-UTs"/>
                                                     <constraint firstAttribute="height" constant="50" id="ZQO-S7-KdH"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
@@ -209,17 +195,17 @@
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="fAP-IC-Hbn"/>
-                                                    <constraint firstAttribute="width" constant="328" id="ra9-lq-B1u"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="328" id="ra9-lq-B1u"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="SFPro-MediumItalic" family="SF Pro" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Date of birth" adjustsFontSizeToFit="NO" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="9C0-TV-Mxh" userLabel="DOB">
-                                                <rect key="frame" x="32.666666666666657" y="422" width="328" height="50"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="top" borderStyle="roundedRect" placeholder="Date of birth" adjustsFontSizeToFit="NO" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="9C0-TV-Mxh" userLabel="DOB">
+                                                <rect key="frame" x="32.666666666666657" y="422" width="328" height="80"/>
                                                 <color key="backgroundColor" name="Background"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="328" id="hwE-v2-JTS"/>
-                                                    <constraint firstAttribute="height" constant="50" id="kb2-8S-Flq"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="328" id="hwE-v2-JTS"/>
+                                                    <constraint firstAttribute="height" constant="80" id="kb2-8S-Flq"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
@@ -228,7 +214,7 @@
                                                 <rect key="frame" x="71" y="536" width="251" height="48"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="48" id="jXq-Ng-K4y"/>
-                                                    <constraint firstAttribute="width" constant="251" id="yBe-Xm-Btn"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="251" id="yBe-Xm-Btn"/>
                                                 </constraints>
                                                 <color key="tintColor" name="AccentColor"/>
                                                 <state key="normal" title="Button"/>
@@ -242,8 +228,8 @@
                                                     <action selector="saveButton:" destination="e2x-Dw-ymN" eventType="touchUpInside" id="coC-im-jhN"/>
                                                 </connections>
                                             </button>
-                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" datePickerMode="date" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2It-Xf-Rge">
-                                                <rect key="frame" x="39" y="417" width="315" height="60"/>
+                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" datePickerMode="date" style="wheels" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2It-Xf-Rge">
+                                                <rect key="frame" x="39" y="442" width="315" height="60"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="60" id="Sck-sK-jno"/>
                                                     <constraint firstAttribute="width" constant="315" id="ckQ-o1-hXD"/>
@@ -262,12 +248,12 @@
                                             <constraint firstItem="9C0-TV-Mxh" firstAttribute="centerX" secondItem="l7m-2S-gLl" secondAttribute="centerX" id="AIj-h1-E43"/>
                                             <constraint firstItem="Qno-Wa-SuV" firstAttribute="top" secondItem="FSp-Xi-QHe" secondAttribute="bottom" constant="16" id="B8M-Oa-vy1"/>
                                             <constraint firstItem="Bgu-3o-y1c" firstAttribute="centerX" secondItem="l7m-2S-gLl" secondAttribute="centerX" id="CDb-5m-YdP"/>
+                                            <constraint firstItem="2It-Xf-Rge" firstAttribute="top" secondItem="9C0-TV-Mxh" secondAttribute="top" constant="20" id="CDb-mH-JcC"/>
                                             <constraint firstAttribute="height" constant="1000" id="Dns-z8-7fq"/>
                                             <constraint firstItem="FSp-Xi-QHe" firstAttribute="centerX" secondItem="l7m-2S-gLl" secondAttribute="centerX" id="HSx-Gy-idZ"/>
                                             <constraint firstItem="O6a-mL-ocF" firstAttribute="leading" secondItem="l7m-2S-gLl" secondAttribute="leading" id="Hbz-go-eeh"/>
                                             <constraint firstItem="FSp-Xi-QHe" firstAttribute="top" secondItem="l7m-2S-gLl" secondAttribute="top" constant="32" id="J0U-xM-05N"/>
-                                            <constraint firstItem="2It-Xf-Rge" firstAttribute="top" secondItem="Bgu-3o-y1c" secondAttribute="bottom" constant="37" id="PfS-GC-0eu"/>
-                                            <constraint firstItem="Mu6-c0-tNa" firstAttribute="top" secondItem="9C0-TV-Mxh" secondAttribute="bottom" constant="64" id="cSz-Qf-zLS"/>
+                                            <constraint firstItem="Mu6-c0-tNa" firstAttribute="top" secondItem="9C0-TV-Mxh" secondAttribute="bottom" constant="34" id="cSz-Qf-zLS"/>
                                             <constraint firstItem="Bgu-3o-y1c" firstAttribute="top" secondItem="lfq-hP-IqU" secondAttribute="bottom" constant="42" id="cZj-1I-uaZ"/>
                                             <constraint firstAttribute="trailing" secondItem="O6a-mL-ocF" secondAttribute="trailing" id="dp5-20-B0U"/>
                                             <constraint firstItem="Mu6-c0-tNa" firstAttribute="centerX" secondItem="l7m-2S-gLl" secondAttribute="centerX" id="fjN-VC-etv"/>
@@ -298,10 +284,11 @@
                             <constraint firstAttribute="bottom" secondItem="c4F-D0-RuJ" secondAttribute="bottom" id="m2D-5i-fqs"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Add your pet" id="l2N-dP-C8n"/>
+                    <navigationItem key="navigationItem" title="Add your pet" style="editor" id="l2N-dP-C8n"/>
                     <connections>
                         <outlet property="avatarImage" destination="FSp-Xi-QHe" id="iWT-Qa-BgS"/>
                         <outlet property="breedTextBox" destination="Bgu-3o-y1c" id="kne-DO-Sbc"/>
+                        <outlet property="dobTextBox" destination="9C0-TV-Mxh" id="vXc-z6-Xi1"/>
                         <outlet property="nameTextBox" destination="lfq-hP-IqU" id="WbI-aW-O1M"/>
                         <outlet property="scrollView" destination="c4F-D0-RuJ" id="geg-II-Jnn"/>
                         <segue destination="UWL-98-BDE" kind="show" identifier="backToHomeVC" id="syb-7c-8An"/>
@@ -310,6 +297,45 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VDW-bp-3QH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1021" y="-430"/>
+        </scene>
+        <!--Needs ListVC-->
+        <scene sceneID="L13-U8-6c1">
+            <objects>
+                <viewController id="2FQ-Fh-GlH" customClass="NeedsListVC" customModule="Brian" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="s61-kW-Is3">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="JxA-eY-7f7">
+                                <rect key="frame" x="16" y="0.0" width="361" height="842"/>
+                                <color key="backgroundColor" name="Background"/>
+                                <color key="tintColor" name="Text"/>
+                                <color key="separatorColor" name="Background"/>
+                                <color key="sectionIndexBackgroundColor" name="Background"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ZFS-Zh-tdc"/>
+                        <color key="backgroundColor" name="Background"/>
+                        <constraints>
+                            <constraint firstItem="JxA-eY-7f7" firstAttribute="bottom" secondItem="ZFS-Zh-tdc" secondAttribute="bottom" id="8X4-x1-7u9"/>
+                            <constraint firstItem="JxA-eY-7f7" firstAttribute="leading" secondItem="ZFS-Zh-tdc" secondAttribute="leading" constant="16" id="8s8-qc-ap9"/>
+                            <constraint firstItem="JxA-eY-7f7" firstAttribute="top" secondItem="s61-kW-Is3" secondAttribute="top" id="SGE-6U-hDn"/>
+                            <constraint firstItem="JxA-eY-7f7" firstAttribute="trailing" secondItem="ZFS-Zh-tdc" secondAttribute="trailing" constant="-16" id="XI1-2S-Fj1"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" style="editor" id="gRA-7w-8wz">
+                        <barButtonItem key="rightBarButtonItem" image="line.3.horizontal" catalog="system" id="RjM-0f-xrF">
+                            <color key="tintColor" name="Text"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="menuButton" destination="RjM-0f-xrF" id="Cqi-h2-0DY"/>
+                        <outlet property="tableView" destination="JxA-eY-7f7" id="Xyg-OR-Yvj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VCh-dW-77k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1020.6106870229007" y="1341.549295774648"/>
         </scene>
         <!--Add a need-->
         <scene sceneID="1c8-yZ-cvh">
@@ -648,7 +674,7 @@
                                                 <color key="textColor" name="Text"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="needDetails" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nc3-Oh-ZNe">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="needDetails" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nc3-Oh-ZNe">
                                                 <rect key="frame" x="7" y="216" width="347" height="64"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="64" id="wXp-Ca-Rje"/>
@@ -751,11 +777,12 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="36x-gh-6rT"/>
-        <segue reference="syb-7c-8An"/>
+        <segue reference="RqR-NF-Tje"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Profile" width="135" height="136"/>
         <image name="gearshape.fill" catalog="system" width="128" height="123"/>
+        <image name="line.3.horizontal" catalog="system" width="128" height="65"/>
         <namedColor name="AccentColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -13,8 +13,12 @@ struct K {
     static let blankCell             = "BlankCell"
     static let profileCellNib        = "FilledCell"
     static let profileCell           = "ProfileCell"
+    static let needsListNib          = "ListCell"
+    static let needsListCell         = "NeedsListCell"
     static let needsCollectionVC     = "NeedsCollectionViewCell"
     static let needsCollectionVCNib  = "NeedsCellNib"
+    static let headerCellNib         = "HeaderCellNib"
+    static let headerCell            = "HeaderCell"
     
     struct Segue {
         
@@ -27,5 +31,6 @@ struct K {
         static let addNeedsFour      = "addNeedsFourSegue"
         static let addMoreNeeds      = "addMoreNeeds"
         static let allNeedsAdded     = "allNeedsAdded"
+        static let needsList         = "needsListSegue"
     }
 }

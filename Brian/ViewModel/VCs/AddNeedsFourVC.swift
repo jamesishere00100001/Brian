@@ -69,7 +69,7 @@ class AddNeedsFourVC: UIViewController, EKEventEditViewDelegate, UINavigationCon
         event.title     = self.needTitle
         event.notes     = self.needDetails
         event.startDate = Date()
-        
+        eventVC.view.tintColor = UIColor(named: "Text")
         eventVC.event   = event
 
         present(eventVC, animated: true)

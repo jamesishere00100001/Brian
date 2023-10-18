@@ -12,31 +12,12 @@ import RealmSwift
 
 class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
-    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var scrollView   : UIScrollView!
     
-    @IBOutlet weak var avatarImage: UIImageView!
-    @IBOutlet weak var nameTextBox: UITextField!
-    @IBOutlet weak var breedTextBox: UITextField!
-   
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    
-        avatarImage  = styling.avatarSetup(avatarImage: avatarImage)
-        avatarImage.image = userPickedImage
-        
-        nameTextBox  = styling.underlinedTF(textfield: nameTextBox)
-        breedTextBox = styling.underlinedTF(textfield: breedTextBox)
-        nameTextBox.delegate  = self
-        breedTextBox.delegate = self
-//        saveButton.frame = CGRect(x: 0, y: 0, width: 251, height: 51)
-//        saveButton.backgroundColor = .white
-        
-        let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
-        
-        scrollView.isScrollEnabled = true
-    }
+    @IBOutlet weak var avatarImage  : UIImageView!
+    @IBOutlet weak var nameTextBox  : UITextField!
+    @IBOutlet weak var breedTextBox : UITextField!
+    @IBOutlet weak var dobTextBox   : UITextField!
     
     private var textFieldsFilled: Bool = false
     private var dobDateEntered  : Bool = false
@@ -47,10 +28,28 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
     var petBreed: String = ""
     var petDOB  : String = ""
     
-    
-    
     var userPickedImage = UIImage(named: "profile")
     var userPickedImageURL: String = ""
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    
+        avatarImage  = styling.avatarSetup(avatarImage: avatarImage)
+        avatarImage.image = userPickedImage
+        
+        nameTextBox  = styling.underlinedTF(textfield: nameTextBox)
+        breedTextBox = styling.underlinedTF(textfield: breedTextBox)
+        dobTextBox   = styling.underlinedTF(textfield: dobTextBox)
+        
+        nameTextBox.delegate  = self
+        breedTextBox.delegate = self
+        
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        
+        scrollView.isScrollEnabled = true
+    }
     
     //MARK: - Soft keyboard scroll func - Works in conjuction with notificationCentre set up in viewDidLoad
     
@@ -87,7 +86,8 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
         
         petDOB = UKDate().ukDate(dob: sender.date)
         dobDateEntered = true
-        dismiss(animated: true)
+        presentedViewController?.dismiss(animated: true, completion: nil)
+//        dismiss(animated: true)
     }
     
     //MARK: - Change photo button functionality
@@ -111,9 +111,6 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
         
         if textFieldsFilled == true {
             
-            //            userPickedImage = styling.resizeImage(image: userPickedImage!, newSize: 200)
-            //            avatarImage.image = userPickedImage
-            
             let realm = try! Realm()
             
             try! realm.write {
@@ -131,16 +128,8 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
         
         } else {
             print("Error, user input not meeting 'textFieldsFilled' criteria")
-            
         }
     }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == K.Segue.needs {
-//            let destinationVC = segue.destination as! AddNeedsVC
-//            
-//        }
-//    }
     
     //MARK: - Image picker VC and VC launcher
         
@@ -157,7 +146,7 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
                 }
                 
                 else if let image = selectedImage as? UIImage {
-                    self.userPickedImage   = self.styling.resizeAndRoundImage(image: image, imageViewSize: imageViewSize)
+                    self.userPickedImage = self.styling.resizeAndRoundImage(image: image, imageViewSize: imageViewSize)
                     DispatchQueue.main.async {
                         self.avatarImage.image = self.userPickedImage
                     }
@@ -190,15 +179,12 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
             return nil
         }
 
-        // Create a unique file URL for the image using the provided fileName
         let fileURL = documentsDirectory.appendingPathComponent(fileName)
 
-        // Convert the UIImage to Data
         guard let imageData = image.jpegData(compressionQuality: 0.1) else {
             return nil
         }
 
-        // Write the image data to the file
         do {
             try imageData.write(to: fileURL)
             return fileURL

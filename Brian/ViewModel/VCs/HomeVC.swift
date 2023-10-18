@@ -18,6 +18,13 @@ class HomeVC: UIViewController {
     var profiles: [Profile] = []
     var currentProfile = Profile()
     var styling        = Styling()
+    var needsExist     = false
+    
+    var needsListDelegate = MenuButtonDelegate.self
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
     
     override func viewDidLoad() {
         
@@ -61,6 +68,11 @@ class HomeVC: UIViewController {
         for profile in profiles {
             profile.profileImage = loadImage(name: profile.petName) ?? UIImage(named: "profile")!
         }
+    }
+    
+    func deleteProfile() {
+        
+        
     }
     
     //MARK: - Load image from StringURL
@@ -113,12 +125,19 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
             filledCell.petBreedLabel.text = profile.petBreed
             filledCell.petDOBLabel.text   = profile.petDOB
             filledCell.petImage.image     = profile.profileImage
-
+            filledCell.needsLabel.text    = "\(profile.needs.count) Needs listed"
+            
+            doNeedsExist()
+            if !profile.needs.isEmpty {
+                needsExist = true
+            }
+            
             filledCell.delegate = self
             filledCell.indexPath = indexPath
             
             filledCell.contentView.layer.cornerRadius = 10
             filledCell.delegate = self
+            filledCell.menuDelegate = self
                 
             return filledCell
         }
@@ -129,14 +148,32 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
             return 222
             
         } else {
-            return 320
+            return 344
+        }
+    }
+    
+    func doNeedsExist() {
+        if currentProfile.needs.isEmpty {
+            needsExist = false
+        } else {
+            needsExist = true
         }
     }
 }
 
-extension HomeVC: NibSegueDelegate, NeedsSegueDelegate {
-    
+extension HomeVC: NibSegueDelegate, NeedsSegueDelegate, MenuButtonDelegate {
+   
     //MARK: - Delegate functions
+    
+    func profileMenuPressed(menuRequest: String) {
+        print("MenuButtonDelegate passed to HomeVC func")
+        
+        self.performSegue(withIdentifier: menuRequest, sender: self)
+    }
+    
+    func passIndex(index: IndexPath) {
+        currentProfile = self.profiles[index.row]
+    }
     
     func cellAddButtonPressed() {
         
@@ -145,9 +182,16 @@ extension HomeVC: NibSegueDelegate, NeedsSegueDelegate {
     
     func addNeedsPressed(indexPath: IndexPath) {
         
-        currentProfile = profiles[indexPath.row]
-        
-        performSegue(withIdentifier: K.Segue.needs, sender: self)
+        currentProfile = self.profiles[indexPath.row]
+//        doNeedsExist()
+//        if needsExist {
+            
+            performSegue(withIdentifier: K.Segue.needs, sender: self)
+//        } else {
+//            
+////            segue to previously captured needsVC
+//            
+//        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -155,6 +199,12 @@ extension HomeVC: NibSegueDelegate, NeedsSegueDelegate {
             let destinationVC = segue.destination as! AddNeedsVC
             
             destinationVC.profile = self.currentProfile
+            
+        } else if segue.identifier == K.Segue.needsList {
+            let destinationVC = segue.destination as! NeedsListVC
+           
+            destinationVC.profile = self.currentProfile
+            print("prepare func passing currentProfile data to NeedsListVC")
         }
     }
 }

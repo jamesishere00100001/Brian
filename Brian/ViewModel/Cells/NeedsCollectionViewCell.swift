@@ -17,11 +17,12 @@ class NeedsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var needsButton: UIButton!
     
     weak var delegate: NeedsCellDelegate?
-    
     var needsSelected: [String] = []
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        needsButton.sizeToFit()
     }
     
     func didSelectButton(withText text: String) {

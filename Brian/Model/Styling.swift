@@ -34,26 +34,6 @@ class Styling: UITextField {
     }
     
     //MARK: - User image resizing to fit avatar imageview
-    
-    func resizeImage(image: UIImage, newSize: CGFloat) -> UIImage {
-        
-        let resizeW = newSize / image.size.width
-        let resizeH = newSize / image.size.height
-        let scaleFactor = min(resizeW, resizeH)
-        
-        let scaledImageSize = CGSize(
-            width: image.size.width * scaleFactor, height: image.size.height * scaleFactor)
-        
-        let renderer = UIGraphicsImageRenderer(size: scaledImageSize)
-        let newImage = renderer.image { _ in
-            image.draw(in: CGRect(origin: .zero, size: scaledImageSize))
-        }
-//        if let image = newImage.rounded {
-//            return image
-//        }
-        
-        return newImage
-    }
   
     func resizeAndRoundImage(image: UIImage, imageViewSize: CGSize) -> UIImage {
         let newSize = min(imageViewSize.width, imageViewSize.height) // Use the smaller dimension as newSize
@@ -87,8 +67,6 @@ class Styling: UITextField {
             return newImage
         }
     }
-
-
 }
     
 extension UIImage {

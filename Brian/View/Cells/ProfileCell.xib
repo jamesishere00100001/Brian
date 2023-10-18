@@ -17,11 +17,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell autoresizesSubviews="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FilledCell" rowHeight="320" id="KGk-i7-Jjw" userLabel="ProfileCell" customClass="ProfileCell" customModule="Brian" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="343" height="320"/>
+        <tableViewCell autoresizesSubviews="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FilledCell" rowHeight="329" id="KGk-i7-Jjw" userLabel="ProfileCell" customClass="ProfileCell" customModule="Brian" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="343" height="329"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="343" height="320"/>
+                <rect key="frame" x="0.0" y="0.0" width="343" height="329"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jNZ-2d-t5G">
@@ -32,7 +32,7 @@
                         </constraints>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JUq-BC-cCw">
-                        <rect key="frame" x="68" y="254" width="207" height="42"/>
+                        <rect key="frame" x="68" y="268" width="207" height="42"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="42" id="a5i-Iw-oFG"/>
                             <constraint firstAttribute="width" constant="207" id="pgG-rN-ynK"/>
@@ -58,23 +58,6 @@
                         <color key="textColor" name="Text"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oY9-1B-2CP">
-                        <rect key="frame" x="93" y="206" width="157" height="24"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="157" id="DFc-k4-eW9"/>
-                            <constraint firstAttribute="height" constant="24" id="ZKR-ae-Vba"/>
-                        </constraints>
-                        <attributedString key="attributedText">
-                            <fragment content="PetDOB">
-                                <attributes>
-                                    <color key="NSColor" red="0.098039215686274508" green="0.29411764705882354" blue="0.14509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <font key="NSFont" size="16" name="SFPro-Medium"/>
-                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                </attributes>
-                            </fragment>
-                        </attributedString>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d3D-Rt-yM0">
                         <rect key="frame" x="304" y="16" width="23" height="32"/>
                         <constraints>
@@ -83,12 +66,12 @@
                         </constraints>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain">
-                            <imageReference key="image" image="square.and.arrow.up" catalog="system" symbolScale="large" variableValue="1"/>
+                            <imageReference key="image" image="line.3.horizontal" catalog="system" symbolScale="large" variableValue="1"/>
                             <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
                             <color key="baseForegroundColor" name="Button"/>
                         </buttonConfiguration>
                         <connections>
-                            <action selector="shareButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="1x1-mf-vxR"/>
+                            <action selector="menuButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="u9n-Ff-Tf2"/>
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YWi-Gy-AzB">
@@ -108,17 +91,45 @@
                         </attributedString>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oY9-1B-2CP">
+                        <rect key="frame" x="93" y="206" width="157" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="157" id="DFc-k4-eW9"/>
+                            <constraint firstAttribute="height" constant="24" id="ZKR-ae-Vba"/>
+                        </constraints>
+                        <attributedString key="attributedText">
+                            <fragment content="PetDOB">
+                                <attributes>
+                                    <color key="NSColor" red="0.098039215686274508" green="0.29411764705882354" blue="0.14509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <font key="NSFont" size="16" name="SFPro-Medium"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NeedsLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1JH-Qg-X3a">
+                        <rect key="frame" x="90.666666666666686" y="232" width="162" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="162" id="HY7-nz-ZWc"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" name="Text"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" name="TileBackground"/>
                 <constraints>
                     <constraint firstItem="jNZ-2d-t5G" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="0BU-xo-t0A"/>
                     <constraint firstItem="oY9-1B-2CP" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="96C-Un-y9J"/>
-                    <constraint firstItem="JUq-BC-cCw" firstAttribute="top" secondItem="YWi-Gy-AzB" secondAttribute="bottom" constant="50" id="98h-Az-GGO"/>
+                    <constraint firstItem="1JH-Qg-X3a" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="9pV-z1-28M"/>
+                    <constraint firstItem="1JH-Qg-X3a" firstAttribute="top" secondItem="oY9-1B-2CP" secondAttribute="bottom" constant="2" id="KqH-sO-QKv"/>
                     <constraint firstItem="YWi-Gy-AzB" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Mrc-mR-Rah"/>
                     <constraint firstItem="JUq-BC-cCw" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="O89-3X-RXK"/>
                     <constraint firstItem="mRj-W1-o38" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="RcB-mI-LsN"/>
                     <constraint firstItem="d3D-Rt-yM0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="UFu-Wb-LaS"/>
                     <constraint firstItem="jNZ-2d-t5G" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Vuf-nZ-X6a"/>
+                    <constraint firstItem="JUq-BC-cCw" firstAttribute="top" secondItem="1JH-Qg-X3a" secondAttribute="bottom" constant="16" id="WAk-Ec-VkK"/>
                     <constraint firstAttribute="trailing" secondItem="d3D-Rt-yM0" secondAttribute="trailing" constant="16" id="eQh-pE-XgQ"/>
                     <constraint firstItem="oY9-1B-2CP" firstAttribute="top" secondItem="mRj-W1-o38" secondAttribute="bottom" constant="28" id="jep-Yp-wym"/>
                     <constraint firstItem="YWi-Gy-AzB" firstAttribute="top" secondItem="jNZ-2d-t5G" secondAttribute="bottom" constant="54" id="sYo-5f-ug2"/>
@@ -135,16 +146,19 @@
             </constraints>
             <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
             <connections>
+                <outlet property="menuButton" destination="d3D-Rt-yM0" id="ZGM-zw-SlK"/>
+                <outlet property="needsButtonLabel" destination="JUq-BC-cCw" id="8Q3-u6-iNl"/>
+                <outlet property="needsLabel" destination="1JH-Qg-X3a" id="gp0-Ko-vmB"/>
                 <outlet property="petBreedLabel" destination="YWi-Gy-AzB" id="1Y8-FE-Pnc"/>
                 <outlet property="petDOBLabel" destination="oY9-1B-2CP" id="i9l-ZZ-QKS"/>
                 <outlet property="petImage" destination="jNZ-2d-t5G" id="gVZ-Od-D12"/>
                 <outlet property="petNameLabel" destination="mRj-W1-o38" id="n8t-po-Dd6"/>
             </connections>
-            <point key="canvasLocation" x="138.1679389312977" y="20.422535211267608"/>
+            <point key="canvasLocation" x="138.1679389312977" y="23.591549295774648"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="square.and.arrow.up" catalog="system" width="108" height="128"/>
+        <image name="line.3.horizontal" catalog="system" width="128" height="65"/>
         <namedColor name="Background">
             <color red="0.96078431372549022" green="0.93333333333333335" blue="0.82745098039215681" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
