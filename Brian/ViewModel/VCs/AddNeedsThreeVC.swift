@@ -23,6 +23,7 @@ class AddNeedsThreeVC: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
         
         detailsTF.delegate = self
+        detailsTF.layer.cornerRadius = 10
     }
     
     func addNeedToPet(need: String) {

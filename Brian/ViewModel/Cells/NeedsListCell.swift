@@ -14,6 +14,7 @@ class NeedsListCell: UITableViewCell {
     @IBOutlet weak var titleDetails     : UILabel!
     @IBOutlet weak var detailsDetails   : UILabel!
     
+    var menuAction   = Menu()
     var indexPath    : IndexPath?
     
     override func layoutSubviews() {
@@ -36,7 +37,7 @@ class NeedsListCell: UITableViewCell {
                 
                 
                 if let indexPath = self.indexPath {
-                    print("Menu buttong pressed inside ProfileCell")
+                    print("Menu button pressed inside ProfileCell")
 //                    self.menuDelegate?.profileMenuPressed(menuRequest: K.Segue.needsList)
 //                    self.menuDelegate?.passIndex(index: indexPath)
                 }
@@ -44,6 +45,11 @@ class NeedsListCell: UITableViewCell {
             } else if action.title == NSLocalizedString("Edit", comment: "") {
                 
             } else if action.title == NSLocalizedString("Share this need", comment: "") {
+//                if let cell = sender.superview?.superview as? UITableViewCell {
+//                    
+//                    menuAction.shareTVCPDF(cell: cell)
+//                }
+            
                 
             } else if action.title == NSLocalizedString("Delete", comment: "") {
                 // Delete action
