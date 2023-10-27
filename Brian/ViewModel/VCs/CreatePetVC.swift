@@ -22,19 +22,17 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
     private var textFieldsFilled: Bool = false
     private var dobDateEntered  : Bool = false
     
-    let styling = Styling()
-    
-    var petName : String = ""
-    var petBreed: String = ""
-    var petDOB  : String = ""
-    
-    var userPickedImage = UIImage(named: "profile")
+    let styling           = Styling()
+    var userPickedImage   = UIImage(named: "profile")
+    var petName           : String = ""
+    var petBreed          : String = ""
+    var petDOB            : String = ""
     var userPickedImageURL: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        avatarImage  = styling.avatarSetup(avatarImage: avatarImage)
+        avatarImage       = styling.avatarSetup(avatarImage: avatarImage)
         avatarImage.image = userPickedImage
         
         nameTextBox  = styling.underlinedTF(textfield: nameTextBox)
@@ -87,7 +85,6 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
         petDOB = UKDate().ukDate(dob: sender.date)
         dobDateEntered = true
         presentedViewController?.dismiss(animated: true, completion: nil)
-//        dismiss(animated: true)
     }
     
     //MARK: - Change photo button functionality

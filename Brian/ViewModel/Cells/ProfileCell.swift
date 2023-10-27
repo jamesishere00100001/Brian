@@ -21,20 +21,16 @@ protocol MenuButtonDelegate: AnyObject {
 class ProfileCell: UITableViewCell {
     
     @IBOutlet weak var menuButton       : UIButton!
-    @IBOutlet weak var needsButtonLabel : UIButton!
     @IBOutlet weak var petImage         : UIImageView!
     @IBOutlet weak var petNameLabel     : UILabel!
     @IBOutlet weak var petBreedLabel    : UILabel!
     @IBOutlet weak var petDOBLabel      : UILabel!
-    @IBOutlet weak var needsLabel: UILabel!
-    
-    
+    @IBOutlet weak var needsLabel       : UILabel!
+        
     weak var delegate     : NeedsSegueDelegate?
     weak var menuDelegate : MenuButtonDelegate?
-    var indexPath    : IndexPath?
-    var styling      = Styling()
-    
-   
+    var indexPath         : IndexPath?
+    var styling           = Styling()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -50,6 +46,7 @@ class ProfileCell: UITableViewCell {
                 
                 if let indexPath = self.indexPath {
                     print("Menu button pressed inside ProfileCell")
+                    print(indexPath)
                     self.menuDelegate?.profileMenuPressed(menuRequest: K.Segue.needsList)
                     self.menuDelegate?.passIndex(index: indexPath)
                 }
@@ -95,13 +92,15 @@ class ProfileCell: UITableViewCell {
             print("Error getting indexpath from cell button - ProfileCellVC")
             return
         }
-        indexPath = cell.indexPath
+        self.indexPath = cell.indexPath
+        print("indexPath generated in Profile Cell")
 
     }
     
     @IBAction func cellAddNeedsPressed(_ sender: UIButton) {
         
         if let indexPath = indexPath {
+            print("indexPath passed via delgate to HomeVC")
             self.delegate?.addNeedsPressed(indexPath: indexPath)
         }
     }

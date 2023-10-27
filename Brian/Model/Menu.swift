@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class Menu: UITableViewController {
     
@@ -52,6 +53,68 @@ class Menu: UITableViewController {
         let fileURL = URL(fileURLWithPath: pdfFileName)
         let activityViewController = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
         self.present(activityViewController, animated: true, completion: nil)
+    }
+    
+//    Delete pet profile
+    
+    func deleteProfile(petName: Profile) {
+       
+        let alert  = UIAlertController(title: "Delete \(petName.petName)", message: "Are you sure?", preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        let delete = UIAlertAction(title: "Delete", style: .destructive) { (action) in
+            self.deleteProfileRealm(delete: petName)
+        }
+        
+        alert.addAction(cancel)
+        alert.addAction(delete)
+        self.present(alert, animated: true)
+    }
+    
+    func deleteProfileRealm(delete item: Profile) {
+        
+        let realm = try! Realm()
+        
+        try! realm.write {
+            realm.delete(item)
+            tableView.reloadData()
+        }
+    }
+    
+    //    Delete pet need from profile
+    
+    func deleteNeed(need: Needs) {
+        
+        let alert  = UIAlertController(title: "Delete \(need.title)", message: "Are you sure?", preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        let delete = UIAlertAction(title: "Delete", style: .destructive) { (action) in
+            self.deleteNeedRealm(delete: need)
+        }
+        alert.addAction(cancel)
+        alert.addAction(delete)
+        self.present(alert, animated: true)
+    }
+    
+    func deleteNeedRealm(delete item: Needs) {
+        
+        let realm = try! Realm()
+        
+        try! realm.write {
+            realm.delete(item)
+            print("Need successfully deleted")
+            tableView.reloadData()
+        }
+    }
+    
+    //    Edit pet profile
+    
+    func editProfile(petName: Profile) {
+        
+    }
+    
+    //    Edit pet need within profile
+    
+    func editNeed(need: Needs) {
+        
     }
 }
 

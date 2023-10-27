@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol MenuDelegate: AnyObject {
+    func menuPressed(button: String, index: IndexPath)
+}
+
 class NeedsListCell: UITableViewCell {
     
     @IBOutlet weak var menuButton       : UIButton!
@@ -14,7 +18,8 @@ class NeedsListCell: UITableViewCell {
     @IBOutlet weak var titleDetails     : UILabel!
     @IBOutlet weak var detailsDetails   : UILabel!
     
-    var menuAction   = Menu()
+    weak var menuDelegate : MenuDelegate?
+//    var menuAction   = Menu()
     var indexPath    : IndexPath?
     
     override func layoutSubviews() {
@@ -25,34 +30,34 @@ class NeedsListCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-       
+        
         typeLabel.layer.cornerRadius  = 5
         typeLabel.layer.masksToBounds = true
         
         menuButton.showsMenuAsPrimaryAction = true
         
+        //MARK: - UIMenu in cell functionality
+        
         let menuHandler: UIActionHandler = { (action) in
-            if action.title == NSLocalizedString("View needs", comment: "") {
-//                performSegue(withIdentifier: K.Segue.needsList, sender: self)
-                
-                
+             if action.title == NSLocalizedString("Edit", comment: "") {
                 if let indexPath = self.indexPath {
-                    print("Menu button pressed inside ProfileCell")
-//                    self.menuDelegate?.profileMenuPressed(menuRequest: K.Segue.needsList)
-//                    self.menuDelegate?.passIndex(index: indexPath)
+                    print("Menu edit button pressed inside ProfileCell")
+                    self.menuActionRequest(button: "edit", index: indexPath)
                 }
-                //need to add delegate to pass UIMenu segue request to HomeVC
-            } else if action.title == NSLocalizedString("Edit", comment: "") {
-                
             } else if action.title == NSLocalizedString("Share this need", comment: "") {
-//                if let cell = sender.superview?.superview as? UITableViewCell {
-//                    
-//                    menuAction.shareTVCPDF(cell: cell)
-//                }
-            
+                if let indexPath = self.indexPath {
+                    print("Menu shareThisNeed button pressed inside ProfileCell")
+                    let cell = self
+                    let listVC = NeedsListVC()
+                    listVC.cell = cell
+                    self.menuActionRequest(button: "shareThisNeed", index: indexPath)
+                }
                 
             } else if action.title == NSLocalizedString("Delete", comment: "") {
-                // Delete action
+                if let indexPath = self.indexPath {
+                    print("Menu delete button pressed inside ProfileCell")
+                    self.menuActionRequest(button: "delete", index: indexPath)
+                }
             }
         }
         
@@ -71,5 +76,8 @@ class NeedsListCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
+    func menuActionRequest(button: String, index: IndexPath) {
+        self.menuDelegate?.menuPressed(button: button, index: index)
+    }
 }

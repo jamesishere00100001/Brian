@@ -20,5 +20,4 @@ let needsLabels: [String] = ["Food",
     @Persisted var type    : String = ""
     @Persisted var title   : String = ""
     @Persisted var details : String = ""
-//    var parentProfile = LinkingObjects(fromType: Needs.self, property: "medicineList")
 }

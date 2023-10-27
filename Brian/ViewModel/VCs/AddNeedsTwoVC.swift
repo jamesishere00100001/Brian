@@ -12,7 +12,7 @@ class AddNeedsTwoVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var needLabel: UILabel!
     @IBOutlet weak var titleTF: UITextField!
     
-    var profile = Profile()
+    var profile      = Profile()
     var needsSelected: [String] = []
     var need         : String = ""
     var titleAdded   : String = ""
@@ -35,7 +35,6 @@ class AddNeedsTwoVC: UIViewController, UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        
     }
     
     //MARK: - Next button pressed action and segue

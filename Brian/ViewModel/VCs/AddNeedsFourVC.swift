@@ -16,9 +16,9 @@ class AddNeedsFourVC: UIViewController, EKEventEditViewDelegate, UINavigationCon
     
     var profile       = Profile()
     var needsSelected : [String] = []
-    var needType      : String = ""
-    var needTitle     : String = ""
-    var needDetails   : String = ""
+    var needType      : String   = ""
+    var needTitle     : String   = ""
+    var needDetails   : String   = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +27,8 @@ class AddNeedsFourVC: UIViewController, EKEventEditViewDelegate, UINavigationCon
         needTitleLabel.text   = needTitle
         needDetailsLabel.text = needDetails
     }
+    
+    //MARK: - EventKit methods
     
     func addEventToCalendar() {
         switch EKEventStore.authorizationStatus(for: .event) {
@@ -95,16 +97,11 @@ class AddNeedsFourVC: UIViewController, EKEventEditViewDelegate, UINavigationCon
             destinationVC.needsSelected = self.needsSelected
             destinationVC.profile       = self.profile
         }
-        
-//        else if segue.identifier == K.Segue.allNeedsAdded {
-//            let destinationVC = segue.destination as! HomeVC
-//        }
     }
     
     @IBAction func yesButtonPressed(_ sender: UIButton) {
         
         addEventToCalendar()
-//        needsCompleted()
     }
     
     @IBAction func notNowButtonPressed(_ sender: UIButton) {

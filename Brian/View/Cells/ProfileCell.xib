@@ -71,7 +71,7 @@
                             <color key="baseForegroundColor" name="Button"/>
                         </buttonConfiguration>
                         <connections>
-                            <action selector="menuButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="u9n-Ff-Tf2"/>
+                            <action selector="menuButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Q4U-tI-ck7"/>
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YWi-Gy-AzB">
@@ -146,8 +146,7 @@
             </constraints>
             <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
             <connections>
-                <outlet property="menuButton" destination="d3D-Rt-yM0" id="ZGM-zw-SlK"/>
-                <outlet property="needsButtonLabel" destination="JUq-BC-cCw" id="8Q3-u6-iNl"/>
+                <outlet property="menuButton" destination="d3D-Rt-yM0" id="cmf-pl-bDG"/>
                 <outlet property="needsLabel" destination="1JH-Qg-X3a" id="gp0-Ko-vmB"/>
                 <outlet property="petBreedLabel" destination="YWi-Gy-AzB" id="1Y8-FE-Pnc"/>
                 <outlet property="petDOBLabel" destination="oY9-1B-2CP" id="i9l-ZZ-QKS"/>

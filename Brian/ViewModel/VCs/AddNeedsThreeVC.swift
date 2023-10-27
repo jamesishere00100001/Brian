@@ -12,12 +12,12 @@ class AddNeedsThreeVC: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var detailsTF: UITextView!
     
-    var profile = Profile()
-    var needs = Needs()
+    var profile         = Profile()
+    var needs           = Needs()
     var needsSelected   : [String] = []
-    var need            : String = ""
-    var titleAdded      : String = ""
-    var detailsAdded    : String = ""
+    var need            : String   = ""
+    var titleAdded      : String   = ""
+    var detailsAdded    : String   = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
