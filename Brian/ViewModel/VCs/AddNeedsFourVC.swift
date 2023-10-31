@@ -10,6 +10,7 @@ import EventKitUI
 
 class AddNeedsFourVC: UIViewController, EKEventEditViewDelegate, UINavigationControllerDelegate {
     
+    @IBOutlet weak var textView         : UIView!
     @IBOutlet weak var needTypeLabel    : UILabel!
     @IBOutlet weak var needTitleLabel   : UILabel!
     @IBOutlet weak var needDetailsLabel : UILabel!
@@ -23,9 +24,13 @@ class AddNeedsFourVC: UIViewController, EKEventEditViewDelegate, UINavigationCon
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.setHidesBackButton(true, animated: true)
+        
         needTypeLabel.text    = needType
         needTitleLabel.text   = needTitle
         needDetailsLabel.text = needDetails
+        
+        textView.layer.cornerRadius = 10
     }
     
     //MARK: - EventKit methods

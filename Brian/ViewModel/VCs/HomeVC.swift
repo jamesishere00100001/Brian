@@ -6,6 +6,7 @@
 //
 import UIKit
 import RealmSwift
+import StoreKit
 
 class HomeVC: UIViewController {
     
@@ -18,9 +19,9 @@ class HomeVC: UIViewController {
     var styling        = Styling()
 //    var needsExist     = false
     
-    override func viewWillAppear(_ animated: Bool) {
-        tableView.reloadData()
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        tableView.reloadData()
+//    }
     
     override func viewDidLoad() {
         
@@ -44,14 +45,24 @@ class HomeVC: UIViewController {
             if action.title == NSLocalizedString("Add new", comment: "") {
                 self.performSegue(withIdentifier: K.Segue.addPet, sender: self)
                 
-            } else if action.title == NSLocalizedString("Delete", comment: "") {
-                // Delete action
+            } else if action.title == NSLocalizedString("About", comment: "") {
+                self.performSegue(withIdentifier: K.Segue.about, sender: self)
+                
+            } else if action.title == NSLocalizedString("Rate", comment: "") {
+                if #available(iOS 14.0, *) {
+                  if let scene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene {
+                     SKStoreReviewController.requestReview(in: scene)
+                   }
+                      } else {
+                         SKStoreReviewController.requestReview()
+                }
             }
         }
         
         let barButtonMenu = UIMenu(title: "", children: [
             UIAction(title: NSLocalizedString("Add new", comment: ""), image: UIImage(systemName: "plus"), handler: menuHandler),
-            UIAction(title: NSLocalizedString("Delete", comment: ""), image: UIImage(systemName: "trash"), handler: menuHandler)
+            UIAction(title: NSLocalizedString("About", comment: ""), image: UIImage(systemName: "info"), handler: menuHandler),
+            UIAction(title: NSLocalizedString("Rate", comment: ""), image: UIImage(systemName: "star"), handler: menuHandler)
         ])
         
         optionBarItem.menu = barButtonMenu

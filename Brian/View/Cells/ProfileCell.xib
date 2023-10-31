@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -58,54 +57,24 @@
                         <color key="textColor" name="Text"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d3D-Rt-yM0">
-                        <rect key="frame" x="304" y="16" width="23" height="32"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="23" id="Jjg-o1-vYK"/>
-                            <constraint firstAttribute="height" constant="32" id="fC2-ja-9Qo"/>
-                        </constraints>
-                        <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain">
-                            <imageReference key="image" image="line.3.horizontal" catalog="system" symbolScale="large" variableValue="1"/>
-                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
-                            <color key="baseForegroundColor" name="Button"/>
-                        </buttonConfiguration>
-                        <connections>
-                            <action selector="menuButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Q4U-tI-ck7"/>
-                        </connections>
-                    </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YWi-Gy-AzB">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PetBreed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YWi-Gy-AzB">
                         <rect key="frame" x="7.6666666666666572" y="180" width="328" height="24"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="328" id="2Wu-MU-3Zd"/>
                             <constraint firstAttribute="height" constant="24" id="jdt-f8-uvV"/>
                         </constraints>
-                        <attributedString key="attributedText">
-                            <fragment content="PetBreed">
-                                <attributes>
-                                    <color key="NSColor" red="0.098039215686274508" green="0.29411764705882354" blue="0.14509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <font key="NSFont" size="16" name="SFPro-Medium"/>
-                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                </attributes>
-                            </fragment>
-                        </attributedString>
+                        <fontDescription key="fontDescription" name="SFPro-Medium" family="SF Pro" pointSize="16"/>
+                        <color key="textColor" name="Text"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oY9-1B-2CP">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PetDOB" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oY9-1B-2CP">
                         <rect key="frame" x="93" y="206" width="157" height="24"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="157" id="DFc-k4-eW9"/>
                             <constraint firstAttribute="height" constant="24" id="ZKR-ae-Vba"/>
                         </constraints>
-                        <attributedString key="attributedText">
-                            <fragment content="PetDOB">
-                                <attributes>
-                                    <color key="NSColor" red="0.098039215686274508" green="0.29411764705882354" blue="0.14509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <font key="NSFont" size="16" name="SFPro-Medium"/>
-                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                </attributes>
-                            </fragment>
-                        </attributedString>
+                        <fontDescription key="fontDescription" name="SFPro-Medium" family="SF Pro" pointSize="16"/>
+                        <color key="textColor" name="Text"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NeedsLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1JH-Qg-X3a">
@@ -127,10 +96,8 @@
                     <constraint firstItem="YWi-Gy-AzB" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Mrc-mR-Rah"/>
                     <constraint firstItem="JUq-BC-cCw" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="O89-3X-RXK"/>
                     <constraint firstItem="mRj-W1-o38" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="RcB-mI-LsN"/>
-                    <constraint firstItem="d3D-Rt-yM0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="UFu-Wb-LaS"/>
                     <constraint firstItem="jNZ-2d-t5G" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Vuf-nZ-X6a"/>
                     <constraint firstItem="JUq-BC-cCw" firstAttribute="top" secondItem="1JH-Qg-X3a" secondAttribute="bottom" constant="16" id="WAk-Ec-VkK"/>
-                    <constraint firstAttribute="trailing" secondItem="d3D-Rt-yM0" secondAttribute="trailing" constant="16" id="eQh-pE-XgQ"/>
                     <constraint firstItem="oY9-1B-2CP" firstAttribute="top" secondItem="mRj-W1-o38" secondAttribute="bottom" constant="28" id="jep-Yp-wym"/>
                     <constraint firstItem="YWi-Gy-AzB" firstAttribute="top" secondItem="jNZ-2d-t5G" secondAttribute="bottom" constant="54" id="sYo-5f-ug2"/>
                     <constraint firstItem="mRj-W1-o38" firstAttribute="top" secondItem="jNZ-2d-t5G" secondAttribute="bottom" constant="16" id="wMu-aI-6gc"/>
@@ -146,7 +113,6 @@
             </constraints>
             <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
             <connections>
-                <outlet property="menuButton" destination="d3D-Rt-yM0" id="cmf-pl-bDG"/>
                 <outlet property="needsLabel" destination="1JH-Qg-X3a" id="gp0-Ko-vmB"/>
                 <outlet property="petBreedLabel" destination="YWi-Gy-AzB" id="1Y8-FE-Pnc"/>
                 <outlet property="petDOBLabel" destination="oY9-1B-2CP" id="i9l-ZZ-QKS"/>
@@ -157,7 +123,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="line.3.horizontal" catalog="system" width="128" height="65"/>
         <namedColor name="Background">
             <color red="0.96078431372549022" green="0.93333333333333335" blue="0.82745098039215681" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -165,7 +130,7 @@
             <color red="0.14509803921568629" green="0.36862745098039218" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Text">
-            <color red="0.098039215686274508" green="0.29411764705882354" blue="0.14509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.25490196078431371" blue="0.23921568627450981" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="TileBackground">
             <color red="0.92156862745098034" green="0.88235294117647056" blue="0.73333333333333328" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

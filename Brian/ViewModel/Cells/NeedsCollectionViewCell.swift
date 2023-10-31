@@ -22,8 +22,20 @@ class NeedsCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        needsButton.isSelected = false
         needsButton.sizeToFit()
     }
+    
+//    func buttonSelected(button: UIButton) {
+//        if button.isSelected {
+//            button.tintColor = UIColor(named: "NeedsButtonSelected")
+//            button.titleLabel?.textColor = UIColor(named: "Text")
+//        } else {
+//            button.tintColor = UIColor(named: "Text")
+//            button.titleLabel?.textColor = UIColor(named: "Background")
+//        }
+//        
+//    }
     
     func didSelectButton(withText text: String) {
            needsSelected.append(text)
@@ -38,6 +50,17 @@ class NeedsCollectionViewCell: UICollectionViewCell {
     @IBAction func needsButtonPressed(_ sender: UIButton) {
         
         needsButton.isSelected.toggle()
+        
+        if sender.isSelected {
+            sender.configuration?.baseForegroundColor = UIColor(named: "Background")
+            sender.configuration?.baseBackgroundColor = UIColor(named: "Button")
+//            sender.titleLabel?.textColor = UIColor(named: "Button")
+              } else {
+                  
+                  sender.configuration?.baseForegroundColor = UIColor(named: "Button")
+                  sender.configuration?.baseBackgroundColor = UIColor(named: "NeedsCellSelected")
+              }
+//        buttonSelected(button: sender)
         
         if let text = needsButton.titleLabel?.text {
                 if needsButton.isSelected {

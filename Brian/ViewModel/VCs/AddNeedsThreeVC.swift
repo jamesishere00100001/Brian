@@ -18,30 +18,90 @@ class AddNeedsThreeVC: UIViewController, UITextViewDelegate {
     var need            : String   = ""
     var titleAdded      : String   = ""
     var detailsAdded    : String   = ""
+    var editingNeed     : Bool     = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         detailsTF.delegate = self
         detailsTF.layer.cornerRadius = 10
+        
+        detailsTF.text = detailsAdded
     }
     
     func addNeedToPet(need: String) {
         
-        needsSelected.removeFirst(need)
-        
-        let realm = try! Realm()
-        
-        if let exisitingProfile = realm.object(ofType: Profile.self, forPrimaryKey: profile.id) {
+        if editingNeed == false {
             
-            let needsList = exisitingProfile.needs
-            try! realm.write{
-                let newNeeds     = Needs()
-                newNeeds.type    = need
-                newNeeds.title   = titleAdded
-                newNeeds.details = detailsAdded
+//            for toAdd in needsSelected {
+//                if toAdd == need {
+//                    let alert = UIAlertController(title: "Duplicate need", message: "Need \(toAdd) already exists, do you wish to save anyway?" , preferredStyle: .alert)
+//                    let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+//                        self.performSegue(withIdentifier: K.Segue.cancelHome, sender: self)
+//                    }
+//                    
+//                    let save = UIAlertAction(title: "Save", style: .default) { (action) in
+                        let realm = try! Realm()
+                        
+                        if let exisitingProfile = realm.object(ofType: Profile.self, forPrimaryKey: self.profile.id) {
+                            
+                            let needsList = exisitingProfile.needs
+                            try! realm.write{
+                                let newNeeds     = Needs()
+                                newNeeds.type    = need
+                                newNeeds.title   = self.titleAdded
+                                newNeeds.details = self.detailsAdded
+                                
+                                needsList.append(newNeeds)
+                            }
+                        }
+//                        self.performSegue(withIdentifier: K.Segue.addNeedsFour, sender: self)
+//                        self.needsSelected.removeFirst(need)
+//                    }
+                    
+//                    alert.addAction(cancel)
+//                    alert.addAction(save)
+//                    
+//                    present(alert, animated: true)
+//                }
+//            }
+            
+        } else if editingNeed == true {
+            let realm = try! Realm()
+            
+            print("editingNeed in AddNeedsThreeVC is true and edit realm box running")
+            print(needs)
+//                if let needsToEdit = realm.object(ofType: Needs.self, forPrimaryKey: needs.id) {
+//                    //                               Update the specific Needs object
+//                    needsToEdit.type = need
+//                    needsToEdit.title = titleAdded
+//                    needsToEdit.details = detailsAdded
+//                    print(needs)
+                    //                               You don't need to call realm.add in this context.
+                    
                 
-                needsList.append(newNeeds)
+            if let needsToEdit = realm.object(ofType: Needs.self, forPrimaryKey: needs.id) {
+                try! realm.write {
+                    let editedNeed = Needs(value: ["id"     : needs.id,
+                                                   "type"   : need,
+                                                   "title"  : titleAdded,
+                                                   "details": detailsAdded])
+                    
+                    realm.add(editedNeed, update: .modified)
+                }
+                
+                //                    let editedNeed = Needs(value: ["id"     : petID,
+                //                                                   "type"   : need,
+                //                                                   "title"  : titleAdded,
+                //                                                   "details": detailsAdded,
+                //                                                   "needs"  : profile.needs])
+                //
+                
+                
+                
+                //                self.performSegue(withIdentifier: K.Segue.addNeedsFour, sender: self)
+                //                self.needsSelected.removeFirst(need)
+                
             }
         }
     }
@@ -60,6 +120,7 @@ class AddNeedsThreeVC: UIViewController, UITextViewDelegate {
         if let details = detailsTF.text {
             detailsAdded = details
         }
+        needsSelected.removeFirst(need)
         addNeedToPet(need: need)
         performSegue(withIdentifier: K.Segue.addNeedsFour, sender: self)
     }

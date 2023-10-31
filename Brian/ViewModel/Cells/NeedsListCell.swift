@@ -39,7 +39,7 @@ class NeedsListCell: UITableViewCell {
         //MARK: - UIMenu in cell functionality
         
         let menuHandler: UIActionHandler = { (action) in
-             if action.title == NSLocalizedString("Edit", comment: "") {
+             if action.title == NSLocalizedString("Edit need", comment: "") {
                 if let indexPath = self.indexPath {
                     print("Menu edit button pressed inside ProfileCell")
                     self.menuActionRequest(button: "edit", index: indexPath)
@@ -53,7 +53,7 @@ class NeedsListCell: UITableViewCell {
                     self.menuActionRequest(button: "shareThisNeed", index: indexPath)
                 }
                 
-            } else if action.title == NSLocalizedString("Delete", comment: "") {
+            } else if action.title == NSLocalizedString("Delete need", comment: "") {
                 if let indexPath = self.indexPath {
                     print("Menu delete button pressed inside ProfileCell")
                     self.menuActionRequest(button: "delete", index: indexPath)
@@ -62,9 +62,9 @@ class NeedsListCell: UITableViewCell {
         }
         
         let menu = UIMenu(title: "", children: [
-            UIAction(title: NSLocalizedString("Edit", comment: ""), image: UIImage(systemName: "pencil"), handler: menuHandler),
+            UIAction(title: NSLocalizedString("Edit need", comment: ""), image: UIImage(systemName: "pencil"), handler: menuHandler),
             UIAction(title: NSLocalizedString("Share this need", comment: ""), image: UIImage(systemName: "square.and.arrow.up"), handler: menuHandler),
-            UIAction(title: NSLocalizedString("Delete", comment: ""), image: UIImage(systemName: "trash"), handler: menuHandler)
+            UIAction(title: NSLocalizedString("Delete need", comment: ""), image: UIImage(systemName: "trash"), handler: menuHandler)
         ])
         
         menuButton.menu = menu

@@ -19,6 +19,12 @@ class NeedsListVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     let menuAction   = Menu()
     var cell         = NeedsListCell()
     
+    var editNeed     = Needs()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,7 +41,8 @@ class NeedsListVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
             } else if action.title == NSLocalizedString("Share all needs", comment: "") {
                 self.shareTVPDF(petName: self.profile.petName)
                 
-            } else if action.title == NSLocalizedString("Edit", comment: "") {
+            } else if action.title == NSLocalizedString("Edit pet", comment: "") {
+                self.performSegue(withIdentifier: K.Segue.editPet, sender: self)
                 
             } else if action.title == NSLocalizedString("Delete pet", comment: "") {
                 self.deleteProfile(petName: self.profile)
@@ -45,7 +52,7 @@ class NeedsListVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         let menu = UIMenu(title: "", children: [
             UIAction(title: NSLocalizedString("Add need", comment: ""), image: UIImage(systemName: "plus"), handler: menuHandler),
             UIAction(title: NSLocalizedString("Share all needs", comment: ""), image: UIImage(systemName: "square.and.arrow.up"), handler: menuHandler),
-            UIAction(title: NSLocalizedString("Edit", comment: ""), image: UIImage(systemName: "pencil"), handler: menuHandler),
+            UIAction(title: NSLocalizedString("Edit pet", comment: ""), image: UIImage(systemName: "pencil"), handler: menuHandler),
             UIAction(title: NSLocalizedString("Delete pet", comment: ""), image: UIImage(systemName: "trash"), handler: menuHandler)
         ])
         
@@ -57,6 +64,35 @@ class NeedsListVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
             let destinationVC = segue.destination as! AddNeedsVC
             
             destinationVC.profile = self.profile
+        } else if segue.identifier == K.Segue.editNeed {
+            let destinationVC = segue.destination as! AddNeedsTwoVC
+            
+            destinationVC.loadViewIfNeeded()
+            destinationVC.profile       = profile
+            destinationVC.needsSelected.append(editNeed.type)
+            destinationVC.needs         = editNeed
+            destinationVC.need          = editNeed.type
+            destinationVC.editingNeed   = true
+            destinationVC.addNeedTitle(needArray: destinationVC.needsSelected)
+            destinationVC.titleTF.text! = editNeed.title
+            destinationVC.editDetails   = editNeed.details
+            
+        } else if segue.identifier == K.Segue.editPet {
+            let destinationVC = segue.destination as! CreatePetVC
+            
+            destinationVC.loadViewIfNeeded()
+            destinationVC.profile           = profile
+            destinationVC.avatarImage.image = profile.profileImage
+            destinationVC.nameTextBox.text  = profile.petName
+            destinationVC.breedTextBox.text = profile.petBreed
+            destinationVC.petDOB            = profile.petDOB
+            destinationVC.editingPet        = true
+            
+            let dateFormatter               = DateFormatter()
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+            if let date = dateFormatter.date(from: profile.petDOB) {
+            destinationVC.datePicker.date   = date
+            }
         }
     }
     
@@ -134,45 +170,110 @@ class NeedsListVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     //MARK: - Share and delete methods
   
     func shareTVPDF(petName: String) {
+        // Create a PDF data object in memory
+        let pdfData = NSMutableData()
+        UIGraphicsBeginPDFContextToData(pdfData, CGRect.zero, nil)
+        UIGraphicsBeginPDFPage()
+        guard let context = UIGraphicsGetCurrentContext() else {
+            // Handle the error, if any
+            return
+        }
         
-        let priorBounds: CGRect     = self.tableView!.bounds
-        let fittedSize: CGSize      = self.tableView!.sizeThatFits(CGSize(width: priorBounds.size.width, height: self.tableView!.contentSize.height))
-        let pdfPageBounds: CGRect   = CGRect(x: 0, y: 0, width: fittedSize.width, height: (fittedSize.height))
-        let pdfData: NSMutableData  = NSMutableData()
-        UIGraphicsBeginPDFContextToData(pdfData, pdfPageBounds, nil)
-        UIGraphicsBeginPDFPageWithInfo(pdfPageBounds, nil)
-        self.tableView!.layer.render(in: UIGraphicsGetCurrentContext()!)
+        // Ensure the table view is fully rendered
+        if let tableView = self.tableView {
+            tableView.layer.render(in: context)
+        }
+        
+        // Finish creating the PDF
         UIGraphicsEndPDFContext()
         
-        let documentDirectories = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
-        let date = Date().formatted(date: .abbreviated, time: .omitted)
-        let documentsFileName = documentDirectories! + "/" + "\(petName)_" + "\(date)" + ".pdf"
-        pdfData.write(toFile: documentsFileName, atomically: true)
+        // Create a temporary URL for the PDF file (optional)
+        // This step is not needed if you want to avoid saving the PDF to a file
+        // This is just for generating a temporary URL in case you want to save it
+        let temporaryURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("\(petName)_\(Date().timeIntervalSince1970).pdf")
         
-        let fileURL = URL(fileURLWithPath: documentsFileName)
-        let activityViewController = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
+        // Save the PDF data to the temporary URL (optional)
+        do {
+            try pdfData.write(to: temporaryURL, options: .atomic)
+        } catch {
+            // Handle the error, if any
+        }
+        
+        // Share the PDF data using UIActivityViewController
+        let activityViewController = UIActivityViewController(activityItems: [pdfData], applicationActivities: nil)
         self.present(activityViewController, animated: true, completion: nil)
     }
+
+    
+//    func shareTVPDF(petName: String) {
+//        
+//        let priorBounds: CGRect     = self.tableView!.bounds
+//        let fittedSize: CGSize      = self.tableView!.sizeThatFits(CGSize(width: priorBounds.size.width, height: self.tableView!.contentSize.height))
+//        let pdfPageBounds: CGRect   = CGRect(x: 0, y: 0, width: fittedSize.width, height: (fittedSize.height))
+//        let pdfData: NSMutableData  = NSMutableData()
+//        UIGraphicsBeginPDFContextToData(pdfData, pdfPageBounds, nil)
+//        UIGraphicsBeginPDFPageWithInfo(pdfPageBounds, nil)
+//        self.tableView!.layer.render(in: UIGraphicsGetCurrentContext()!)
+//        UIGraphicsEndPDFContext()
+//        
+//        let documentDirectories = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
+//        let date = Date().formatted(date: .abbreviated, time: .omitted)
+//        let documentsFileName = documentDirectories! + "/" + "\(petName)_" + "\(date)" + ".pdf"
+//        pdfData.write(toFile: documentsFileName, atomically: true)
+//        
+//        let fileURL = URL(fileURLWithPath: documentsFileName)
+//        let activityViewController = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
+//        self.present(activityViewController, animated: true, completion: nil)
+//    }
+    
     
     func shareTVCPDF(petName: String, need: String, cell: NeedsListCell) {
-       
         let pdfPageBounds = cell.bounds
-        let pdfData       = NSMutableData()
+        let pdfData = NSMutableData()
         UIGraphicsBeginPDFContextToData(pdfData, pdfPageBounds, nil)
         UIGraphicsBeginPDFPageWithInfo(pdfPageBounds, nil)
         UIGraphicsGetCurrentContext()?.translateBy(x: -cell.frame.origin.x, y: -cell.frame.origin.y)
         cell.layer.render(in: UIGraphicsGetCurrentContext()!)
         UIGraphicsEndPDFContext()
-        
-        let documentDirectories = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
-        let date = Date().formatted(date: .abbreviated, time: .omitted)
-        let pdfFileName = documentDirectories! + "/" + "\(petName)/\(need)_" + "\(date)" + ".pdf"
-        pdfData.write(toFile: pdfFileName, atomically: true)
-        
-        let fileURL = URL(fileURLWithPath: pdfFileName)
-        let activityViewController = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
-        self.present(activityViewController, animated: true, completion: nil)
+
+        // Create a temporary URL for the PDF file
+        if let temporaryURL = try? FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("\(petName)_\(need).pdf") {
+            pdfData.write(to: temporaryURL, atomically: true)
+
+            let activityViewController = UIActivityViewController(activityItems: [temporaryURL], applicationActivities: nil)
+            // Set a completion handler to delete the temporary file after sharing
+            activityViewController.completionWithItemsHandler = { (activityType, completed, returnedItems, error) in
+                do {
+                    // Delete the temporary file
+                    try FileManager.default.removeItem(at: temporaryURL)
+                } catch {
+                    // Handle the error, if any
+                    print("Error deleting temporary file: \(error.localizedDescription)")
+                }
+            }
+            self.present(activityViewController, animated: true, completion: nil)
+        }
     }
+
+//    func shareTVCPDF(petName: String, need: String, cell: NeedsListCell) {
+//       
+//        let pdfPageBounds = cell.bounds
+//        let pdfData       = NSMutableData()
+//        UIGraphicsBeginPDFContextToData(pdfData, pdfPageBounds, nil)
+//        UIGraphicsBeginPDFPageWithInfo(pdfPageBounds, nil)
+//        UIGraphicsGetCurrentContext()?.translateBy(x: -cell.frame.origin.x, y: -cell.frame.origin.y)
+//        cell.layer.render(in: UIGraphicsGetCurrentContext()!)
+//        UIGraphicsEndPDFContext()
+//        
+//        let documentDirectories = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
+//        let date = Date().formatted(date: .abbreviated, time: .omitted)
+//        let pdfFileName = documentDirectories! + "/" + "\(petName)/\(need)_" + "\(date)" + ".pdf"
+//        pdfData.write(toFile: pdfFileName, atomically: true)
+//        
+//        let fileURL = URL(fileURLWithPath: pdfFileName)
+//        let activityViewController = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
+//        self.present(activityViewController, animated: true, completion: nil)
+//    }
     
     //    Delete pet profile
     
@@ -232,12 +333,16 @@ class NeedsListVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     extension NeedsListVC: MenuDelegate {
         
         func menuPressed(button: String, index: IndexPath) {
-            
+            self.tableView.reloadData()
             let need = profile.needs[index.row]
             
             switch button {
-            case "edit"         : menuAction.editNeed(need: need)
-            case "shareThisNeed": shareTVCPDF(petName: profile.petName, need: need.type, cell: cell)
+            case "edit"         : self.editNeed = need; print(need.title); self.performSegue(withIdentifier: K.Segue.editNeed, sender: self)
+            case "shareThisNeed":
+                        if let cell = tableView.cellForRow(at: index) as? NeedsListCell {
+                            shareTVCPDF(petName: profile.petName, need: need.type, cell: cell)
+                        }
+//            case "shareThisNeed": shareTVCPDF(petName: profile.petName, need: need.type, cell: self.cell)
             case "delete"       : deleteNeed(need: need)
             default             : print("switch statement in NeedsListVC is defaulting")
             }

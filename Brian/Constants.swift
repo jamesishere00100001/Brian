@@ -34,5 +34,9 @@ struct K {
         static let needsList         = "needsListSegue"
         static let newNeeds          = "addNewNeeds"
         static let returnHome        = "returnToHomeVC"
+        static let about             = "showAboutVC"
+        static let editNeed          = "editNeed"
+        static let cancelHome        = "cancelToHomeVC"
+        static let editPet           = "editPet"
     }
 }

@@ -12,22 +12,23 @@ import RealmSwift
 
 class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
-    @IBOutlet weak var scrollView   : UIScrollView!
-    
     @IBOutlet weak var avatarImage  : UIImageView!
     @IBOutlet weak var nameTextBox  : UITextField!
     @IBOutlet weak var breedTextBox : UITextField!
     @IBOutlet weak var dobTextBox   : UITextField!
+    @IBOutlet weak var datePicker: UIDatePicker!
     
     private var textFieldsFilled: Bool = false
     private var dobDateEntered  : Bool = false
     
+    var profile           = Profile()
     let styling           = Styling()
     var userPickedImage   = UIImage(named: "profile")
     var petName           : String = ""
     var petBreed          : String = ""
     var petDOB            : String = ""
     var userPickedImageURL: String = ""
+    var editingPet        : Bool   = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,29 +43,27 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
         nameTextBox.delegate  = self
         breedTextBox.delegate = self
         
-        let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
-        
-        scrollView.isScrollEnabled = true
+//        let notificationCenter = NotificationCenter.default
+//        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
+//        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     
     //MARK: - Soft keyboard scroll func - Works in conjuction with notificationCentre set up in viewDidLoad
     
-    @objc func adjustForKeyboard(notification: Notification) {
-        guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
-        
-        let keyboardScreenEndFrame = keyboardValue.cgRectValue
-        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
-        
-        if notification.name == UIResponder.keyboardWillHideNotification {
-            scrollView.contentInset = .zero
-        } else {
-            scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height - view.safeAreaInsets.bottom, right: 0)
-        }
-        
-        scrollView.scrollIndicatorInsets = scrollView.contentInset
-    }
+//    @objc func adjustForKeyboard(notification: Notification) {
+//        guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+//        
+//        let keyboardScreenEndFrame = keyboardValue.cgRectValue
+//        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
+//        
+//        if notification.name == UIResponder.keyboardWillHideNotification {
+//            scrollView.contentInset = .zero
+//        } else {
+//            scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height - view.safeAreaInsets.bottom, right: 0)
+//        }
+//        
+//        scrollView.scrollIndicatorInsets = scrollView.contentInset
+//    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
@@ -110,21 +109,40 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
             
             let realm = try! Realm()
             
-            try! realm.write {
+            if editingPet == false {
                 
-                let newProfile             = Profile()
-                newProfile.petName         = petName
-                newProfile.petBreed        = petBreed
-                newProfile.petDOB          = petDOB
-                newProfile.profilePhotoURL = userPickedImageURL
+                try! realm.write {
+                    
+                    let newProfile             = Profile()
+                    newProfile.petName         = petName
+                    newProfile.petBreed        = petBreed
+                    newProfile.petDOB          = petDOB
+                    newProfile.profilePhotoURL = userPickedImageURL
+                    
+                    realm.add(newProfile)
+                }
+
+                performSegue(withIdentifier: K.Segue.backHome, sender: self)
                 
-                realm.add(newProfile)
+            } else if editingPet == true {
+                
+                 try! realm.write {
+                    
+                     let pet = Profile(value: ["id"             : profile.id,
+                                               "petName"        : petName,
+                                               "petBreed"       : petBreed,
+                                               "petDOB"         : petDOB,
+                                               "profilePhotoURL": userPickedImageURL,
+                                               "needs"          : profile.needs])
+                     
+                     realm.add(pet, update: .modified)
+                }
+                
+              performSegue(withIdentifier: K.Segue.backHome, sender: self)
+                
+            } else {
+                print("Error, user input not meeting 'textFieldsFilled' criteria")
             }
-          
-            performSegue(withIdentifier: K.Segue.backHome, sender: self)
-        
-        } else {
-            print("Error, user input not meeting 'textFieldsFilled' criteria")
         }
     }
     

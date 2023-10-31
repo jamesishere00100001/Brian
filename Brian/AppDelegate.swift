@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     
-//        // Delete exisiting realm database
+        // Delete exisiting realm database
 //        let realmURL = Realm.Configuration.defaultConfiguration.fileURL!
 //
 //        do {
@@ -31,6 +31,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //         Realm database location URL
 //        let realmURL = Realm.Configuration.defaultConfiguration.fileURL
 //        print("Realm Database File URL: \(realmURL)")
+        
+        //MARK: - Realm migration block for version updates
+        
+        let config = Realm.Configuration(
+                    schemaVersion: 1,
+                    migrationBlock: { migration, oldSchemaVersion in
+                        if oldSchemaVersion < 1 {
+                            // Perform your schema migration tasks here
+                            
+                            migration.enumerateObjects(ofType: Needs.className()) { oldObject, newObject in
+                                newObject?["id"] = UUID().uuidString
+                            }
+                        }
+                    }
+                )
+
+                // Set the default Realm configuration
+                Realm.Configuration.defaultConfiguration = config
         
         return true
     }

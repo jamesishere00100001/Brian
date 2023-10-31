@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -27,16 +27,15 @@
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HMX-1v-hUM">
                         <rect key="frame" x="68" y="150" width="207" height="48"/>
-                        <color key="backgroundColor" name="Button"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="48" id="7AK-wq-Qtv"/>
                             <constraint firstAttribute="width" constant="207" id="KyU-3w-YJ2"/>
                         </constraints>
-                        <color key="tintColor" name="TileBackground"/>
+                        <color key="tintColor" name="Button"/>
                         <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain" title="Add your pet" cornerStyle="capsule">
+                        <buttonConfiguration key="configuration" style="filled" title="Add your pet" cornerStyle="capsule">
                             <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
-                            <color key="baseForegroundColor" name="TileBackground"/>
+                            <color key="baseForegroundColor" name="Background"/>
                         </buttonConfiguration>
                         <connections>
                             <action selector="addPetButtonPressed:" destination="Mf1-T1-9Ak" eventType="touchUpInside" id="Pbm-kQ-7ZT"/>
