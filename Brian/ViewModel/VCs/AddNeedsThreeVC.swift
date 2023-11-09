@@ -68,7 +68,7 @@ class AddNeedsThreeVC: UIViewController, UITextViewDelegate {
         } else if editingNeed == true {
             let realm = try! Realm()
                                  
-            if let needsToEdit = realm.object(ofType: Needs.self, forPrimaryKey: needs.id) {
+            if realm.object(ofType: Needs.self, forPrimaryKey: needs.id) != nil {
                 try! realm.write {
                     let editedNeed = Needs(value: ["id"     : needs.id,
                                                    "type"   : need,

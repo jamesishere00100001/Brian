@@ -51,7 +51,7 @@ class ProfileCell: UITableViewCell {
     @IBAction func cellAddNeedsPressed(_ sender: UIButton) {
         
         if let indexPath = indexPath {
-            print("indexPath passed via delgate to HomeVC")
+
             self.delegate?.addNeedsPressed(indexPath: indexPath)
         }
     }

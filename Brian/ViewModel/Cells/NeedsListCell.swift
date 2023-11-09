@@ -40,12 +40,12 @@ class NeedsListCell: UITableViewCell {
         let menuHandler: UIActionHandler = { (action) in
              if action.title == NSLocalizedString("Edit need", comment: "") {
                 if let indexPath = self.indexPath {
-                    print("Menu edit button pressed inside ProfileCell")
+                    
                     self.menuActionRequest(button: "edit", index: indexPath)
                 }
             } else if action.title == NSLocalizedString("Share this need", comment: "") {
                 if let indexPath = self.indexPath {
-                    print("Menu shareThisNeed button pressed inside ProfileCell")
+                   
                     let cell = self
                     let listVC = NeedsListVC()
                     listVC.cell = cell
@@ -54,7 +54,7 @@ class NeedsListCell: UITableViewCell {
                 
             } else if action.title == NSLocalizedString("Delete need", comment: "") {
                 if let indexPath = self.indexPath {
-                    print("Menu delete button pressed inside ProfileCell")
+                    
                     self.menuActionRequest(button: "delete", index: indexPath)
                 }
             }

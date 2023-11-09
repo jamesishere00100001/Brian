@@ -13,12 +13,12 @@ class NeedsListVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     @IBOutlet weak var tableView : UITableView!
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
-    var profile      = Profile()
-    let realm        = try! Realm()
-    let cellVC       = NeedsListCell()
-    let menuAction   = Menu()
-    var cell         = NeedsListCell()
-    var editNeed     = Needs()
+    var profile       = Profile()
+    let realm         = try! Realm()
+    let cellVC        = NeedsListCell()
+    let menuAction    = Menu()
+    var cell          = NeedsListCell()
+    var editNeed      = Needs()
     var shareRequested: String = ""
     
     override func viewWillAppear(_ animated: Bool) {
@@ -414,7 +414,6 @@ class NeedsListVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         
         try! realm.write {
             realm.delete(item)
-            print("Need successfully deleted")
             tableView.reloadData()
         }
     }

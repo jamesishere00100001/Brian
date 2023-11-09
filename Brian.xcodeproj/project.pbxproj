@@ -44,7 +44,6 @@
 		DDF5C9472A6FFF6C0022F0F5 /* ProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDF5C9452A6FFF6C0022F0F5 /* ProfileCell.xib */; };
 		DDF5C9492A6FFFDE0022F0F5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF5C9482A6FFFDE0022F0F5 /* Constants.swift */; };
 		DDF5C94B2A71189F0022F0F5 /* Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF5C94A2A71189F0022F0F5 /* Styling.swift */; };
-		DDF5C94D2A72968F0022F0F5 /* KeyboardScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF5C94C2A72968F0022F0F5 /* KeyboardScroll.swift */; };
 		DDF5C9552A729DCA0022F0F5 /* BlankCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF5C9532A729DCA0022F0F5 /* BlankCell.swift */; };
 		DDF5C9562A729DCA0022F0F5 /* BlankCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDF5C9542A729DCA0022F0F5 /* BlankCell.xib */; };
 		DDF6CE242AD4158100B84331 /* AddNeedsFourVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF6CE232AD4158000B84331 /* AddNeedsFourVC.swift */; };
@@ -89,7 +88,6 @@
 		DDF5C9452A6FFF6C0022F0F5 /* ProfileCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileCell.xib; sourceTree = "<group>"; };
 		DDF5C9482A6FFFDE0022F0F5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		DDF5C94A2A71189F0022F0F5 /* Styling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styling.swift; sourceTree = "<group>"; };
-		DDF5C94C2A72968F0022F0F5 /* KeyboardScroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardScroll.swift; sourceTree = "<group>"; };
 		DDF5C9532A729DCA0022F0F5 /* BlankCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankCell.swift; sourceTree = "<group>"; };
 		DDF5C9542A729DCA0022F0F5 /* BlankCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlankCell.xib; sourceTree = "<group>"; };
 		DDF6CE232AD4158000B84331 /* AddNeedsFourVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNeedsFourVC.swift; sourceTree = "<group>"; };
@@ -145,7 +143,6 @@
 			isa = PBXGroup;
 			children = (
 				DDD1F9222A72C22700B4EBE9 /* DateFormatter.swift */,
-				DDF5C94C2A72968F0022F0F5 /* KeyboardScroll.swift */,
 				DD0F95752AE2A9FC009C39B3 /* Menu.swift */,
 				DD1CA2CD2A9E0EF500734070 /* Needs.swift */,
 				DD170AEF2A4EBAEA00EDB88B /* Profile.swift */,
@@ -341,7 +338,6 @@
 				DDA97FC82AEFF81800490DCE /* AboutVC.swift in Sources */,
 				DDF5C94B2A71189F0022F0F5 /* Styling.swift in Sources */,
 				DD0F954B2ADFDD7B009C39B3 /* HeaderCell.swift in Sources */,
-				DDF5C94D2A72968F0022F0F5 /* KeyboardScroll.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

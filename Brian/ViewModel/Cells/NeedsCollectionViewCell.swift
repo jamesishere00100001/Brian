@@ -45,11 +45,7 @@ class NeedsCollectionViewCell: UICollectionViewCell {
         
         if let text = needsButton.titleLabel?.text {
                 if needsButton.isSelected {
-//                    didSelectButton(withText: text)
                     delegate?.passNeedsAdded(need: text)
-//                } else {
-//                    didDeselectButton(withText: text)
-//                    delegate?.passNeedsAdded(need: needsSelected)
                 }
             }
         }

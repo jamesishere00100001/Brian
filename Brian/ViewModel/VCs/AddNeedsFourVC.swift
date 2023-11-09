@@ -42,7 +42,6 @@ class AddNeedsFourVC: UIViewController, EKEventEditViewDelegate, UINavigationCon
             if #available(iOS 17.0, *) {
                 eventStore.requestFullAccessToEvents { (granted, error) in
                     if granted {
-                        print("access granted to calendar at iOS 17 level")
                         DispatchQueue.main.async {
                             self.showEventViewController()
                         }
@@ -51,7 +50,6 @@ class AddNeedsFourVC: UIViewController, EKEventEditViewDelegate, UINavigationCon
             } else {
                 eventStore.requestAccess(to: .event) { (granted, error) in
                     if granted {
-                        print("access granted to calendar at below iOS 17 level")
                         DispatchQueue.main.async {
                             self.showEventViewController()
                         }
