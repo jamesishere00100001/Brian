@@ -59,7 +59,6 @@ class AddNeedsFourVC: UIViewController, EKEventEditViewDelegate, UINavigationCon
                 }
         }
         case .authorized:
-            // do stuff
             DispatchQueue.main.async {
                 self.showEventViewController()
             }
@@ -72,12 +71,12 @@ class AddNeedsFourVC: UIViewController, EKEventEditViewDelegate, UINavigationCon
         eventVC.editViewDelegate = self
         eventVC.eventStore       = EKEventStore()
         
-        let event       = EKEvent(eventStore: eventVC.eventStore)
-        event.title     = self.needTitle
-        event.notes     = self.needDetails
-        event.startDate = Date()
-        eventVC.view.tintColor = UIColor(named: "Text")
-        eventVC.event   = event
+        let event                = EKEvent(eventStore: eventVC.eventStore)
+        event.title              = self.needTitle
+        event.notes              = self.needDetails
+        event.startDate          = Date()
+        eventVC.view.tintColor   = .black
+        eventVC.event            = event
 
         present(eventVC, animated: true)
     }

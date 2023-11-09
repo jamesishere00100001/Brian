@@ -15,10 +15,10 @@ class AddNeedsTwoVC: UIViewController, UITextFieldDelegate {
     var profile      = Profile()
     var needs        = Needs()
     var needsSelected: [String] = []
-    var need         : String = ""
-    var titleAdded   : String = ""
-    var editDetails  : String = ""
-    var editingNeed  : Bool = false
+    var need         : String   = ""
+    var titleAdded   : String   = ""
+    var editDetails  : String   = ""
+    var editingNeed  : Bool     = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,7 +62,6 @@ class AddNeedsTwoVC: UIViewController, UITextFieldDelegate {
             destinationVC.profile       = self.profile
             destinationVC.detailsAdded  = self.editDetails
             destinationVC.editingNeed   = self.editingNeed
-            print(editingNeed)
         }
     }
 }

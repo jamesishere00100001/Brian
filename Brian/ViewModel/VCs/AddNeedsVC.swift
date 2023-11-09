@@ -22,7 +22,6 @@ class AddNeedsVC: UIViewController, UICollectionViewDataSource, UICollectionView
         
         collectionView.dataSource = self
         collectionView.delegate   = self
-        
         collectionView.autoresizesSubviews = true
         
         self.collectionView.register(UINib(nibName: K.needsCollectionVC, bundle: nil), forCellWithReuseIdentifier: K.needsCollectionVCNib)

@@ -17,20 +17,15 @@ class HomeVC: UIViewController {
     var profiles       : [Profile] = []
     var currentProfile = Profile()
     var styling        = Styling()
-//    var needsExist     = false
-    
-//    override func viewWillAppear(_ animated: Bool) {
-//        tableView.reloadData()
-//    }
     
     override func viewDidLoad() {
         
         loadProfiles()
         
-        let label       = UILabel()
-        label.text      = "Brian"
-        label.font      = UIFont(name: "Caprasimo-Regular", size: 28)
-        label.textColor = UIColor(named: "Text")
+        let label            = UILabel()
+        label.text           = "Brian"
+        label.font           = UIFont(name: "Caprasimo-Regular", size: 28)
+        label.textColor      = UIColor(named: "Text")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: label)
         
         tableView.delegate   = self
@@ -62,8 +57,7 @@ class HomeVC: UIViewController {
         let barButtonMenu = UIMenu(title: "", children: [
             UIAction(title: NSLocalizedString("Add new", comment: ""), image: UIImage(systemName: "plus"), handler: menuHandler),
             UIAction(title: NSLocalizedString("About", comment: ""), image: UIImage(systemName: "info"), handler: menuHandler),
-            UIAction(title: NSLocalizedString("Rate", comment: ""), image: UIImage(systemName: "star"), handler: menuHandler)
-        ])
+            UIAction(title: NSLocalizedString("Rate", comment: ""), image: UIImage(systemName: "star"), handler: menuHandler)])
         
         optionBarItem.menu = barButtonMenu
     }
@@ -137,11 +131,6 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
             
             filledCell.contentView.layer.cornerRadius = 10
             
-//            doNeedsExist()
-//            if !profile.needs.isEmpty {
-//                needsExist = true
-//            }
-            
             return filledCell
         }
     }
@@ -154,14 +143,6 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
             return 344
         }
     }
-    
-//    func doNeedsExist() {
-//        if currentProfile.needs.isEmpty {
-//            needsExist = false
-//        } else {
-//            needsExist = true
-//        }
-//    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         

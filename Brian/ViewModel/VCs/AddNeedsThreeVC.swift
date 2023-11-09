@@ -23,10 +23,9 @@ class AddNeedsThreeVC: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        detailsTF.delegate = self
+        detailsTF.delegate           = self
         detailsTF.layer.cornerRadius = 10
-        
-        detailsTF.text = detailsAdded
+        detailsTF.text               = detailsAdded
     }
     
     func addNeedToPet(need: String) {
@@ -68,18 +67,7 @@ class AddNeedsThreeVC: UIViewController, UITextViewDelegate {
             
         } else if editingNeed == true {
             let realm = try! Realm()
-            
-            print("editingNeed in AddNeedsThreeVC is true and edit realm box running")
-            print(needs)
-//                if let needsToEdit = realm.object(ofType: Needs.self, forPrimaryKey: needs.id) {
-//                    //                               Update the specific Needs object
-//                    needsToEdit.type = need
-//                    needsToEdit.title = titleAdded
-//                    needsToEdit.details = detailsAdded
-//                    print(needs)
-                    //                               You don't need to call realm.add in this context.
-                    
-                
+                                 
             if let needsToEdit = realm.object(ofType: Needs.self, forPrimaryKey: needs.id) {
                 try! realm.write {
                     let editedNeed = Needs(value: ["id"     : needs.id,
@@ -89,19 +77,6 @@ class AddNeedsThreeVC: UIViewController, UITextViewDelegate {
                     
                     realm.add(editedNeed, update: .modified)
                 }
-                
-                //                    let editedNeed = Needs(value: ["id"     : petID,
-                //                                                   "type"   : need,
-                //                                                   "title"  : titleAdded,
-                //                                                   "details": detailsAdded,
-                //                                                   "needs"  : profile.needs])
-                //
-                
-                
-                
-                //                self.performSegue(withIdentifier: K.Segue.addNeedsFour, sender: self)
-                //                self.needsSelected.removeFirst(need)
-                
             }
         }
     }

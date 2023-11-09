@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell autoresizesSubviews="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EmptyCell" id="Mf1-T1-9Ak" userLabel="BlankCell" customClass="BlankCell" customModule="Brian" customModuleProvider="target">
+        <tableViewCell autoresizesSubviews="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="EmptyCell" id="Mf1-T1-9Ak" userLabel="BlankCell" customClass="BlankCell" customModule="Brian" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="343" height="222"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Mf1-T1-9Ak" id="Z5o-ft-sOg">
@@ -36,6 +36,7 @@
                         <buttonConfiguration key="configuration" style="filled" title="Add your pet" cornerStyle="capsule">
                             <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
                             <color key="baseForegroundColor" name="Background"/>
+                            <color key="baseBackgroundColor" name="Button"/>
                         </buttonConfiguration>
                         <connections>
                             <action selector="addPetButtonPressed:" destination="Mf1-T1-9Ak" eventType="touchUpInside" id="Pbm-kQ-7ZT"/>

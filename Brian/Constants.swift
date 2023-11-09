@@ -19,6 +19,10 @@ struct K {
     static let needsCollectionVCNib  = "NeedsCellNib"
     static let headerCellNib         = "HeaderCellNib"
     static let headerCell            = "HeaderCell"
+    static let shareHeaderNib        = "ShareHeaderNib"
+    static let shareHeaderCell       = "ShareHeaderCell"
+    static let shareNeedsNib         = "ShareNeedsNib"
+    static let shareNeedsCell        = "ShareNeedsCell"
     
     struct Segue {
         
@@ -38,5 +42,6 @@ struct K {
         static let editNeed          = "editNeed"
         static let cancelHome        = "cancelToHomeVC"
         static let editPet           = "editPet"
+        static let shareSheet        = "shareSheet"
     }
 }

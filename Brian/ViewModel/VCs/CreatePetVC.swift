@@ -16,7 +16,7 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
     @IBOutlet weak var nameTextBox  : UITextField!
     @IBOutlet weak var breedTextBox : UITextField!
     @IBOutlet weak var dobTextBox   : UITextField!
-    @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var datePicker   : UIDatePicker!
     
     private var textFieldsFilled: Bool = false
     private var dobDateEntered  : Bool = false
@@ -42,28 +42,7 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
         
         nameTextBox.delegate  = self
         breedTextBox.delegate = self
-        
-//        let notificationCenter = NotificationCenter.default
-//        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
-//        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
-    
-    //MARK: - Soft keyboard scroll func - Works in conjuction with notificationCentre set up in viewDidLoad
-    
-//    @objc func adjustForKeyboard(notification: Notification) {
-//        guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
-//        
-//        let keyboardScreenEndFrame = keyboardValue.cgRectValue
-//        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
-//        
-//        if notification.name == UIResponder.keyboardWillHideNotification {
-//            scrollView.contentInset = .zero
-//        } else {
-//            scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height - view.safeAreaInsets.bottom, right: 0)
-//        }
-//        
-//        scrollView.scrollIndicatorInsets = scrollView.contentInset
-//    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
@@ -92,7 +71,7 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
         
         openPhPicker()
     }
-    
+
     //MARK: - Save button functionality
     
     @IBAction func saveButton(_ sender: UIButton) {
@@ -147,27 +126,26 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
     }
     
     //MARK: - Image picker VC and VC launcher
-        
+
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true)
         
         let imageViewSize = avatarImage.bounds.size
-        
+       
         for result in results {
             result.itemProvider.loadObject(ofClass: UIImage.self) { (selectedImage, error) in
                 
                 if let error = error {
                     print("Error loading image from picker: \(error)")
-                }
-                
-                else if let image = selectedImage as? UIImage {
+                    print(selectedImage.debugDescription)
+                    
+                } else if let image = selectedImage as? UIImage {
                     self.userPickedImage = self.styling.resizeAndRoundImage(image: image, imageViewSize: imageViewSize)
                     DispatchQueue.main.async {
                         self.avatarImage.image = self.userPickedImage
                     }
                     
                 } else {
-                    
                     print("Unable to load image to 'avatar' UIImageView")
                 }
             }
@@ -176,10 +154,24 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
     
          func openPhPicker() {
              
+             PHPhotoLibrary.requestAuthorization(for: .readWrite, handler: { status in
+                 switch status {
+                 case .denied    : let alert = UIAlertController(title: "No access", message: "We need access to your photo library", preferredStyle: .alert);
+                     let ok = UIAlertAction(title: "OK", style: .cancel) { _ in self.openPhPicker() }
+                     alert.addAction(ok)
+                     
+                     self.present(alert, animated: true)
+                 case .authorized: break
+                 default: fatalError()
+                 }
+             })
+             
              var config = PHPickerConfiguration()
              
              config.selectionLimit = 1
-             config.filter = PHPickerFilter.images
+             config.filter         = PHPickerFilter.images
+             config.filter         = PHPickerFilter.not(.livePhotos)
+             
              
              let phPickerVC = PHPickerViewController(configuration: config)
              
@@ -212,13 +204,13 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
         //MARK: - Check all user details have been entered to progress to next screen
         
         private func allTextEntered() {
-            if nameTextBox.hasText && breedTextBox.hasText && dobDateEntered == true {
+            if nameTextBox.hasText == true {
                 petName  = nameTextBox.text!
                 petBreed = breedTextBox.text!
                 textFieldsFilled = true
                 
             } else {
-                let alert = UIAlertController(title: "Uh oh!", message: "You've not finished entering your pet's info", preferredStyle: .alert)
+                let alert = UIAlertController(title: "Pet name", message: "Please enter your pet's name", preferredStyle: .alert)
                 let cancelButton = UIAlertAction(title: "Ok", style: .cancel)
                 
                 alert.addAction(cancelButton)

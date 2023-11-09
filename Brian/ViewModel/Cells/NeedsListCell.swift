@@ -19,8 +19,7 @@ class NeedsListCell: UITableViewCell {
     @IBOutlet weak var detailsDetails   : UILabel!
     
     weak var menuDelegate : MenuDelegate?
-//    var menuAction   = Menu()
-    var indexPath    : IndexPath?
+    var indexPath         : IndexPath?
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -64,17 +63,14 @@ class NeedsListCell: UITableViewCell {
         let menu = UIMenu(title: "", children: [
             UIAction(title: NSLocalizedString("Edit need", comment: ""), image: UIImage(systemName: "pencil"), handler: menuHandler),
             UIAction(title: NSLocalizedString("Share this need", comment: ""), image: UIImage(systemName: "square.and.arrow.up"), handler: menuHandler),
-            UIAction(title: NSLocalizedString("Delete need", comment: ""), image: UIImage(systemName: "trash"), handler: menuHandler)
-        ])
+            UIAction(title: NSLocalizedString("Delete need", comment: ""), image: UIImage(systemName: "trash"), handler: menuHandler)])
         
         menuButton.menu = menu
     }
 
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
     
     func menuActionRequest(button: String, index: IndexPath) {

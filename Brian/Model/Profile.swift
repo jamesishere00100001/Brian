@@ -5,9 +5,8 @@
 //  Created by James Attersley on 30/06/2023.
 //
 
-import Foundation
-import RealmSwift
 import UIKit
+import RealmSwift
 
 class Profile: Object {
     

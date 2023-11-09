@@ -26,11 +26,16 @@
 		DD41031A2A3335FC00537824 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD4103182A3335FC00537824 /* Main.storyboard */; };
 		DD41031C2A3335FE00537824 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD41031B2A3335FE00537824 /* Assets.xcassets */; };
 		DD41031F2A3335FE00537824 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD41031D2A3335FE00537824 /* LaunchScreen.storyboard */; };
-		DD41032B2A3362F900537824 /* Shrikhand-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD41032A2A3362F900537824 /* Shrikhand-Regular.ttf */; };
+		DD6C8F402AFCE1B0007F21D5 /* Shrikhand-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD6C8F3F2AFCE1B0007F21D5 /* Shrikhand-Regular.ttf */; };
 		DD9AAB3F2ADD37CF00CA0BE5 /* NeedsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9AAB3D2ADD37CF00CA0BE5 /* NeedsListVC.swift */; };
 		DD9AAB402ADD37CF00CA0BE5 /* NeedsListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD9AAB3E2ADD37CF00CA0BE5 /* NeedsListCell.xib */; };
 		DD9AAB422ADD38BC00CA0BE5 /* NeedsListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9AAB412ADD38BC00CA0BE5 /* NeedsListCell.swift */; };
 		DDA97FC82AEFF81800490DCE /* AboutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA97FC72AEFF81800490DCE /* AboutVC.swift */; };
+		DDA97FCB2AF3DBF200490DCE /* ShareSheetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA97FC92AF3DBF200490DCE /* ShareSheetVC.swift */; };
+		DDA97FCC2AF3DBF200490DCE /* ShareHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDA97FCA2AF3DBF200490DCE /* ShareHeaderCell.xib */; };
+		DDA97FCE2AF3DC4300490DCE /* ShareNeedsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDA97FCD2AF3DC4200490DCE /* ShareNeedsCell.xib */; };
+		DDA97FD02AF3DD8E00490DCE /* ShareHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA97FCF2AF3DD8E00490DCE /* ShareHeaderCell.swift */; };
+		DDA97FD22AF3DD9F00490DCE /* ShareNeedsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA97FD12AF3DD9F00490DCE /* ShareNeedsCell.swift */; };
 		DDC1D1672AD02251000C73C1 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = DDC1D1662AD02251000C73C1 /* Realm */; };
 		DDC1D1692AD02251000C73C1 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DDC1D1682AD02251000C73C1 /* RealmSwift */; };
 		DDD1F9232A72C22700B4EBE9 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD1F9222A72C22700B4EBE9 /* DateFormatter.swift */; };
@@ -68,11 +73,16 @@
 		DD41031B2A3335FE00537824 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DD41031E2A3335FE00537824 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DD4103202A3335FE00537824 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DD41032A2A3362F900537824 /* Shrikhand-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Shrikhand-Regular.ttf"; path = "../../../../../Downloads/Shrikhand/Shrikhand-Regular.ttf"; sourceTree = "<group>"; };
+		DD6C8F3F2AFCE1B0007F21D5 /* Shrikhand-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Shrikhand-Regular.ttf"; sourceTree = "<group>"; };
 		DD9AAB3D2ADD37CF00CA0BE5 /* NeedsListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeedsListVC.swift; sourceTree = "<group>"; };
 		DD9AAB3E2ADD37CF00CA0BE5 /* NeedsListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NeedsListCell.xib; sourceTree = "<group>"; };
 		DD9AAB412ADD38BC00CA0BE5 /* NeedsListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeedsListCell.swift; sourceTree = "<group>"; };
 		DDA97FC72AEFF81800490DCE /* AboutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutVC.swift; sourceTree = "<group>"; };
+		DDA97FC92AF3DBF200490DCE /* ShareSheetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheetVC.swift; sourceTree = "<group>"; };
+		DDA97FCA2AF3DBF200490DCE /* ShareHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShareHeaderCell.xib; sourceTree = "<group>"; };
+		DDA97FCD2AF3DC4200490DCE /* ShareNeedsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShareNeedsCell.xib; sourceTree = "<group>"; };
+		DDA97FCF2AF3DD8E00490DCE /* ShareHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareHeaderCell.swift; sourceTree = "<group>"; };
+		DDA97FD12AF3DD9F00490DCE /* ShareNeedsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareNeedsCell.swift; sourceTree = "<group>"; };
 		DDD1F9222A72C22700B4EBE9 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		DDD1F9242A78FF0A00B4EBE9 /* AddNeedsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNeedsVC.swift; sourceTree = "<group>"; };
 		DDF5C9442A6FFF6C0022F0F5 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
@@ -166,7 +176,7 @@
 		DD4103292A3362CA00537824 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				DD41032A2A3362F900537824 /* Shrikhand-Regular.ttf */,
+				DD6C8F3F2AFCE1B0007F21D5 /* Shrikhand-Regular.ttf */,
 				DD36B3852A6FF1DA00E91338 /* Caprasimo-Regular.ttf */,
 			);
 			path = Fonts;
@@ -185,6 +195,7 @@
 				DD30D0DE2A9F30F500226579 /* AddNeedsTwoVC.swift */,
 				DD14AF4F2A9F4E6E001F7470 /* AddNeedsThreeVC.swift */,
 				DDF6CE232AD4158000B84331 /* AddNeedsFourVC.swift */,
+				DDA97FC92AF3DBF200490DCE /* ShareSheetVC.swift */,
 			);
 			path = VCs;
 			sourceTree = "<group>";
@@ -197,6 +208,8 @@
 				DD1CA2C92A9E0DE600734070 /* NeedsCollectionViewCell.swift */,
 				DD9AAB412ADD38BC00CA0BE5 /* NeedsListCell.swift */,
 				DDF5C9442A6FFF6C0022F0F5 /* ProfileCell.swift */,
+				DDA97FCF2AF3DD8E00490DCE /* ShareHeaderCell.swift */,
+				DDA97FD12AF3DD9F00490DCE /* ShareNeedsCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -209,6 +222,8 @@
 				DD1CA2CA2A9E0DE600734070 /* NeedsCollectionViewCell.xib */,
 				DD9AAB3E2ADD37CF00CA0BE5 /* NeedsListCell.xib */,
 				DDF5C9452A6FFF6C0022F0F5 /* ProfileCell.xib */,
+				DDA97FCA2AF3DBF200490DCE /* ShareHeaderCell.xib */,
+				DDA97FCD2AF3DC4200490DCE /* ShareNeedsCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -278,9 +293,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDA97FCC2AF3DBF200490DCE /* ShareHeaderCell.xib in Resources */,
+				DDA97FCE2AF3DC4300490DCE /* ShareNeedsCell.xib in Resources */,
+				DD6C8F402AFCE1B0007F21D5 /* Shrikhand-Regular.ttf in Resources */,
 				DDF5C9472A6FFF6C0022F0F5 /* ProfileCell.xib in Resources */,
 				DD9AAB402ADD37CF00CA0BE5 /* NeedsListCell.xib in Resources */,
-				DD41032B2A3362F900537824 /* Shrikhand-Regular.ttf in Resources */,
 				DD41031F2A3335FE00537824 /* LaunchScreen.storyboard in Resources */,
 				DD36B3862A6FF1DA00E91338 /* Caprasimo-Regular.ttf in Resources */,
 				DD1CA2CC2A9E0DE700734070 /* NeedsCollectionViewCell.xib in Resources */,
@@ -299,10 +316,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				DDF6CE242AD4158100B84331 /* AddNeedsFourVC.swift in Sources */,
+				DDA97FD22AF3DD9F00490DCE /* ShareNeedsCell.swift in Sources */,
 				DD36B3842A6FF05500E91338 /* HomeVC.swift in Sources */,
 				DDF5C9552A729DCA0022F0F5 /* BlankCell.swift in Sources */,
 				DD039E812AD6B042007F89AA /* LoginVC.swift in Sources */,
 				DDD1F9232A72C22700B4EBE9 /* DateFormatter.swift in Sources */,
+				DDA97FCB2AF3DBF200490DCE /* ShareSheetVC.swift in Sources */,
 				DD9AAB422ADD38BC00CA0BE5 /* NeedsListCell.swift in Sources */,
 				DD30D0DF2A9F30F500226579 /* AddNeedsTwoVC.swift in Sources */,
 				DD1CA2CE2A9E0EF500734070 /* Needs.swift in Sources */,
@@ -315,6 +334,7 @@
 				DD0F95762AE2A9FC009C39B3 /* Menu.swift in Sources */,
 				DD4103132A3335FC00537824 /* AppDelegate.swift in Sources */,
 				DDD1F9252A78FF0A00B4EBE9 /* AddNeedsVC.swift in Sources */,
+				DDA97FD02AF3DD8E00490DCE /* ShareHeaderCell.swift in Sources */,
 				DD1CA2CB2A9E0DE700734070 /* NeedsCollectionViewCell.swift in Sources */,
 				DD4103152A3335FC00537824 /* SceneDelegate.swift in Sources */,
 				DD039E7F2AD6B030007F89AA /* RegisterVC.swift in Sources */,
