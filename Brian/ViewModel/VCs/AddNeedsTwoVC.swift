@@ -14,7 +14,7 @@ class AddNeedsTwoVC: UIViewController, UITextFieldDelegate {
     
     var profile      = Profile()
     var needs        = Needs()
-    var needsSelected: [String] = []
+    var needSelected : String   = "need"
     var need         : String   = ""
     var titleAdded   : String   = ""
     var editDetails  : String   = ""
@@ -23,17 +23,8 @@ class AddNeedsTwoVC: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        addNeedTitle(needArray: needsSelected)
-        
+        needLabel.text = "Add the \(self.needSelected.lowercased()) title"
         titleTF.delegate = self
-    }
-    
-    func addNeedTitle(needArray: [String]) {
-        
-        if let currentNeed = needsSelected.first {
-            needLabel.text = "Add the \(currentNeed.lowercased()) title"
-            need           = currentNeed
-        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -58,7 +49,7 @@ class AddNeedsTwoVC: UIViewController, UITextFieldDelegate {
             destinationVC.need          = self.need
             destinationVC.titleAdded    = self.titleAdded
             destinationVC.needs         = self.needs
-            destinationVC.needsSelected = self.needsSelected
+            destinationVC.needSelected  = self.needSelected
             destinationVC.profile       = self.profile
             destinationVC.detailsAdded  = self.editDetails
             destinationVC.editingNeed   = self.editingNeed

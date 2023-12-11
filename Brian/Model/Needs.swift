@@ -11,7 +11,7 @@ import RealmSwift
 class Needs: Object {
     
 let needsLabels: [String] = ["Food",
-                             "Medicine",
+                             "Medical",
                              "Vaccination",
                              "Grooming",
                              "Training",

@@ -17,10 +17,12 @@ class BlankCell: UITableViewCell {
     @IBOutlet weak var avatarImage: UIImageView!
     
     weak var delegate: NibSegueDelegate?
+    var styling = Styling()
     
     override func awakeFromNib() {
         super.awakeFromNib()
-
+        
+        avatarImage = styling.avatarSetup(avatarImage: avatarImage)
         avatarImage.image = UIImage(named: "profile")
     }
 

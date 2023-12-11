@@ -6,7 +6,6 @@
 //
 import UIKit
 import RealmSwift
-import StoreKit
 
 class HomeVC: UIViewController {
     
@@ -17,6 +16,12 @@ class HomeVC: UIViewController {
     var profiles       : [Profile] = []
     var currentProfile = Profile()
     var styling        = Styling()
+    var defaultImage   = UIImage(named: "profile")
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
     
     override func viewDidLoad() {
         
@@ -37,27 +42,17 @@ class HomeVC: UIViewController {
         //MARK: - Nav bav menu button functionality
         
         let menuHandler: UIActionHandler = { (action) in
-            if action.title == NSLocalizedString("Add new", comment: "") {
+            if action.title == NSLocalizedString("Add pet", comment: "") {
                 self.performSegue(withIdentifier: K.Segue.addPet, sender: self)
                 
             } else if action.title == NSLocalizedString("About", comment: "") {
                 self.performSegue(withIdentifier: K.Segue.about, sender: self)
-                
-            } else if action.title == NSLocalizedString("Rate", comment: "") {
-                if #available(iOS 14.0, *) {
-                  if let scene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene {
-                     SKStoreReviewController.requestReview(in: scene)
-                   }
-                      } else {
-                         SKStoreReviewController.requestReview()
-                }
             }
         }
         
         let barButtonMenu = UIMenu(title: "", children: [
-            UIAction(title: NSLocalizedString("Add new", comment: ""), image: UIImage(systemName: "plus"), handler: menuHandler),
-            UIAction(title: NSLocalizedString("About", comment: ""), image: UIImage(systemName: "info"), handler: menuHandler),
-            UIAction(title: NSLocalizedString("Rate", comment: ""), image: UIImage(systemName: "star"), handler: menuHandler)])
+            UIAction(title: NSLocalizedString("Add pet", comment: ""), image: UIImage(systemName: "plus"), handler: menuHandler),
+            UIAction(title: NSLocalizedString("About", comment: ""), image: UIImage(systemName: "info"), handler: menuHandler)])
         
         optionBarItem.menu = barButtonMenu
     }
@@ -69,7 +64,8 @@ class HomeVC: UIViewController {
         profiles.append(contentsOf: fetchedProfiles)
         
         for profile in profiles {
-            profile.profileImage = loadImage(name: profile.petName) ?? UIImage(named: "profile")!
+            profile.profileImage = loadImage(name: profile.petName) ?? defaultImage!
+            
         }
     }
     
@@ -86,10 +82,10 @@ class HomeVC: UIViewController {
                 
             } else {
                 print("Failed to create UIImage from the file.")
-                return UIImage(named: "profile")
+                return defaultImage
             }
         }
-        return UIImage(named: "profile")
+        return defaultImage
     }
 }
     
@@ -112,7 +108,7 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
             let blankCell      = tableView.dequeueReusableCell(withIdentifier: K.blankCellNib, for: indexPath) as! BlankCell
             blankCell.delegate = self
             
-            blankCell.contentView.layer.cornerRadius = 10
+            blankCell.contentView.layer.cornerRadius = 8
             
             return blankCell
             
@@ -129,7 +125,7 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
             filledCell.menuDelegate       = self
             filledCell.delegate           = self
             
-            filledCell.contentView.layer.cornerRadius = 10
+            filledCell.contentView.layer.cornerRadius = 8
             
             return filledCell
         }

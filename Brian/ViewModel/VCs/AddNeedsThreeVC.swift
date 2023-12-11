@@ -14,7 +14,7 @@ class AddNeedsThreeVC: UIViewController, UITextViewDelegate {
     
     var profile         = Profile()
     var needs           = Needs()
-    var needsSelected   : [String] = []
+    var needSelected    : String   = "need"
     var need            : String   = ""
     var titleAdded      : String   = ""
     var detailsAdded    : String   = ""
@@ -24,7 +24,7 @@ class AddNeedsThreeVC: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
         
         detailsTF.delegate           = self
-        detailsTF.layer.cornerRadius = 10
+        detailsTF.layer.cornerRadius = 8
         detailsTF.text               = detailsAdded
     }
     
@@ -90,13 +90,13 @@ class AddNeedsThreeVC: UIViewController, UITextViewDelegate {
            return true
        }
     
-    @IBAction func saveButtonPressed(_ sender: UIButton) {
+    @IBAction func nextButtonPressed(_ sender: UIButton) {
         
         if let details = detailsTF.text {
             detailsAdded = details
         }
-        needsSelected.removeFirst(need)
-        addNeedToPet(need: need)
+//        needsSelected.removeFirst(need)
+//        addNeedToPet(need: need)
         performSegue(withIdentifier: K.Segue.addNeedsFour, sender: self)
     }
     
@@ -108,7 +108,9 @@ class AddNeedsThreeVC: UIViewController, UITextViewDelegate {
             destinationVC.needType      = self.need
             destinationVC.needTitle     = self.titleAdded
             destinationVC.needDetails   = self.detailsAdded
-            destinationVC.needsSelected = self.needsSelected
+            destinationVC.needSelected  = self.needSelected
+            destinationVC.needs         = self.needs
+            destinationVC.editingNeed   = self.editingNeed
         }
     }
 }

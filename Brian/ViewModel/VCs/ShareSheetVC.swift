@@ -74,7 +74,7 @@ class ShareSheetVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             shareHeader.petBreed.text      = profile.petBreed
             shareHeader.petDOB.text        = profile.petDOB
             
-            shareHeader.contentView.layer.cornerRadius = 10
+            shareHeader.contentView.layer.cornerRadius = 8
             
             return shareHeader
             
@@ -89,7 +89,7 @@ class ShareSheetVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                 shareNeeds.titleDetails.text   = profileNeeds.title
                 shareNeeds.detailsDetails.text = profileNeeds.details
                 
-                shareNeeds.contentView.layer.cornerRadius = 10
+                shareNeeds.contentView.layer.cornerRadius = 8
             }
             
             return shareNeeds

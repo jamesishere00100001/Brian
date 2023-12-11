@@ -7,6 +7,7 @@
 
 import UIKit
 import EventKitUI
+import RealmSwift
 
 class AddNeedsFourVC: UIViewController, EKEventEditViewDelegate, UINavigationControllerDelegate {
     
@@ -16,28 +17,28 @@ class AddNeedsFourVC: UIViewController, EKEventEditViewDelegate, UINavigationCon
     @IBOutlet weak var needDetailsLabel : UILabel!
     
     var profile       = Profile()
-    var needsSelected : [String] = []
+    var needs         = Needs()
+    var needSelected  : String   = "need"
     var needType      : String   = ""
     var needTitle     : String   = ""
     var needDetails   : String   = ""
+    var editingNeed   : Bool     = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.navigationItem.setHidesBackButton(true, animated: true)
         
         needTypeLabel.text    = needType
         needTitleLabel.text   = needTitle
         needDetailsLabel.text = needDetails
         
-        textView.layer.cornerRadius = 10
+        textView.layer.cornerRadius = 8
     }
     
     //MARK: - EventKit methods
     
     func addEventToCalendar() {
         switch EKEventStore.authorizationStatus(for: .event) {
-        case .notDetermined:
+        case .notDetermined, .denied, .restricted:
             let eventStore = EKEventStore()
             if #available(iOS 17.0, *) {
                 eventStore.requestFullAccessToEvents { (granted, error) in
@@ -60,7 +61,14 @@ class AddNeedsFourVC: UIViewController, EKEventEditViewDelegate, UINavigationCon
             DispatchQueue.main.async {
                 self.showEventViewController()
             }
-        default: print("access not provided to calendar"); break
+            
+        default:
+            let alert = UIAlertController(title: "No access", message: "Access has not been allowed to view your photos.\n\n Please check your setting and try again.", preferredStyle: .alert)
+            let okButton = UIAlertAction(title: "Ok", style: .default)
+            
+            alert.addAction(okButton)
+            
+            present(alert, animated: true)
         }
     }
     
@@ -85,7 +93,7 @@ class AddNeedsFourVC: UIViewController, EKEventEditViewDelegate, UINavigationCon
     }
     
     func needsCompleted() {
-        if needsSelected.count == 0 {
+        if needSelected.count == 0 {
             performSegue(withIdentifier: K.Segue.allNeedsAdded, sender: self)
         } else {
             performSegue(withIdentifier: K.Segue.addMoreNeeds, sender: self)
@@ -96,18 +104,57 @@ class AddNeedsFourVC: UIViewController, EKEventEditViewDelegate, UINavigationCon
         if segue.identifier == K.Segue.addMoreNeeds {
             let destinationVC = segue.destination as! AddNeedsTwoVC
             
-            destinationVC.needsSelected = self.needsSelected
+            destinationVC.needSelected  = self.needSelected
             destinationVC.profile       = self.profile
         }
     }
     
-    @IBAction func yesButtonPressed(_ sender: UIButton) {
+    func addNeedToPet(need: String) {
         
-        addEventToCalendar()
+        if editingNeed == false {
+            
+        let realm = try! Realm()
+        
+        if let exisitingProfile = realm.object(ofType: Profile.self, forPrimaryKey: self.profile.id) {
+            
+            let needsList = exisitingProfile.needs
+            try! realm.write{
+                let newNeeds     = Needs()
+                newNeeds.type    = need
+                newNeeds.title   = self.needTitle
+                newNeeds.details = self.needDetails
+                needsList.append(newNeeds)
+            }
+        }
+            
+        } else if editingNeed == true {
+            let realm = try! Realm()
+                                 
+            if realm.object(ofType: Needs.self, forPrimaryKey: needs.id) != nil {
+                try! realm.write {
+                    let editedNeed = Needs(value: ["id"     : needs.id,
+                                                   "type"   : need,
+                                                   "title"  : needTitle,
+                                                   "details": needDetails])
+                    
+                    realm.add(editedNeed, update: .modified)
+                }
+            }
+        }
     }
     
-    @IBAction func notNowButtonPressed(_ sender: UIButton) {
+    
+    @IBAction func saveButtonPressed(_ sender: UIButton) {
         
-        needsCompleted()
+        addNeedToPet(need: needType)
+        performSegue(withIdentifier: K.Segue.allNeedsAdded, sender: self)
+//        needsCompleted()
+    }
+    
+    @IBAction func setReminderPressed(_ sender: UIButton) {
+        
+        addEventToCalendar()
+        performSegue(withIdentifier: K.Segue.allNeedsAdded, sender: self)
+//        needsCompleted()
     }
 }

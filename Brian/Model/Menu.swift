@@ -118,7 +118,3 @@ class Menu: UITableViewController {
     }
 }
 
-//if let cell = sender.superview?.superview as? UITableViewCell {
-//
-//    shareTVCPDF(cell: cell)
-//}

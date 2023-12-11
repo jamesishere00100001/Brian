@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import Photos
+
 import PhotosUI
 import RealmSwift
 
@@ -23,7 +23,7 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
     
     var profile           = Profile()
     let styling           = Styling()
-    var userPickedImage   = UIImage(named: "profile")
+    var userPickedImage   : UIImage?
     var petName           : String = ""
     var petBreed          : String = ""
     var petDOB            : String = ""
@@ -34,7 +34,7 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
         super.viewDidLoad()
     
         avatarImage       = styling.avatarSetup(avatarImage: avatarImage)
-        avatarImage.image = userPickedImage
+        avatarImage.image = UIImage(named: "profile")
         
         nameTextBox  = styling.underlinedTF(textfield: nameTextBox)
         breedTextBox = styling.underlinedTF(textfield: breedTextBox)
@@ -128,12 +128,12 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
     //MARK: - Image picker VC and VC launcher
 
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-        picker.dismiss(animated: true)
+        dismiss(animated: true)
         
         let imageViewSize = avatarImage.bounds.size
-       
-        for result in results {
-            result.itemProvider.loadObject(ofClass: UIImage.self) { (selectedImage, error) in
+                
+        if let itemProvider = results.first?.itemProvider, itemProvider.canLoadObject(ofClass: UIImage.self) {
+            itemProvider.loadObject(ofClass: UIImage.self) { (selectedImage, error) in
                 
                 if let error = error {
                     print("Error loading image from picker: \(error)")
@@ -141,6 +141,7 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
                     
                 } else if let image = selectedImage as? UIImage {
                     self.userPickedImage = self.styling.resizeAndRoundImage(image: image, imageViewSize: imageViewSize)
+                
                     DispatchQueue.main.async {
                         self.avatarImage.image = self.userPickedImage
                     }
@@ -171,7 +172,7 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
              config.selectionLimit = 1
              config.filter         = PHPickerFilter.images
              config.filter         = PHPickerFilter.not(.livePhotos)
-             
+             config.filter         = PHPickerFilter.not(.videos)
              
              let phPickerVC = PHPickerViewController(configuration: config)
              

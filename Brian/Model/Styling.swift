@@ -13,10 +13,10 @@ class Styling: UITextField {
     
     func underlinedTF(textfield: UITextField) -> UITextField {
         
-        let underLine = CALayer()
-        underLine.frame = CGRect(x: 0.0, y: textfield.frame.height - 1, width: textfield.frame.width, height: 1.0)
+        let underLine             = CALayer()
+        underLine.frame           = CGRect(x: 0.0, y: textfield.frame.height - 1, width: textfield.frame.width, height: 1.0)
         underLine.backgroundColor = UIColor.black.cgColor
-        textfield.borderStyle = UITextField.BorderStyle.none
+        textfield.borderStyle     = UITextField.BorderStyle.none
         textfield.layer.addSublayer(underLine)
         
         return textfield
@@ -27,8 +27,8 @@ class Styling: UITextField {
     func avatarSetup(avatarImage: UIImageView) -> UIImageView {
         
         avatarImage.layer.masksToBounds = false
-        avatarImage.layer.cornerRadius = avatarImage.frame.height/2
-        avatarImage.clipsToBounds = true
+        avatarImage.layer.cornerRadius  = avatarImage.frame.height/2
+        avatarImage.clipsToBounds       = true
         
         return avatarImage
     }
@@ -36,11 +36,10 @@ class Styling: UITextField {
     //MARK: - User image resizing to fit avatar imageview
   
     func resizeAndRoundImage(image: UIImage, imageViewSize: CGSize) -> UIImage {
-        let newSize = min(imageViewSize.width, imageViewSize.height) // Use the smaller dimension as newSize
+        let newSize = min(imageViewSize.width, imageViewSize.height) 
         
-        // Resize the image while maintaining its aspect ratio
-        let resizeW = newSize / image.size.width
-        let resizeH = newSize / image.size.height
+        let resizeW     = newSize / image.size.width
+        let resizeH     = newSize / image.size.height
         let scaleFactor = min(resizeW, resizeH)
         
         let scaledImageSize = CGSize(
@@ -51,7 +50,6 @@ class Styling: UITextField {
             image.draw(in: CGRect(origin: .zero, size: scaledImageSize))
         }
         
-        // Create a circular mask for the image
         var circularImage: UIImage?
         UIGraphicsImageRenderer(size: scaledImageSize).image { _ in
             let context = UIGraphicsGetCurrentContext()
@@ -71,12 +69,14 @@ class Styling: UITextField {
     
 extension UIImage {
 
-    var rounded: UIImage? {
-        UIGraphicsBeginImageContextWithOptions(size, false, UIScreen.main.scale)
+    var rounded: UIImage? { UIGraphicsBeginImageContextWithOptions(size, false, UIScreen.main.scale)
         defer { UIGraphicsEndImageContext() }
+        
         let bounds = CGRect(origin: .zero, size: size)
+        
         UIBezierPath(roundedRect: bounds, cornerRadius: size.height/2.0).addClip()
         draw(in: bounds)
+        
         return UIGraphicsGetImageFromCurrentImageContext()
     }
 }

@@ -14,7 +14,7 @@ class NeedsListVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
     var profile       = Profile()
-    let realm         = try! Realm()
+    var realm         = try! Realm()
     let cellVC        = NeedsListCell()
     let menuAction    = Menu()
     var cell          = NeedsListCell()
@@ -22,6 +22,7 @@ class NeedsListVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     var shareRequested: String = ""
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         tableView.reloadData()
     }
     
@@ -75,13 +76,14 @@ class NeedsListVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
             
             destinationVC.loadViewIfNeeded()
             destinationVC.profile       = profile
-            destinationVC.needsSelected.append(editNeed.type)
+            destinationVC.needSelected  = editNeed.type
             destinationVC.needs         = editNeed
             destinationVC.need          = editNeed.type
             destinationVC.editingNeed   = true
-            destinationVC.addNeedTitle(needArray: destinationVC.needsSelected)
-            destinationVC.titleTF.text! = editNeed.title
+//            destinationVC.addNeedTitle(needArray: destinationVC.needsSelected)
+            destinationVC.titleTF.text  = editNeed.title
             destinationVC.editDetails   = editNeed.details
+            destinationVC.needLabel.text = "Add the \(self.editNeed.type.lowercased()) title"
             
             //MARK: - Edit pet segue
             
@@ -142,7 +144,7 @@ class NeedsListVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
             headerCell.petBreed.text      = profile.petBreed
             headerCell.petDOB.text        = profile.petDOB
             
-            headerCell.contentView.layer.cornerRadius = 10
+            headerCell.contentView.layer.cornerRadius = 8
             
             return headerCell
             
@@ -159,7 +161,7 @@ class NeedsListVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
                 needsCell.indexPath           = indexPath
                 needsCell.menuDelegate        = self
                 
-                needsCell.contentView.layer.cornerRadius = 10
+                needsCell.contentView.layer.cornerRadius = 8
             }
             
             return needsCell
@@ -176,11 +178,6 @@ class NeedsListVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         } else {
             return 260
         }
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // note that indexPath.section is used rather than indexPath.row
-//        print("You tapped cell number \(indexPath.section)\(indexPath.row).")
     }
     
     
