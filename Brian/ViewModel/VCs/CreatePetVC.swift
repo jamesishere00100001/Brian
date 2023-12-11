@@ -126,59 +126,72 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
     }
     
     //MARK: - Image picker VC and VC launcher
+    
+    func checkPhotoLibraryPermission() {
+        PHPhotoLibrary.requestAuthorization { status in
+            switch status {
+            case .authorized:
+                DispatchQueue.main.async {
+                    self.openPhPicker()
+                }
+            case .denied, .restricted:
+                let alert = UIAlertController(title: "No photo access", message: "Without access to your photo library, you will not be able to add an image of your pet. To amend this, check 'privacy' permissions within settings.", preferredStyle: .alert)
+                let okButton = UIAlertAction(title: "Ok", style: .default)
+                alert.addAction(okButton)
+                DispatchQueue.main.async {
+                    self.present(alert, animated: true)
+                }
+            case .notDetermined:
+                let alert = UIAlertController(title: "No photo access possible", message: "Without access to your photo library, you will not be able to add an image of your pet. Please check 'privacy' permissions within settings.", preferredStyle: .alert)
+                let okButton = UIAlertAction(title: "Ok", style: .default)
+                alert.addAction(okButton)
+                DispatchQueue.main.async {
+                    self.present(alert, animated: true)
+                }
+            default:
+                fatalError("Unhandled case")
+            }
+        }
+    }
 
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         dismiss(animated: true)
-        
+
         let imageViewSize = avatarImage.bounds.size
-                
+
         if let itemProvider = results.first?.itemProvider, itemProvider.canLoadObject(ofClass: UIImage.self) {
             itemProvider.loadObject(ofClass: UIImage.self) { (selectedImage, error) in
-                
                 if let error = error {
+                    DispatchQueue.main.async {
+                        let alert = UIAlertController(title: "Error", message: "An error has occurred when trying to access your photos. Please check your 'privacy' setting and try again.", preferredStyle: .alert)
+                        let ok = UIAlertAction(title: "OK", style: .cancel)
+                        alert.addAction(ok)
+                        self.present(alert, animated: true)
+                    }
                     print("Error loading image from picker: \(error)")
                     print(selectedImage.debugDescription)
-                    
                 } else if let image = selectedImage as? UIImage {
                     self.userPickedImage = self.styling.resizeAndRoundImage(image: image, imageViewSize: imageViewSize)
-                
                     DispatchQueue.main.async {
                         self.avatarImage.image = self.userPickedImage
                     }
-                    
                 } else {
                     print("Unable to load image to 'avatar' UIImageView")
                 }
             }
         }
     }
-    
-         func openPhPicker() {
-             
-             PHPhotoLibrary.requestAuthorization(for: .readWrite, handler: { status in
-                 switch status {
-                 case .denied    : let alert = UIAlertController(title: "No access", message: "We need access to your photo library", preferredStyle: .alert);
-                     let ok = UIAlertAction(title: "OK", style: .cancel) { _ in self.openPhPicker() }
-                     alert.addAction(ok)
-                     
-                     self.present(alert, animated: true)
-                 case .authorized: break
-                 default: fatalError()
-                 }
-             })
-             
-             var config = PHPickerConfiguration()
-             
-             config.selectionLimit = 1
-             config.filter         = PHPickerFilter.images
-             config.filter         = PHPickerFilter.not(.livePhotos)
-             config.filter         = PHPickerFilter.not(.videos)
-             
-             let phPickerVC = PHPickerViewController(configuration: config)
-             
-                    phPickerVC.delegate = self
-                    present(phPickerVC, animated: true)
-         }
+
+    func openPhPicker() {
+        var config = PHPickerConfiguration()
+        config.selectionLimit = 1
+        config.filter = PHPickerFilter.images
+
+        let phPickerVC = PHPickerViewController(configuration: config)
+        phPickerVC.delegate = self
+        present(phPickerVC, animated: true)
+    }
+
         
         //MARK: - Save image to Document Directory
     

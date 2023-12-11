@@ -35,6 +35,25 @@ class NeedsListCell: UITableViewCell {
         
         menuButton.showsMenuAsPrimaryAction = true
         
+//        let scrollView = UIScrollView()
+//        scrollView.translatesAutoresizingMaskIntoConstraints = false
+//
+//        contentView.addSubview(scrollView)
+//        scrollView.addSubview(detailsDetails)
+//
+//        NSLayoutConstraint.activate([
+//            scrollView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+//            scrollView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+//            scrollView.topAnchor.constraint(equalTo: contentView.topAnchor),
+//            scrollView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+//
+//            detailsDetails.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+//            detailsDetails.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+//            detailsDetails.topAnchor.constraint(equalTo: scrollView.topAnchor),
+//            detailsDetails.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+//            detailsDetails.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
+//        ])
+        
         //MARK: - UIMenu in cell functionality
         
         let menuHandler: UIActionHandler = { (action) in
