@@ -89,7 +89,7 @@ class AddNeedsFourVC: UIViewController, EKEventEditViewDelegate, UINavigationCon
     
     func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
         dismiss(animated: true, completion: nil)
-        needsCompleted()
+//        needsCompleted()
     }
     
     func needsCompleted() {
@@ -143,7 +143,6 @@ class AddNeedsFourVC: UIViewController, EKEventEditViewDelegate, UINavigationCon
         }
     }
     
-    
     @IBAction func saveButtonPressed(_ sender: UIButton) {
         
         addNeedToPet(need: needType)
@@ -154,7 +153,7 @@ class AddNeedsFourVC: UIViewController, EKEventEditViewDelegate, UINavigationCon
     @IBAction func setReminderPressed(_ sender: UIButton) {
         
         addEventToCalendar()
-        performSegue(withIdentifier: K.Segue.allNeedsAdded, sender: self)
+//        performSegue(withIdentifier: K.Segue.allNeedsAdded, sender: self)
 //        needsCompleted()
     }
 }

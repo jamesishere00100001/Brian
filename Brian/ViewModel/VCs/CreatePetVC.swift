@@ -156,7 +156,8 @@ class CreatePetVC: UIViewController, PHPickerViewControllerDelegate, UINavigatio
 
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         dismiss(animated: true)
-
+        
+        picker.navigationController?.navigationBar.barTintColor = .black
         let imageViewSize = avatarImage.bounds.size
 
         if let itemProvider = results.first?.itemProvider, itemProvider.canLoadObject(ofClass: UIImage.self) {
