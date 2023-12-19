@@ -37,11 +37,11 @@ class AboutVC: UIViewController {
     }
     
     @IBAction func tsAndCsPressed(_ sender: UIButton) {
-        UIApplication.shared.open(URL(string: "http://www.google.com")!)
+        UIApplication.shared.open(URL(string: "https://jamesishere00100001.github.io/brianapp/")!)
     }
     
     @IBAction func privacyPressed(_ sender: UIButton) {
-        UIApplication.shared.open(URL(string: "http://www.google.com")!)
+        UIApplication.shared.open(URL(string: "https://jamesishere00100001.github.io/brianapp/privacy-policy.html")!)
     }
     
     @IBAction func ratePressed(_ sender: UIButton) {
